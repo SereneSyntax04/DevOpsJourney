@@ -307,7 +307,7 @@ DevOps fails when teams work in **silos** with conflicting goals.
 
 ---
 
-<h2 align="center"> Kaizen’s Five Guiding Principles  (japnese term: kaizen)
+<h2 align="center"> Kaizen’s Five Guiding Principles  (japnese term: kaizen) </h2>
 
 **Kaizen** supports DevOps by focusing on **continuous improvement**. <br>
 (Kaizen emphasizes going to look at the actual place where the value's created or where the problem is, not reports, metrics, processes, or documentation about it. It's actually going to look at it.) <br>
