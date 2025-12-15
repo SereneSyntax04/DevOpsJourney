@@ -1,4 +1,7 @@
-<h1 align="center">What is DevOps?</h1>
+<h1 align="center">Chapter 1. DevOps Basics</h1>
+<br>
+
+<h2 align="center">What is DevOps?</h2>
 
 DevOps is a combination of two traditional roles in tech: **Development (Dev)** and **Operations (Ops)** to improve how software is built, deployed, and maintained.
 
@@ -16,7 +19,7 @@ DevOps is a **practice and culture** where development and operations teams work
 
 
 
-<h1 align="center"> DevOps Values – CAMS </h1>
+<h2 align="center"> DevOps Values – CAMS </h2>
 
 <p align="center">
   <img src="./assets/images/CAMS.png" alt="CAMS" width="500"/>
@@ -54,7 +57,7 @@ CAMS reminds us that DevOps is about **changing behavior**, using **automation t
 
 
 
-<h1 align="center"> DevOps principles: The Three Ways </h1>
+<h2 align="center"> DevOps principles: The Three Ways </h2>
 
 <p align="center">
   <img src="./assets/images/principles.png" alt="CAMS" width="500"/>
@@ -96,7 +99,7 @@ The Three Ways guide DevOps teams to **optimize the whole system**, **learn quic
 
 
 
-<h1 align="center">The Five Practices of DevOps</h1>
+<h2 align="center">The Five Practices of DevOps</h2>
 
 <p align="center">
   <img src="./assets/images/practise.png" alt="CAMS" width="500"/>
@@ -155,7 +158,7 @@ Focusing on one while ignoring others leads to poor results and instability.
 
 
 
-<h1 align="center">DevOps Tool Guidance</h1>
+<h2 align="center">DevOps Tool Guidance</h2>
 
 DevOps is **not tool-first**.  
 
@@ -219,3 +222,12 @@ Choose tools that:
 - Adapt to change  
 
 **DevOps success comes from how tools are used — not how many you use.**
+
+
+
+---
+---
+
+
+
+<h1 align="center">Chapter 2. DevOps and People: A Culture Change</h1>
