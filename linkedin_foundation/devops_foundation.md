@@ -57,9 +57,6 @@ Created by **Gene Kim & Mike Orzen**
 
 <h2 align="center">The Five Practices of DevOps</h2>
 
-<p align="center">
-  <img src="./assets/images/practise.png" alt="practise" width="500"/>
-</p>
 
 1. **Culture** → Trust, safety, collaboration  
 2. **Process** → Agile + Lean  
@@ -145,10 +142,6 @@ Key ideas:
 - **Empower people**
 - **Transparency**
 
-<p align="center">
-  <img src="./assets/images/kata.png" alt="kata" width="500"/>
-</p>
-
 
 
 ---
@@ -172,13 +165,7 @@ Agile = small iterations + fast feedback.
 
 - Build → test → learn → repeat  
 - Frequent working software  
-- Strong collaboration  
-
-<p align="center"> 
-  <img src="./assets/images/sdlc.png" alt="sdlc" width="500"/> 
-</p>
-
-<h3 align='center'>Teamwork... - Makes the dream work.</h3>
+- Strong collaboration  (Teamwork... - Makes the dream work.)
 
 > Agile lacked Ops → DevOps extends Agile to services.
 
@@ -192,10 +179,6 @@ Lean = remove waste, improve flow.
 - **Muda** → no value work  
 - **Mura** → uneven flow  
 - **Muri** → overburden  
-
-<p align="center"> 
-  <img src="./assets/images/principle_lean.png" alt="principle_lean" width="500"/> 
-</p>
 
 <p align="center"> 
   <img src="./assets/images/types_of_waste.png" alt="types_of_waste" width="500"/> 
@@ -275,7 +258,7 @@ This is part of **Configuration Management (CM)** → keep systems in desired st
 
 ---
 
-<h2 align="center"> Evolution of IaC (Short Timeline) </h2>
+<h2 align="center"> Evolution of IaC </h2>
 
 ### 1. Cloud Era (2010s)
 - Infra created from code (AWS, Azure)
@@ -301,6 +284,11 @@ This is part of **Configuration Management (CM)** → keep systems in desired st
 ### 5. Orchestration Platforms (2020s)
 - **Kubernetes, Mesos** → provisioning + deploy + orchestration
 - **Serverless / PaaS** → “give code, platform handles rest”
+
+
+<p align="center"> 
+  <img src="./assets/images/Evolution.png" alt="IAC_evolution" width="500"/> 
+</p>
 
 > IaC turned infrastructure from manual work → code → containers → platforms that run everything for you.
 
@@ -409,6 +397,12 @@ Orchestration coordinates everything
 
 
 
+<p align="center"> 
+  <img src="./assets/images/cicdTool.webp" alt="cicd_Tool" width="500"/> 
+</p>
+
+
+
 ---
 ---
 
@@ -461,8 +455,13 @@ Orchestration coordinates everything
 - Principle: **keep it simple, iterate based on real feedback**.
 
 
+<p align="center"> 
+  <img src="./assets/images/sre.png" alt="" width="500"/> 
+</p>
+
+
 
 ---
-
+---
 
 
