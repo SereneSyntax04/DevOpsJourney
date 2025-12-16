@@ -263,12 +263,11 @@ This is part of **Configuration Management (CM)** → keep systems in desired st
 ---
 
 ## Key IaC Concepts (Must Remember)
-
-- **Imperative** → how to do it  
-- **Declarative** → what you want  
-- **Idempotent** → same result every run  
-- **Drift** → real system ≠ code  
-- **Self-service** → teams trigger automation
+ 
+- **Declarative** → say what you want, not how
+- **Idempotent** → run again, nothing breaks 
+- **Drift** → real system changing away from code (bad) 
+- **Self-service** → teams don’t wait on ops tickets
 
 ---
 
@@ -287,17 +286,19 @@ This is part of **Configuration Management (CM)** → keep systems in desired st
 ### 3. Containers Change Everything
 - Apps packaged with runtime (**Docker**)
 - Less OS configuration needed
-- Faster dev + fewer runtime bugs
+- Faster dev + fewer “works on my machine” bugs
 
 ### 4. Immutable Infrastructure
 - Servers/images **never change**
 - Replace instead of modify
 - Used by Netflix, cloud giants
-- Reduces drift by design
+- Less drift, more stability
 
 ### 5. Orchestration Platforms (2020s)
 - **Kubernetes, Mesos** → provisioning + deploy + orchestration
 - **Serverless / PaaS** → “give code, platform handles rest”
+
+> IaC turned infrastructure from manual work → code → containers → platforms that run everything for you.
 
 ---
 
@@ -310,7 +311,7 @@ This is part of **Configuration Management (CM)** → keep systems in desired st
 
 ---
 
-## IaC Toolchain (DevOps Rule)
+## IaC Toolchain (DevOps Rule)(this is the mindset shift)
 
 > **You don’t pick tools. You design a toolchain.**
 
@@ -328,7 +329,7 @@ This is part of **Configuration Management (CM)** → keep systems in desired st
 
 > **Baking moves risk earlier**, less flexibility in prod.
 
-### Orchestration Options
+### Orchestration Options (making things work together)
 - CM-based (Ansible, Salt)
 - Platform-based (Kubernetes)
 - Runbook tools (**Rundeck**)
@@ -348,8 +349,7 @@ This is part of **Configuration Management (CM)** → keep systems in desired st
 ## Big Picture
 
 ```
-IaC + Containers + Orchestration
-= Fast, scalable, repeatable DevOps
+IaC creates infra
+Containers package apps
+Orchestration coordinates everything
 ```
-
-**Infrastructure moved from pets → cattle → code.**
