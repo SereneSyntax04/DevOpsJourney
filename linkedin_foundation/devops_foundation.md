@@ -20,7 +20,7 @@ Values → Principles → Practices → Tools
 <h2 align="center"> DevOps Values – CAMS </h2>
 
 <p align="center">
-  <img src="./assets/images/CAMS.png" alt="CAMS" width="500"/>
+  <img src="./assets/images/CAMS.png" alt="CAMS" width="400"/>
 </p>
 
 
@@ -38,7 +38,7 @@ Values → Principles → Practices → Tools
 <h2 align="center"> DevOps principles: The Three Ways </h2>
 
 <p align="center">
-  <img src="./assets/images/principles.png" alt="principles" width="500"/>
+  <img src="./assets/images/principles.png" alt="principles" width="400"/>
 </p>
 
 Created by **Gene Kim & Mike Orzen**
@@ -181,7 +181,7 @@ Lean = remove waste, improve flow.
 - **Muri** → overburden  
 
 <p align="center"> 
-  <img src="./assets/images/types_of_waste.png" alt="types_of_waste" width="500"/> 
+  <img src="./assets/images/types_of_waste.png" alt="types_of_waste" width="400"/> 
 </p>
 
 **Lean tools:**
@@ -190,7 +190,7 @@ Lean = remove waste, improve flow.
 - Limit WIP  
 
 <p align="center"> 
-  <img src="./assets/images/kanban_board.png" alt="kanban_board" width="500"/> 
+  <img src="./assets/images/kanban_board.png" alt="kanban_board" width="400"/> 
 </p>
 
 > In short, Lean says: “Stop wasting time and energy. Make the value flow smoothly and continuously.”
@@ -287,7 +287,7 @@ This is part of **Configuration Management (CM)** → keep systems in desired st
 
 
 <p align="center"> 
-  <img src="./assets/images/Evolution.png" alt="IAC_evolution" width="500"/> 
+  <img src="./assets/images/Evolution.png" alt="IAC_evolution" width="400"/> 
 </p>
 
 > IaC turned infrastructure from manual work → code → containers → platforms that run everything for you.
@@ -398,7 +398,7 @@ Orchestration coordinates everything
 
 
 <p align="center"> 
-  <img src="./assets/images/cicdTool.webp" alt="cicd_Tool" width="500"/> 
+  <img src="./assets/images/cicdTool.webp" alt="cicd_Tool" width="400"/> 
 </p>
 
 
@@ -456,7 +456,7 @@ Orchestration coordinates everything
 
 
 <p align="center"> 
-  <img src="./assets/images/sre.png" alt="" width="500"/> 
+  <img src="./assets/images/sre.png" alt="" width="400"/> 
 </p>
 
 
