@@ -417,4 +417,37 @@ Orchestration coordinates everything
 <h1 align="center">Chapter 6. Site Reliability Engineering</h1>
 <br>
 
-<h2 align="center">
+<h2 align="center"> What is SRE </h2>
+- DevOps practice focused on **system reliability** (availability, performance, security).  
+- **Operations + engineering**: monitor, manage, fix production systems.  
+- **Engineer reliability from the start**.  
+- Benefits: lower change failure rate, faster recovery, meet uptime goals.
+
+## Building for Reliability
+- **Design-time focus**: use patterns & principles to prevent failures.  
+- Key patterns: **Circuit Breaker**, **Timeouts**.  
+- Tools/libraries: **Resilience4j**, 12-Factor App principles.  
+- Reality: systems fail → build **resilience**: redundancy, load balancing, auto-scaling, failover.  
+- Developers on-call: "You write it, you run it."
+
+## Observability
+- Ability to **infer system health** from outputs.  
+- Key areas: synthetic checks, metrics, user performance, logs, security monitoring.  
+- Collaboration between devs, PMs, and ops is crucial.
+
+## Incident Response & Postmortems
+- Expect failures; focus on **troubleshooting, automation, communication**.  
+- Postmortems: **learn, don’t blame**; fix system and process gaps.  
+
+## SRE Toolchain
+- **Reliability tools:** Resilience4j, 12-Factor apps.  
+- **Observability:** Datadog, Prometheus, Grafana.  
+- **Incident management:** PagerDuty, OpsGenie, Rundeck.  
+- Principle: **keep it simple, iterate based on real feedback**.
+
+
+
+---
+
+
+
