@@ -243,7 +243,7 @@ Together = fast, stable DevOps
 <h1 align="center">Chapter 4. Infrastructure as Code (IaC)</h1>
 <br>
 
-## Infrastructure as Code (IaC)
+<h2 align="center"> Infrastructure as Code (IaC) </h2>
 
 **IaC** = managing **servers, networks, storage, platforms** using **code**, not manual work.
 
@@ -275,7 +275,7 @@ This is part of **Configuration Management (CM)** → keep systems in desired st
 
 ---
 
-## Evolution of IaC (Short Timeline)
+<h2 align="center"> Evolution of IaC (Short Timeline) </h2>
 
 ### 1. Cloud Era (2010s)
 - Infra created from code (AWS, Azure)
@@ -365,9 +365,10 @@ Orchestration coordinates everything
 
 
 
-<h1 align="center">Chapter 5. Continuous Delivery</h1>
+<h1 align="center">Chapter 5. Continuous Integration (CI)and Continuous Delivery (CD)</h1>
 <br>
-### Continuous Integration (CI)
+
+<h2 align="center"> Continuous Integration (CI) </h2>
 - Automatically **build & test** code on every commit to keep the application in a working state. 
 - **Six practices:**  
   1. Builds run fast (<5 min)  
@@ -377,7 +378,7 @@ Orchestration coordinates everything
   5. Fix flaky tests  
   6. Build → status + log + artifact  
 
-### Continuous Delivery (CD)
+<h2 align="center"> Continuous Delivery (CD) </h2>
 - Deploy every change to **production-like environment**  
 - Automate integration, acceptance tests  
 - Use **immutable artifacts** → trust + auditability  
@@ -413,3 +414,7 @@ Orchestration coordinates everything
 
 
 
+<h1 align="center">Chapter 6. Site Reliability Engineering</h1>
+<br>
+
+<h2 align="center">
