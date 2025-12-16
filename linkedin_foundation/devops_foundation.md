@@ -368,7 +368,7 @@ Orchestration coordinates everything
 <h1 align="center">Chapter 5. Continuous Delivery</h1>
 <br>
 ### Continuous Integration (CI)
-- Automatically **build & test** code on every commit  
+- Automatically **build & test** code on every commit to keep the application in a working state. 
 - **Six practices:**  
   1. Builds run fast (<5 min)  
   2. Commit small changes  
@@ -398,7 +398,7 @@ Orchestration coordinates everything
   - **Code hygiene** → linters, formatters  
   - **Integration** → all components  
   - **Acceptance / End-to-End** → user perspective  
-- TDD & BDD → write tests before code  
+- TDD (Test Driven Development) & BDD (Behavior Driven Development) – write tests before code. 
 
 ### CI/CD Toolchain Layers
 1. **Deployment:** containers, system images, feature flags, orchestration  
