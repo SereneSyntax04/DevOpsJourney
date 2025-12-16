@@ -2,6 +2,7 @@
 <br>
 
 <h2 align="center">What is DevOps?</h2>
+
 **DevOps = Dev + Ops working together** across the entire lifecycle (design → deploy → operate).
 
 Earlier:
@@ -102,8 +103,10 @@ DevOps is mainly a **culture change**, not a tooling change.
 
 <h2 align="center">Communication and Trust Power DevOps</h2>
 - Poor communication breaks DevOps  
+
 - Transparency builds **trust**  
-- High-trust (**generative**) teams focus on mission  
+
+- High-trust ( **generative** ) teams focus on mission  
 
 **One line:**  
 Communication → Trust → DevOps
@@ -138,7 +141,7 @@ Communication → Trust → DevOps
 Key ideas:
 - **Know the customer**
 - **Enable flow**
-- **Go to gemba** (現場 = real place where value is created)
+- **Go to gemba** (gemba = real place where value is created)
 - **Empower people**
 - **Transparency**
 
