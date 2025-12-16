@@ -1,0 +1,3 @@
+[submodule "linkedin_foundation/terraform-infra/AWS-infrastructure-using-Terraform"]
+	path = linkedin_foundation/terraform-infra/AWS-infrastructure-using-Terraform
+	url = https://github.com/SereneSyntax04/AWS-infrastructure-using-Terraform
