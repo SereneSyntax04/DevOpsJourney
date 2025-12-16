@@ -233,8 +233,12 @@ Visible Ops → safe change <br>
 
 Together = fast, stable DevOps
 
+
+
 ---
 ---
+
+
 
 <h1 align="center">Chapter 4. Infrastructure as Code (IaC)</h1>
 <br>
@@ -353,3 +357,13 @@ IaC creates infra
 Containers package apps
 Orchestration coordinates everything
 ```
+
+
+
+---
+---
+
+
+
+<h1 align="center">Chapter 5. Continuous Delivery</h1>
+<br>
