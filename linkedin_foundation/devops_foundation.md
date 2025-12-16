@@ -367,3 +367,49 @@ Orchestration coordinates everything
 
 <h1 align="center">Chapter 5. Continuous Delivery</h1>
 <br>
+### Continuous Integration (CI)
+- Automatically **build & test** code on every commit  
+- **Six practices:**  
+  1. Builds run fast (<5 min)  
+  2. Commit small changes  
+  3. Don’t leave broken builds  
+  4. Trunk-based development  
+  5. Fix flaky tests  
+  6. Build → status + log + artifact  
+
+### Continuous Delivery (CD)
+- Deploy every change to **production-like environment**  
+- Automate integration, acceptance tests  
+- Use **immutable artifacts** → trust + auditability  
+- Stop pipeline if failure occurs  
+
+### Continuous Deployment
+- Auto-release to production after tests pass  
+- Deployment patterns:  
+  - Rolling  
+  - Blue-Green  
+  - Canary  
+  - A/B / feature flags  
+
+### QA in DevOps
+- Automated testing essential for CI/CD  
+- Types of tests:  
+  - **Unit** → function-level  
+  - **Code hygiene** → linters, formatters  
+  - **Integration** → all components  
+  - **Acceptance / End-to-End** → user perspective  
+- TDD & BDD → write tests before code  
+
+### CI/CD Toolchain Layers
+1. **Deployment:** containers, system images, feature flags, orchestration  
+2. **Artifact repository:** Artifactory, Nexus, private repos  
+3. **Testing tools:** PyTest, Selenium, cypress, InSpec, JMeter, Dependabot  
+4. **Build system:** Jenkins, GitHub Actions  
+
+
+
+---
+---
+
+
+
