@@ -221,6 +221,12 @@ Basic idea:
 - Build once
 - Run anywhere
 
+
+<p align="center">
+  <img src="./assets/images/docker.png" alt="docker" width="400"/>
+</p>
+
+
 ---
 <br>
 
@@ -236,6 +242,10 @@ Basic idea:
 - Enables **microservices architectures**
 
 Containers run in **pods**, spread across **nodes**, managed automatically.
+
+<p align="center">
+  <img src="./assets/images/kubernetes.jpg" alt="K8s" width="400"/>
+</p>
 
 ---
 
@@ -258,6 +268,10 @@ Containers run in **pods**, spread across **nodes**, managed automatically.
 
 Serverless **does not mean servers don’t exist**.  
 It means **you don’t manage or interact with them**.
+
+<p align="center">
+  <img src="./assets/images/serverless.png" alt="serverless" width="400"/>
+</p>
 
 - Servers still run under the hood
 - Cloud provider handles provisioning, scaling, patching
