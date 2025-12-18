@@ -100,4 +100,149 @@ Create/Edit File → Stage Changes → Commit Snapshot
 👉 `git add` ≠ save forever, `git commit` = save forever.
 
 ---
+<br>
 
+<h1 align='center'> Commonly Used Git Commands</h1>
+
+## Repository Setup
+
+```bash
+git init
+```
+
+Initializes a new Git repository in the current directory.
+
+```bash
+git clone <repo-url>
+```
+
+Creates a local copy of an existing remote repository.
+
+---
+
+## Checking Status & History
+
+```bash
+git status
+```
+
+Shows the current state of the working directory and staging area.
+
+```bash
+git log
+```
+
+Displays the full commit history.
+
+```bash
+git log --oneline
+```
+
+Shows a compact, one-line commit history (useful for exams).
+
+---
+
+## Staging & Committing
+
+```bash
+git add <file>
+```
+
+Stages a specific file.
+
+```bash
+git add .
+```
+
+Stages all modified files.
+
+```bash
+git commit -m "commit message"
+```
+
+Saves staged changes permanently to the repository.
+
+---
+
+## Branching
+
+```bash
+git branch
+```
+
+Lists all branches.
+
+```bash
+git branch <branch-name>
+```
+
+Creates a new branch.
+
+```bash
+git checkout <branch-name>
+```
+
+Switches to another branch.
+
+```bash
+git checkout -b <branch-name>
+```
+
+Creates and switches to a new branch in one step.
+
+---
+
+## Working with Remote Repositories
+
+```bash
+git remote -v
+```
+
+Shows linked remote repositories.
+
+```bash
+git pull
+```
+
+Fetches and merges changes from the remote repository.
+
+```bash
+git push
+```
+
+Uploads local commits to the remote repository.
+
+---
+
+## Undo & Fix Commands
+
+```bash
+git restore <file>
+```
+
+Discards changes in the working directory.
+
+```bash
+git reset HEAD <file>
+```
+
+Unstages a file without deleting changes.
+
+```bash
+git revert <commit-id>
+```
+
+Creates a new commit that safely undoes a previous commit.
+
+---
+
+## Quick Memory Flow
+
+```
+Check  → git status
+Stage  → git add
+Save   → git commit
+Sync   → git pull / git push
+```
+
+👉 Tip: Nothing is saved in Git history until you **commit**.
