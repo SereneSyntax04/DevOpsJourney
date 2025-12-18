@@ -104,135 +104,146 @@ Create/Edit File → Stage Changes → Commit Snapshot
 
 <h1 align='center'> Commonly Used Git Commands</h1>
 
+## Check Git username and email
+To check global config (most common)
+
+```bash
+git config --global user.name
+git config --global user.email
+```
+
+To see everything Git has configured
+```bash
+git config --list
+```
+
 ## Repository Setup
 
+1. Initializes a new Git repository in the current directory.
 ```bash
 git init
 ```
 
-Initializes a new Git repository in the current directory.
-
+2. Creates a local copy of an existing remote repository.
 ```bash
 git clone <repo-url>
 ```
 
-Creates a local copy of an existing remote repository.
 
 ---
 
 ## Checking Status & History
 
+1. Shows the current state of the working directory and staging area.
 ```bash
 git status
 ```
 
-Shows the current state of the working directory and staging area.
 
+2. Displays the full commit history.
 ```bash
 git log
 ```
 
-Displays the full commit history.
-
+3. Shows a compact, one-line commit history (useful for exams).
 ```bash
 git log --oneline
 ```
 
-Shows a compact, one-line commit history (useful for exams).
 
 ---
 
 ## Staging & Committing
 
+1. Stages a specific file.
 ```bash
 git add <file>
 ```
 
-Stages a specific file.
 
+2. Stages all modified files.
 ```bash
 git add .
 ```
 
-Stages all modified files.
 
+3. Saves staged changes permanently to the repository.
 ```bash
 git commit -m "commit message"
 ```
-
-Saves staged changes permanently to the repository.
 
 ---
 
 ## Branching
 
+1. Lists all branches.
 ```bash
 git branch
 ```
 
-Lists all branches.
-
+2. Creates a new branch.
 ```bash
 git branch <branch-name>
 ```
 
-Creates a new branch.
 
+3. Switches to another branch.
 ```bash
 git checkout <branch-name>
 ```
 
-Switches to another branch.
-
+4. Creates and switches to a new branch in one step.
 ```bash
 git checkout -b <branch-name>
 ```
 
-Creates and switches to a new branch in one step.
+
 
 ---
 
 ## Working with Remote Repositories
 
+1. Shows linked remote repositories.
 ```bash
 git remote -v
 ```
 
-Shows linked remote repositories.
 
+2. Fetches and merges changes from the remote repository.
 ```bash
 git pull
 ```
 
-Fetches and merges changes from the remote repository.
 
+3. Uploads local commits to the remote repository.
 ```bash
 git push
 ```
 
-Uploads local commits to the remote repository.
+
 
 ---
 
 ## Undo & Fix Commands
 
+1. Discards changes in the working directory.
 ```bash
 git restore <file>
 ```
 
-Discards changes in the working directory.
 
+2. Unstages a file without deleting changes.
 ```bash
 git reset HEAD <file>
 ```
 
-Unstages a file without deleting changes.
 
+3. Creates a new commit that safely undoes a previous commit.
 ```bash
 git revert <commit-id>
 ```
 
-Creates a new commit that safely undoes a previous commit.
+
 
 ---
 
@@ -246,3 +257,101 @@ Sync   → git pull / git push
 ```
 
 👉 Tip: Nothing is saved in Git history until you **commit**.
+
+
+---
+
+
+<h1 align='center'> HTTPS vs SSH (Git Authentication) </h1>
+
+When connecting a **local Git repository** to a **remote Git hosting service** (like GitHub or Bitbucket), there are two common authentication methods:
+
+* **HTTPS**
+* **SSH**
+
+Both are secure, but they differ in setup, usability, and security model.
+
+---
+
+## SSH Authentication
+
+**SSH (Secure Shell)** uses **public-key cryptography** for authentication.
+
+### Key Features
+
+* Uses **SSH keys** (public + private key pair)
+* More **secure** than HTTPS
+* No need to enter credentials repeatedly after setup
+* Ideal for frequent Git users and professionals
+
+### Advantages
+
+* Strong authentication using cryptographic keys
+* No repeated login prompts
+* Preferred for long-term development work
+
+### Disadvantages
+
+* Initial setup is **more complex**
+* Requires understanding SSH keys
+* May be blocked in **restricted networks or firewalls**
+
+---
+
+## HTTPS Authentication
+
+**HTTPS** uses standard web-based authentication to communicate with Git hosting services.
+
+### Key Features
+
+* Easier to set up than SSH
+* Works well in **restricted or corporate networks**
+* Compatible with most firewalls
+
+### GitHub Note (Important)
+
+* GitHub **does not allow passwords** for Git operations
+* A **Personal Access Token (PAT)** must be used **instead of a password**
+
+### Advantages
+
+* Beginner-friendly setup
+* Works reliably behind firewalls
+* Suitable for most users
+
+### Disadvantages
+
+* Requires authentication more frequently
+* Slightly less secure compared to SSH
+* Token management required
+
+---
+
+## Avoiding Repeated Login (HTTPS)
+
+You can store credentials securely using:
+
+* **Keychain Access** (macOS)
+* **Credential Manager** (Windows)
+
+This prevents entering the token every time.
+
+---
+
+## Generating a GitHub Personal Access Token (Classic)
+
+### Steps
+
+1. Sign in to GitHub
+2. Go to **Profile → Settings**
+3. Click **Developer settings**
+4. Select **Personal access tokens → Tokens (classic)**
+5. Click **Generate new token (classic)**
+6. Add a meaningful **Note** (e.g., Git CLI access)
+7. Set an **expiration date** (recommended: 90 days)
+8. Select required **scopes** (at least `repo`)
+9. Click **Generate token**
+
+⚠️ Copy the token immediately — it cannot be viewed again.
+
+---
