@@ -622,6 +622,14 @@ Immutable → Deploy, don’t patch
 
 ---
 ---
-<br>
+<br><br>
 
 
+<h1 align="center">Chapter 3. Bringing It All Together</h1>
+
+
+## Architecture Goal
+
+<p align="center">
+  <img src="./assets/images/ch3_IAC.png" alt="architecture_goal" width="400"/>
+</p>
