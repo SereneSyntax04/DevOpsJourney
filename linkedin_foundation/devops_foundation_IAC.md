@@ -9,10 +9,10 @@
 
 
 
-<h1 align="center">Chapter 1. Modern Infrastructure & Cloud Basics</h1>
+<h1 align="center">☁️⚙️ Chapter 1. Modern Infrastructure & Cloud Basics 🏗️☁️</h1>
 <br>
 
-## What is Cloud Computing?
+## ☁️ What is Cloud Computing?
 
 Cloud computing is **on-demand access to compute, storage, and networking** over the internet, backed by real servers in global data centers.
 
@@ -36,7 +36,7 @@ Cloud computing is **on-demand access to compute, storage, and networking** over
 
 <br>
 
-## Why Cloud Enables Automation ??
+## ⚙️ Why Cloud Enables Automation ??
 
 | Traditional on-prem infrastructure |     | Cloud infrastructure |
 |-----------------------------------|-----|----------------------|
@@ -146,9 +146,9 @@ Examples:
 ---
 <br>
 
-<h1 align='center'>Containers: The Backbone of Modern IaC</h1>
+<h1 align='center'>📦🐳 Containers: The Backbone of Modern IaC</h1>
 
-## What is a Container?
+## 📦 What is a Container?
 
 | | |
 |---|---|
@@ -204,10 +204,10 @@ Basic idea:
 ---
 <br>
 
-<h1 align='center'> Kubernetes: Containers at Scale</h1>
+<h1 align='center'> ☸️ Kubernetes: Containers at Scale</h1>
 
 ## Kubernetes:
-- **Orchestrates** containers across many servers
+- **Orchestrates** containers across many servers ☸️📦
 - Handles:
   - Scheduling
   - Scaling
@@ -403,7 +403,7 @@ Serverless dramatically reduces **operational overhead**.
 
 
 
-# Chapter 2. Adventures in Automation
+# 🤖⚙️ Chapter 2. Adventures in Automation 🛠️⚙️
 
 ## Big Idea
 
@@ -579,7 +579,7 @@ Servers are **not modified after deployment**. They are **replaced**, not patche
 
 ---
 
-## Kubernetes & the Immutable Model
+## ☸️ Kubernetes & the Immutable Model
 
 |                                                                                                      |                                                                    |
 | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
@@ -615,7 +615,7 @@ Immutable       → Deploy, don’t patch
 <br><br>
 
 
-<h1 align="center">Chapter 3. Bringing It All Together</h1>
+<h1 align="center"> 🔗⚙️ Chapter 3. Bringing It All Together 🔗⚙️</h1>
 
 
 ## Architecture Goal
@@ -625,3 +625,62 @@ Immutable       → Deploy, don’t patch
 </p>
 
 
+# Provisioning Lab
+
+## Tools Used in the Lab
+- **Terraform** → create cloud infrastructure
+- **Ansible** → install and configure Kubernetes
+- **Kubespray** → open-source project combining Terraform + Ansible
+- **AWS** → cloud provider
+
+<br>
+
+# 1. ☁️🖥️ AWS
+
+```
+Important AWS Security Rules
+- ❌ Do NOT use root account
+- ✅ Create IAM admin user
+- ✅ Enable MFA on all accounts
+- ✅ Use access keys for automation
+```
+
+<br>
+
+[Simplified Theory](./aws.md) 
+
+**AWS (Amazon Web Services)** is a cloud platform that lets you rent servers, storage, databases, and networking over the internet. 
+- Instead of buying physical machines, you create resources in minutes and pay only for what you use.
+
+- Everything in AWS can be created, modified, or deleted using the console or automation tools like Terraform, making it ideal for modern cloud and DevOps workflows.
+
+---
+<br>
+
+# 2. 🏗️ Terraform 
+
+[Simplified Theory + project](./terraform.md)
+
+
+Terraform lets you **create and manage cloud infrastructure using code** instead of clicking in the AWS console.
+
+* All servers, networks, and security are **defined in files**
+* Terraform reads those files and **builds everything automatically**
+* The `tfvars` file is where you change settings like **number of servers**
+* Terraform keeps a **state file** to remember what it created
+
+To make changes:
+
+1. Update the code (e.g., workers: 3 → 4)
+2. Run `terraform plan` to preview changes
+3. Run `terraform apply` to make it real
+
+👉 Result: **safe, repeatable, and error-free infrastructure changes**
+
+That’s why Terraform is the backbone of modern cloud automation.
+
+
+---
+<br>
+
+# 3.
