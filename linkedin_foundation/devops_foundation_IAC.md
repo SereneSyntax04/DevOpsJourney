@@ -46,7 +46,7 @@ Cloud computing is **on-demand access to compute, storage, and networking** over
 
 
 ```
- Cloud infrastructure= Fully API-driven → **automation friendly**  
+ Cloud infrastructure= Fully API-driven → automation friendly 
 ```
 
 ---
@@ -402,35 +402,50 @@ Serverless dramatically reduces **operational overhead**.
 <br><br>
 
 
-<h1 align="center">Chapter 2. Adventures in Automation</h1>
+
+# Chapter 2. Adventures in Automation
 
 ## Big Idea
+
 Infrastructure can be **built, configured, and updated using code** instead of manual clicks.
 
 Cloud + APIs make this possible at scale.
 
+---
 
-<h2> 1. Infrastructure Automation (Two Types) </h2>
+## 1. Infrastructure Automation (Two Types)
+
+|                                                                                                                                                                                                     |                                                                       |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| **Two layers of automation exist in real systems:**<br><br>• Provisioning → creates resources<br>• Configuration → sets up software<br><br>They solve **different problems** and must not be mixed. | <img src="./assets/images/infra_automation.png" width="420" /> |
+
+<br>
 
 | Layer             | What It Does                      | Examples                    | Focus          |
 | ----------------- | --------------------------------- | --------------------------- | -------------- |
-| **Provisioning**  | Creates cloud resources           | VPCs, VMs, Load Balancers   | Boxes & lines (Creating infrastructure) |
-| **Configuration** | Sets up software inside resources | OS packages, apps, services | Inside the box (Configuring systems)    |
+| **Provisioning**  | Creates cloud resources           | VPCs, VMs, Load Balancers   | Boxes & lines (Creating infrastructure)  |
+| **Configuration** | Sets up software inside resources | OS packages, apps, services | Inside the box |
 
-
+---
 
 ## Tools by Automation Type
 
-| Category      | Tools                                     | Used For                |
-| ------------- | ----------------------------------------- | ----------------------- |
+| Category          | Tools                                     | Used For                |
+| ----------------- | ----------------------------------------- | ----------------------- |
 | **Provisioning**  | Terraform, CloudFormation, AWS CDK, Boto3 | Creating infrastructure |
 | **Configuration** | Ansible, Chef, Puppet                     | Configuring systems     |
 
 > **Rule:** First provision → then configure
 
-<br>
+---
 
-<h2> 2. Why Cloud Makes Automation Easy </h2>
+## 2. Why Cloud Makes Automation Easy
+
+|                                                                                                                                                                |                                                                    |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| Cloud resources expose **APIs** by default.<br><br>This turns infrastructure into **code-addressable objects**, enabling automation, repeatability, and scale. | <img src="./assets/images/cloud_api_automation.png" width="420" /> |
+
+<br>
 
 | Traditional Infra | Cloud Infra      |
 | ----------------- | ---------------- |
@@ -442,9 +457,9 @@ Cloud + APIs make this possible at scale.
 Cloud + APIs = Automation by default
 ```
 
-<br>
+---
 
-<h2> 3. Declarative vs Imperative</h2>
+## 3. Declarative vs Imperative
 
 | Declarative (WHAT)     | Imperative (HOW)            |
 | ---------------------- | --------------------------- |
@@ -455,21 +470,26 @@ Cloud + APIs = Automation by default
 
 ### Examples
 
-| Declarative (WHAT)      |     | Imperative (HOW)          |
-| ------------------------| ----| --------------------------|
-|You describe the **desired state** |                  |You define **step-by-step actions**|
-| “I want 3 servers”                |                  |Install → copy → restart           |
-| Terraform , CloudFormation        |                  |Ansible, Shell                     |
-|**Pros:** Simple, safe, repeatable |                  |**Pros:** Full control             |
-|**Cons:** Less control             |                  |**Cons:** Error-prone, drift issues|
+| Declarative (WHAT)                 |   | Imperative (HOW)           |
+| ---------------------------------- | - | -------------------------- |
+| You describe the **desired state** |   | You define **exact steps** |
+| “I want 3 servers”                 |   | Install → copy → restart   |
+| Terraform, CloudFormation          |   | Ansible, Shell             |
+| **Pros:** Simple, safe             |   | **Pros:** Full control     |
+| **Cons:** Less control             |   | **Cons:** Drift-prone      |
 
 > **Modern infra prefers declarative.**
 > Imperative still matters *inside the box*.
 
+---
+
+## 4. Terraform — Why It’s Popular
+
+|                                                                                                                          |                                                                  |
+| ------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
+| Terraform abstracts cloud APIs into a **single declarative language**, making infrastructure predictable and repeatable. | <img src="./assets/images/terraform_workflow.png" height="180" width="450" /> |
+
 <br>
-
-
-<h2> 4. Terraform — Why It’s Popular </h2>
 
 | Strength       | Why It Matters                     |
 | -------------- | ---------------------------------- |
@@ -480,7 +500,7 @@ Cloud + APIs = Automation by default
 
 ⚠️ Reality: Terraform **needs structure** at scale (modules, naming, state).
 
-<br>
+---
 
 ## Core Infrastructure Vocabulary
 
@@ -492,9 +512,15 @@ Cloud + APIs = Automation by default
 | Orchestration | Coordinated changes across systems         |
 | Drift         | Actual state ≠ desired state               |
 
-
+---
 
 ## Drift — The Silent Killer
+
+|                                                                                                 |                                                            |
+| ----------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| Drift happens when **manual changes bypass code**.<br><br>This silently breaks reproducibility. | <img src="./assets/images/drift.png" width="420" /> |
+
+<br>
 
 | Declarative Tools | Imperative Tools   |
 | ----------------- | ------------------ |
@@ -504,9 +530,9 @@ Cloud + APIs = Automation by default
 
 > Drift is why **manual servers don’t scale**.
 
-<br>
+---
 
-<h2> 5. Immutable Infrastructure</h2>
+## 5. Immutable Infrastructure
 
 ### What It Means
 
@@ -525,6 +551,13 @@ Build → Test → Deploy → Destroy old
 ---
 
 ## Benefits of Immutable Infra
+
+|                                                                                                   |                                                                    |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| Immutable infrastructure eliminates **snowflake servers** and enables safe scaling and rollbacks. <br>
+Servers are **not modified after deployment**. They are **replaced**, not patched. | <img src="./assets/images/immutable_infra.png" width="420" /> |
+
+<br>
 
 | Benefit              | Why It Helps          |
 | -------------------- | --------------------- |
@@ -548,6 +581,12 @@ Build → Test → Deploy → Destroy old
 
 ## Kubernetes & the Immutable Model
 
+|                                                                                                      |                                                                    |
+| ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| Kubernetes enforces **desired state continuously**, making immutability the default operating model. | <img src="./assets/images/kubernetes_immutable.png" width="420" /> |
+
+<br>
+
 | Kubernetes Concept | Immutable Principle |
 | ------------------ | ------------------- |
 | Pods               | Disposable          |
@@ -558,7 +597,7 @@ Build → Test → Deploy → Destroy old
 You don’t SSH into Kubernetes.
 You **declare**, Kubernetes **acts**.
 
----
+<br>
 
 ## Final Rule of Thumb
 
@@ -569,8 +608,6 @@ Packer/Docker   → Build images
 Kubernetes      → Orchestration
 Immutable       → Deploy, don’t patch
 ```
-
-<br>
 
 
 ---
