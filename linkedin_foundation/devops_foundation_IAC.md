@@ -148,24 +148,12 @@ Examples:
 
 <h1 align='center'>Containers: The Backbone of Modern IaC</h1>
 
-<div style="display: flex; align-items: stretch; gap: 24px;">
+## What is a Container?
 
-  <div>
+| | |
+|---|---|
+| **A container is a lightweight, executable package that includes:**<br><br>• Application code<br>• Runtime<br>• Libraries & dependencies<br>• Configuration<br><br>Runs consistently across environments. | <img src="./assets/images/container.png" alt="container" width="300" /> |
 
-### What is a Container?
-A container is a **lightweight, executable package** that includes:
-- Application code
-- Runtime
-- Libraries & dependencies
-- Configuration
-
-Runs consistently across environments.
-
-  </div>
-
-  <img src="./assets/images/container.png" alt="container" height="250" width="300" />
-
-</div>
 
 <br>
 
