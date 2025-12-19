@@ -1,5 +1,16 @@
 
 [click here to refer Terraform Project]()
+<br><br>
+
+[⚡ Quick Reminder: Two Layers of Automation](devops_foundation_IAC.md)
+
+```
+Provisioning (Terraform) → Creates servers, networks, and cloud resources
+
+Configuration (Ansible) → Sets up software and applications on those servers
+
+Don’t mix the two—each solves a different problem.
+```
 <br>
 
 ## Big picture first

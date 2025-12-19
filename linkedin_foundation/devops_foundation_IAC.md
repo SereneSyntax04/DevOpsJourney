@@ -683,4 +683,101 @@ That’s why Terraform is the backbone of modern cloud automation.
 ---
 <br>
 
-# 3.
+# 3. ⚙️📜 Ansible
+[Simplified Theory](./ansible.md)
+
+
+Ansible is a **configuration management tool** that installs software and configures servers automatically.
+
+* **Purpose:** Set up software, configure systems, orchestrate workflows
+* **How it works:** Uses **playbooks** (YAML files) that define tasks
+* **Inventory file:** Lists servers and roles (e.g., control plane vs worker nodes)
+* **Commands:**
+
+  * `ansible-playbook <file.yml> -i <inventory>` → runs tasks on servers
+* **Example:** Install Kubernetes on multiple nodes automatically
+* **Key advantage:** Repeatable, safe, scales easily, reduces manual errors
+
+**One-liner:**
+
+> Ansible turns server setup and software configuration into code, letting you automate hundreds of tasks reliably across many machines.
+
+
+---
+<br>
+
+# 4. 🐳📦 Docker
+[Simplified Theory](./docker.md)
+
+
+Docker lets you **package an application and everything it needs** into a **lightweight, portable container**.
+
+* Build a **Docker image** → includes OS + app + dependencies
+* Run a **container** → isolated instance of that image
+* Map ports → access your app locally or on a server
+* Push to **Docker Hub** → share with anyone, anywhere
+* Containers are **ephemeral** → easy to recreate, update, or scale
+
+> Docker = consistent environments + easier deployments + micro VMs.
+
+
+---
+<br>
+
+# 5. Helm Chart
+
+Helm is **Kubernetes’ package manager**, letting you deploy applications as **charts** (pre-configured templates for Kubernetes resources). Think of it like **Terraform for Kubernetes apps**.
+
+### 1. **Why Helm?**
+
+* Automates deploying apps to Kubernetes
+* Packages all Kubernetes manifests into a single reusable chart
+* Supports configuration through a `values.yaml` file
+* Handles updates, scaling, and versioning
+
+### 2. **Core Concepts**
+
+* **Chart** – a package containing Kubernetes resources (Deployments, Services, Ingress, etc.)
+* **values.yaml** – top-level configuration, like `terraform.tfvars`
+* **Templates** – YAML files that generate Kubernetes manifests dynamically
+* **Repository** – source of ready-to-use charts (e.g., Bitnami)
+
+### 3. **Typical Workflow**
+
+1. Install Helm on your system
+2. Add repositories and search for charts (`helm repo add`, `helm search`)
+3. Pull or create a chart (`helm pull`, `helm create`)
+4. Customize `values.yaml` (e.g., replica count, ports, container image)
+5. Validate & dry-run (`helm template --validate --debug`)
+6. Deploy to Kubernetes (`helm install <release-name> <chart-dir> -f values.yaml`)
+7. Verify (`helm list`, `kubectl get pods`)
+
+### 4. **Example Use Case**
+
+Deploying a Word Cloud Generator app:
+
+* Helm chart created using `helm create wordcloud`
+* Configured to run 3 replicas, use a load balancer, and set the correct container image/tag
+* Validated, dry-run, then installed on the Kubernetes cluster
+* Result: 3 pods running, accessible externally via the ELB
+
+> **Key takeaway:** Helm makes Kubernetes application deployment **repeatable, configurable, and scalable**, just like Terraform does for infrastructure.
+
+<br>
+
+```
+IMPORTANT:
+Helm and Helm chart are related, but not the same thing:
+```
+
+| Term           | Meaning                                                                                                         |
+| -------------- | --------------------------------------------------------------------------------------------------------------- |
+| **Helm**       | The **tool/CLI** you use to manage applications on Kubernetes. Think of it as the “apt” or “brew” for K8s apps. |
+| **Helm chart** | A **package** (like a recipe) that contains all the Kubernetes resources and templates needed to deploy an app. |
+
+
+
+---
+<br>
+
+# 6.
