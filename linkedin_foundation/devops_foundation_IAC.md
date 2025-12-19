@@ -442,4 +442,186 @@ With serverless:
 This creates a **clear performance–cost feedback loop**, which didn’t exist before.
 
 ---
+---
+<br><br>
+
+
+<h1 align="center">Chapter 2. Adventures in Automation</h1>
+
+## Big Idea
+Infrastructure can be **built, configured, and updated using code** instead of manual clicks.
+
+<br>
+
+<h2> Infrastructure Automation (Two Types) </h2>
+
+### 1. Infrastructure Provisioning (Boxes & Lines)
+Creates cloud resources like:
+- Networks
+- Servers (VMs)
+- Load balancers
+
+**Tools:**
+- AWS CloudFormation
+- Terraform
+- AWS CDK
+- Python (Boto)
+
+👉 Focus: *Creating infrastructure*
+
+
+
+### 2. Configuration Management (Inside the Box)
+Sets up what runs on a server:
+- OS packages
+- Services
+- Applications
+
+**Tools:**
+- Chef
+- Puppet
+- Ansible
+
+👉 Focus: *Configuring systems*
+
+<br>
+
+## Why Cloud Makes This Easy
+- Cloud resources have **APIs**
+- Infrastructure can be created using **code**
+- Fast, repeatable, scalable
+
+<br>
+
+## Declarative vs Imperative
+
+### Declarative (WHAT)
+You describe the **desired state**.
+
+Example:
+> “I want 3 servers with NGINX.”
+
+**Tools:**
+- Terraform
+- CloudFormation
+
+**Pros:** Simple, safe, repeatable  
+**Cons:** Less control
+
+<br>
+
+### Imperative (HOW)
+You define **step-by-step actions**.
+
+Example:
+1. Install package  
+2. Copy file  
+3. Restart service  
+
+**Tools:**
+- Ansible
+- Shell scripts
+
+**Pros:** Full control  
+**Cons:** Error-prone, drift issues
+
+<br>
+
+## Terraform (Why It’s Popular)
+- Works across clouds
+- Huge community
+- Declarative and repeatable
+- Open-source
+
+⚠️ Can get complex at scale → needs good structure
+
+<br>
+
+## Key Terms
+
+### 1. Box
+A running system:
+- VM
+- Cloud instance
+- Container
+
+
+
+### 2. Provisioning
+Preparing a system:
+- Install OS
+- Setup network
+- Enable services
+
+
+
+### 3. Deployment
+Installing or updating applications.
+
+
+
+### 4. Orchestration
+Coordinating changes across many systems **with minimal downtime**.
+
+**Tools:**
+- Ansible
+- Rundeck
+- Kubernetes
+
+
+
+## 5. Drift
+When actual system state ≠ expected state.
+
+- Declarative tools fix drift automatically
+- Imperative tools don’t
+
+
+<br>
+
+## Immutable Infrastructure
+
+### 1. Meaning
+Servers are **not modified after deployment**.
+They are **replaced**, not patched.
+
+**Flow:**
+Build → Test → Deploy → Destroy old
+
+
+
+### 2. Benefits
+- Easier rollbacks
+- Fewer production bugs
+- Works well with autoscaling
+
+**Tools:**
+- Packer
+- Docker
+- Kubernetes
+
+<br>
+
+## Kubernetes & Immutable Model
+- Containers are disposable
+- Nodes are replaceable
+- Desired state is declared
+- Orchestration is built-in
+
+
+
+## Final Rule of Thumb
+
+```
+Terraform → Infrastructure
+Ansible/Scripts → Inside the box
+Packer/Docker → Build images
+Kubernetes → Orchestration
+Immutable → Deploy, don’t patch
+```
+
+---
+---
+<br>
+
 
