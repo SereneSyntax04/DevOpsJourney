@@ -187,26 +187,12 @@ You don’t even need a full OS inside a container — just the runtime (e.g., P
 
 <h2 align='center'> Container Ecosystem</h2>
 
-<div style="display: flex; align-items: stretch; gap: 24px;">
+## Container Ecosystem
 
-  <div>
+| |  | |
+|---|---|---|
+| **Container Runtimes**<br><br>• Docker (most popular)<br>• containerd<br>• CRI-O<br>• rkt (legacy)<br><br><br>**Docker Images**<br><br>• Built using a **Dockerfile**<br>• Declarative, repeatable, versioned<br>• Stored in registries (Docker Hub, ECR, GCR) |   | <img src="./assets/images/runtime.png" alt="container runtime" width="350" /> |
 
-## Container Runtimes
-- Docker (most popular)
-- containerd
-- CRI-O
-- rkt (legacy)
-
-## Docker Images
-- Built using a **Dockerfile**
-- Declarative, repeatable, versioned
-- Stored in image registries (Docker Hub, ECR, GCR)
-
-    </div>
-    
-    <img src="./assets/images/runtime.png" alt="container" height="300" width="350" />
-    
-</div>
 
 ```
 Basic idea:
