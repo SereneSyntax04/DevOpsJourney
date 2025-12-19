@@ -1,5 +1,9 @@
 <h1 align='center'>Devops Foundation: <br> Infrastructure as Code</h1>
 
+<p align="center">
+  <img src="./assets/images/iac.png" alt="iac" width="500"/>
+</p>
+
 ---
 <br><br>
 
@@ -23,11 +27,11 @@ Cloud computing is **on-demand access to compute, storage, and networking** over
 
 ## Cloud Service Models
 
+<div style="display: flex; align-items: stretch; gap: 24px;">
 
-<p align="center">
-  <img src="./assets/images/serviceModel.webp" alt="serviceModel" width="400"/>
-</p>
+  <img src="./assets/images/serviceModel.webp" alt="Cloud service models" height=auto width="500" />
 
+  <div>
 
 ### SaaS – Software as a Service
 - Fully managed applications  
@@ -43,42 +47,41 @@ Cloud computing is **on-demand access to compute, storage, and networking** over
 - Examples: AWS EC2, Azure VMs, GCP Compute Engine  
 - **Primary layer for Infrastructure as Code**
 
+  </div>
+</div>
+
+
 <br>
 
-## Why Cloud Enables Automation
+## Why Cloud Enables Automation ??
 
-Traditional on-prem infrastructure:
-- Weeks to procure hardware  
-- Fixed capacity  
-- High upfront cost  
+| Traditional on-prem infrastructure |     | Cloud infrastructure |
+|-----------------------------------|-----|----------------------|
+| Weeks to procure hardware         |     | Servers in minutes  |
+| Fixed capacity                    |     | Dynamic scaling (1 → 100 instantly) |
+| High upfront cost                 |     | Pay-per-use         |
 
-Cloud infrastructure:
-- Servers in minutes  
-- Dynamic scaling (1 → 100 instantly)  
-- Pay-per-use  
-- Fully API-driven → **automation friendly**  
+
+```
+ Cloud infrastructure= Fully API-driven → **automation friendly**  
+```
 
 ---
 <br>
 
 <h1 align='center'>Bare Metal vs Cloud (Reality Check) </h1>
 
-### Cloud Advantages
-- Speed and agility  
-- No hardware management  
-- Easy scaling  
-- Built-in APIs for automation  
-- Access to GPUs, FPGAs, edge, and more  
 
-### Cloud Challenges
-- Can be expensive if poorly governed  
-- Requires quotas, budgets, and policies  
+| **Cloud Advantages** |     | **Cloud Challenges** |     | **When Bare Metal Makes Sense** |
+|-----------------------------------|-----|----------------------|-----|----------------------|
+| Speed and agility  |     | Can be expensive if poorly governed  |     | Very stable, predictable workloads |
+| No hardware management  |     | Requires quotas, budgets, and policies  |     | Highly specialized custom hardware |
+| Easy scaling |     |          |     |        |
+|Built-in APIs for automation  |     |          |     |        |
+|Access to GPUs, FPGAs, edge, and more |     |          |     |        |
 
-### When Bare Metal Makes Sense
-- Very stable, predictable workloads  
-- Highly specialized custom hardware  
 
-> In practice, **less than 10% of workloads require bare metal**.
+<center> <h3> In practice, less than 10% of workloads require bare metal. </h3> </center>
 
 ---
 <br>
@@ -86,6 +89,7 @@ Cloud infrastructure:
 <h1 align='center'> Modern Cloud Platforms and Managed Services </h1>
 
 Modern cloud goes far beyond VMs and storage.
+
 ```
 Modern cloud = managed services.
 Instead of saying:
@@ -96,6 +100,7 @@ You now say:
 
 You work at a functional level, not infrastructure level.
 ```
+
 ### Managed Services
 - Databases (SQL, NoSQL)
 - Messaging and streaming
@@ -113,7 +118,6 @@ You don’t manage servers — **you consume capabilities**.
 
 ---
 <br>
-
 
 <h1 align='center'>Managed Services vs Bare Cloud (IaaS)</h1>
 
@@ -145,17 +149,13 @@ Examples:
 
 <br>
 
-**Pros**
-- Faster provisioning (minutes vs months)
-- Less operational burden
-- Easy scaling via APIs
-- Ideal for startups and small teams
+|**Pros**                                |    |**Cons**                                   |
+|----------------------------------------|----|-----------------------------------        |
+|Faster provisioning (minutes vs months) |    |Less low-level tuning                      |
+|Less operational burden                 |    |Often behind bleeding-edge versions        |
+|Easy scaling via APIs                   |    |Higher cost for convenience                |
+|Ideal for startups and small teams      |    |Vendor lock-in (not portable across clouds)|
 
-**Cons**
-- Less low-level tuning
-- Often behind bleeding-edge versions
-- Higher cost for convenience
-- Vendor lock-in (not portable across clouds)
 
 > Reality: **~90% of companies don’t need extreme customization**  
 > Speed to market usually beats perfect control.
@@ -164,6 +164,10 @@ Examples:
 <br>
 
 <h1 align='center'>Containers: The Backbone of Modern IaC</h1>
+
+<div style="display: flex; align-items: stretch; gap: 24px;">
+
+  <div>
 
 ### What is a Container?
 A container is a **lightweight, executable package** that includes:
@@ -174,15 +178,22 @@ A container is a **lightweight, executable package** that includes:
 
 Runs consistently across environments.
 
----
+  </div>
 
-### Containers vs Virtual Machines
+  <img src="./assets/images/container.png" alt="container" height="250" width="300" />
 
-| Virtual Machines | Containers |
-|------------------|------------|
-| Full OS per VM   | Share host OS kernel |
-| Heavy, slow boot | Lightweight, fast |
-| More isolation   | Enough isolation for apps |
+</div>
+
+<br>
+
+
+## Containers vs Virtual Machines
+
+| Virtual Machines |    | Containers               |
+|------------------|----|------------              |
+| Full OS per VM   |    |Share host OS kernel      |
+| Heavy, slow boot |    |Lightweight, fast         |
+| More isolation   |    |Enough isolation for apps |
 
 Containers virtualize **above the OS**, not the hardware.
 
@@ -191,9 +202,9 @@ Containers virtualize **above the OS**, not the hardware.
   <img src="./assets/images/compare.png" alt="compare" width="400"/>
 </p>
 
----
+<br>
 
-### Why Containers Matter
+## Why Containers Matter
 - Fast startup
 - Small size
 - Environment consistency (dev = prod)
@@ -201,31 +212,37 @@ Containers virtualize **above the OS**, not the hardware.
 
 You don’t even need a full OS inside a container — just the runtime (e.g., Python, Go).
 
----
+<br>
 
-## Container Ecosystem
+<h2 align='center'> Container Ecosystem</h2>
 
-### Container Runtimes
+<div style="display: flex; align-items: stretch; gap: 24px;">
+
+  <div>
+
+## Container Runtimes
 - Docker (most popular)
 - containerd
 - CRI-O
 - rkt (legacy)
 
-### Docker Images
+## Docker Images
 - Built using a **Dockerfile**
 - Declarative, repeatable, versioned
 - Stored in image registries (Docker Hub, ECR, GCR)
 
+    </div>
+    
+    <img src="./assets/images/runtime.png" alt="container" height="300" width="350" />
+    
+</div>
+
+```
 Basic idea:
 - Define environment in code
 - Build once
 - Run anywhere
-
-
-<p align="center">
-  <img src="./assets/images/docker.png" alt="docker" width="400"/>
-</p>
-
+```
 
 ---
 <br>
@@ -283,17 +300,13 @@ Some managed services are called serverless once you no longer configure OS or s
 
 ## Functions as a Service (FaaS)
 
-FaaS is the heart of serverless computing.
+### FaaS is the heart of serverless computing.
 
-### Popular FaaS Offerings
-- **AWS Lambda**
-- **Azure Functions**
-- **Google Cloud Functions**
-
-### Open-source / self-managed options
-- Apache OpenWhisk
-- OpenFaaS
-- Knative (runs on Kubernetes)
+|**Popular FaaS Offerings**|        |**Open-source / self-managed options**|
+|--------------------------|--------|--------------------------------------|
+|AWS Lambda                 |       |Apache OpenWhisk                       |
+|Azure Functions            |       |OpenFaaS                               |
+|Google Cloud Functions     |       |Knative (runs on Kubernetes)           |
 
 > If you run these yourself, you get flexibility — but you also get the ops work back.
 
@@ -307,139 +320,125 @@ FaaS is the heart of serverless computing.
 - Function executes the event
 - Container disappears afterward
 
-There are **no always-running servers** — only:
-- Zero to many function invocations
+There are **no always-running servers** — only: Zero to many function invocations
 
 <br>
 
-<h2 align='center'> Traditional vs Serverless Architecture
+<h2 align='center'> Traditional vs Serverless Architecture </h2>
 
-### Traditional Web App
-- Client → Web server
-- Web server hosts multiple services
-- Servers run continuously
-
-### Serverless Architecture
-- No central web server
-- Application is decomposed into **small functions**
-- Each function handles one responsibility
-- Triggered by events or HTTP requests
+|**Traditional Web App**           |           |**Serverless Architecture**                        |
+|----------------------------------|-----------|---------------------------------------------------|
+|Client → Web server                |           |No central web server                              |
+|Web server hosts multiple services |           |Application is decomposed into **small functions** |
+|Servers run continuously           |           |Each function handles one responsibility           |
+|                                   |           |Triggered by events or HTTP requests               |
 
 <br>
 
 ## What Triggers Serverless Functions?
 
-Originally:
-- File uploads
-- Queue messages
-- Database events
+| **Earlier Triggers** | **Modern Triggers**             |
+| -------------------- | ------------------------------- |
+| File uploads         | **HTTP requests (API Gateway)** |
+| Queue messages       | Event streams                   |
+| Database events      | Scheduled jobs (cron)           |
 
-Today:
-- **HTTP requests (via API Gateway)**
-- Event streams
-- Schedules (cron-like jobs)
+> Modern triggers made **serverless web applications** practical.
 
-This made **serverless web applications** possible.
-
-<br>
+---
 
 ## Example: Serverless Web Application
 
-Typical flow:
-- Frontend (e.g., React)
-- API Gateway
-- Multiple Lambda functions:
-  - Login
-  - Create contract
-  - Generate quote
-  - Create PDF
-  - Send email
-- External services:
-  - Database
-  - Accounting system
-  - Email service
+### Typical Architecture Flow
 
-Each API endpoint maps to **one or more functions**.
+| Layer             | Components            |
+| ----------------- | --------------------- |
+| Frontend          | React / SPA           |
+| API Layer         | API Gateway           |
+| Business Logic    | Lambda functions      |
+| External Services | DB, Email, Accounting |
 
-> Large systems can be built without managing a single server.
+### Lambda Functions Example
 
-<br>
+| Function        | Responsibility      |
+| --------------- | ------------------- |
+| Login           | Authentication      |
+| Create contract | Business logic      |
+| Generate quote  | Pricing             |
+| Create PDF      | Document generation |
+| Send email      | Notifications       |
+
+> Each API endpoint maps to **one or more functions**.
+> Large systems can run **without managing a single server**.
+
+---
 
 ## Benefits of Serverless
 
-### 1. Automatic Scaling
-- Provider handles scaling transparently
+| Benefit           | What You Gain           |
+| ----------------- | ----------------------- |
+| Automatic scaling | Zero effort scaling     |
+| Pay-for-use       | No traffic → no cost    |
+| No OS management  | No patching or upgrades |
 
-### 2. Pay-for-Use
-- No traffic → no cost
-- You pay only per execution
+Serverless dramatically reduces **operational overhead**.
 
-### 3. No OS or Package Management
-- No patching
-- No server upgrades
-- No runtime maintenance
-
-This drastically reduces operational overhead.
-
-<br>
+---
 
 ## Limitations of Serverless (Important)
 
-### 1. Cold Starts
-- Infrequently used functions may start slower
-- Worse for large apps
+| Limitation           | Impact               |
+| -------------------- | -------------------- |
+| Cold starts          | Slower first request |
+| Execution limits     | Long jobs don’t fit  |
+| Concurrency limits   | Throttling at scale  |
+| Cost at high traffic | Can exceed VM costs  |
 
-### 2. Execution Time Limits
-- Example: AWS Lambda → 15 minutes max
-- Long-running jobs don’t fit well
+> **Rule:** Serverless is cheap when idle, expensive when very busy.
 
-### 3. Concurrency Limits
-- Max parallel executions per account
-- Often overlooked
+---
 
-### 4. Cost at Scale
-- High execution volume can be more expensive than servers
+## Mitigating Serverless Limitations
 
-> Serverless is cheap when idle, expensive when very busy.
+| Problem            | Mitigation                       |
+| ------------------ | -------------------------------- |
+| Cold starts        | Caching, provisioned concurrency |
+| Long-running tasks | Async workflows, Step Functions  |
+| Cost growth        | Optimize execution paths         |
 
-<br>
+> Complexity can be **delayed**, not avoided — and that’s a feature.
 
-## Can These Limitations Be Mitigated?
-
-Yes, often:
-- Caching reduces cold starts
-- Async workflows + Step Functions handle long tasks
-- Cost becomes a problem only at **very large scale**
-
-Serverless lets you **delay complexity** until you truly need it.
-
-<br>
+---
 
 ## When Serverless Makes Sense
 
-Good use cases:
-- Event processing
-- Queue consumers
-- Background jobs
-- APIs
-- Admin scripts
-- Single-page applications
+| Use Case         | Fit         |
+| ---------------- | ----------- |
+| Event processing | Excellent   |
+| Queue consumers  | Excellent   |
+| Background jobs  | Excellent   |
+| APIs             | Very good   |
+| Admin scripts    | Ideal       |
+| SPAs             | Very common |
 
-Recommended approach:
-> Start by serverless-ifying **one part** of your system.
+**Recommended approach:**
 
-<br>
+> Start by serverless-ifying **one component**, not everything.
+
+---
 
 ## Why Serverless Is Powerful (Key Insight)
 
-With servers:
-- Cost and performance are mixed with OS, idle time, and overhead
+| Traditional Servers | Serverless                        |
+| ------------------- | --------------------------------- |
+| Pay for idle time   | Pay only for execution            |
+| OS + infra overhead | Pure business logic               |
+| Performance ≠ cost  | Performance directly affects cost |
 
-With serverless:
-- Cost maps directly to **actual work done**
-- Performance improvements directly reduce cost
+> Serverless creates a **direct performance–cost feedback loop** —
+> faster code = lower bill.
 
-This creates a **clear performance–cost feedback loop**, which didn’t exist before.
+
 
 ---
 ---
@@ -451,174 +450,171 @@ This creates a **clear performance–cost feedback loop**, which didn’t exist 
 ## Big Idea
 Infrastructure can be **built, configured, and updated using code** instead of manual clicks.
 
-<br>
+Cloud + APIs make this possible at scale.
 
-<h2> Infrastructure Automation (Two Types) </h2>
 
-### 1. Infrastructure Provisioning (Boxes & Lines)
-Creates cloud resources like:
-- Networks
-- Servers (VMs)
-- Load balancers
+<h2> 1. Infrastructure Automation (Two Types) </h2>
 
-**Tools:**
-- AWS CloudFormation
-- Terraform
-- AWS CDK
-- Python (Boto)
-
-👉 Focus: *Creating infrastructure*
+| Layer             | What It Does                      | Examples                    | Focus          |
+| ----------------- | --------------------------------- | --------------------------- | -------------- |
+| **Provisioning**  | Creates cloud resources           | VPCs, VMs, Load Balancers   | Boxes & lines (Creating infrastructure) |
+| **Configuration** | Sets up software inside resources | OS packages, apps, services | Inside the box (Configuring systems)    |
 
 
 
-### 2. Configuration Management (Inside the Box)
-Sets up what runs on a server:
-- OS packages
-- Services
-- Applications
+## Tools by Automation Type
 
-**Tools:**
-- Chef
-- Puppet
-- Ansible
+| Category      | Tools                                     | Used For                |
+| ------------- | ----------------------------------------- | ----------------------- |
+| **Provisioning**  | Terraform, CloudFormation, AWS CDK, Boto3 | Creating infrastructure |
+| **Configuration** | Ansible, Chef, Puppet                     | Configuring systems     |
 
-👉 Focus: *Configuring systems*
+> **Rule:** First provision → then configure
 
 <br>
 
-## Why Cloud Makes This Easy
-- Cloud resources have **APIs**
-- Infrastructure can be created using **code**
-- Fast, repeatable, scalable
+<h2> 2. Why Cloud Makes Automation Easy </h2>
+
+| Traditional Infra | Cloud Infra      |
+| ----------------- | ---------------- |
+| Manual setup      | API-driven       |
+| Slow, error-prone | Fast, repeatable |
+| Fixed capacity    | Scales via code  |
+
+```
+Cloud + APIs = Automation by default
+```
 
 <br>
 
-## Declarative vs Imperative
+<h2> 3. Declarative vs Imperative</h2>
 
-### Declarative (WHAT)
-You describe the **desired state**.
+| Declarative (WHAT)     | Imperative (HOW)            |
+| ---------------------- | --------------------------- |
+| Define desired state   | Define step-by-step actions |
+| Tool decides execution | You manage execution        |
+| Safe & repeatable      | More control, more risk     |
+| Auto drift correction  | Drift-prone                 |
 
-Example:
-> “I want 3 servers with NGINX.”
+### Examples
 
-**Tools:**
-- Terraform
-- CloudFormation
+| Declarative (WHAT)      |     | Imperative (HOW)          |
+| ------------------------| ----| --------------------------|
+|You describe the **desired state** |                  |You define **step-by-step actions**|
+| “I want 3 servers”                |                  |Install → copy → restart           |
+| Terraform , CloudFormation        |                  |Ansible, Shell                     |
+|**Pros:** Simple, safe, repeatable |                  |**Pros:** Full control             |
+|**Cons:** Less control             |                  |**Cons:** Error-prone, drift issues|
 
-**Pros:** Simple, safe, repeatable  
-**Cons:** Less control
-
-<br>
-
-### Imperative (HOW)
-You define **step-by-step actions**.
-
-Example:
-1. Install package  
-2. Copy file  
-3. Restart service  
-
-**Tools:**
-- Ansible
-- Shell scripts
-
-**Pros:** Full control  
-**Cons:** Error-prone, drift issues
+> **Modern infra prefers declarative.**
+> Imperative still matters *inside the box*.
 
 <br>
 
-## Terraform (Why It’s Popular)
-- Works across clouds
-- Huge community
-- Declarative and repeatable
-- Open-source
 
-⚠️ Can get complex at scale → needs good structure
+<h2> 4. Terraform — Why It’s Popular </h2>
 
-<br>
+| Strength       | Why It Matters                     |
+| -------------- | ---------------------------------- |
+| Multi-cloud    | Same syntax across AWS, Azure, GCP |
+| Declarative    | Predictable, safe changes          |
+| Huge ecosystem | Providers, modules, docs           |
+| Open-source    | Industry standard                  |
 
-## Key Terms
-
-### 1. Box
-A running system:
-- VM
-- Cloud instance
-- Container
-
-
-
-### 2. Provisioning
-Preparing a system:
-- Install OS
-- Setup network
-- Enable services
-
-
-
-### 3. Deployment
-Installing or updating applications.
-
-
-
-### 4. Orchestration
-Coordinating changes across many systems **with minimal downtime**.
-
-**Tools:**
-- Ansible
-- Rundeck
-- Kubernetes
-
-
-
-## 5. Drift
-When actual system state ≠ expected state.
-
-- Declarative tools fix drift automatically
-- Imperative tools don’t
-
+⚠️ Reality: Terraform **needs structure** at scale (modules, naming, state).
 
 <br>
 
-## Immutable Infrastructure
+## Core Infrastructure Vocabulary
 
-### 1. Meaning
-Servers are **not modified after deployment**.
-They are **replaced**, not patched.
+| Term          | Meaning                                    |
+| ------------- | ------------------------------------------ |
+| Box           | A running system (VM, instance, container) |
+| Provisioning  | Creating infrastructure                    |
+| Deployment    | Installing or updating applications        |
+| Orchestration | Coordinated changes across systems         |
+| Drift         | Actual state ≠ desired state               |
+
+
+
+## Drift — The Silent Killer
+
+| Declarative Tools | Imperative Tools   |
+| ----------------- | ------------------ |
+| Detect drift      | Don’t detect drift |
+| Auto-correct      | Manual fixes       |
+| Terraform shines  | Scripts rot        |
+
+> Drift is why **manual servers don’t scale**.
+
+<br>
+
+<h2> 5. Immutable Infrastructure</h2>
+
+### What It Means
+
+| Traditional     | Immutable           |
+| --------------- | ------------------- |
+| Patch servers   | Replace servers     |
+| Modify in place | Redeploy from image |
+| Risky rollbacks | Easy rollbacks      |
 
 **Flow:**
+
+```
 Build → Test → Deploy → Destroy old
+```
 
+---
 
+## Benefits of Immutable Infra
 
-### 2. Benefits
-- Easier rollbacks
-- Fewer production bugs
-- Works well with autoscaling
+| Benefit              | Why It Helps          |
+| -------------------- | --------------------- |
+| Predictability       | Same image everywhere |
+| Easy rollback        | Redeploy old version  |
+| Fewer bugs           | No snowflake servers  |
+| Autoscaling friendly | Disposable instances  |
 
-**Tools:**
-- Packer
-- Docker
-- Kubernetes
+---
 
-<br>
+## Tools That Enable Immutability
 
-## Kubernetes & Immutable Model
-- Containers are disposable
-- Nodes are replaceable
-- Desired state is declared
-- Orchestration is built-in
+| Tool       | Role                   |
+| ---------- | ---------------------- |
+| Packer     | Build VM images        |
+| Docker     | Build container images |
+| Kubernetes | Replace, not patch     |
+| Terraform  | Recreate infra safely  |
 
+---
 
+## Kubernetes & the Immutable Model
+
+| Kubernetes Concept | Immutable Principle |
+| ------------------ | ------------------- |
+| Pods               | Disposable          |
+| Nodes              | Replaceable         |
+| Desired state      | Always enforced     |
+| Rollouts           | Built-in            |
+
+You don’t SSH into Kubernetes.
+You **declare**, Kubernetes **acts**.
+
+---
 
 ## Final Rule of Thumb
 
 ```
-Terraform → Infrastructure
+Terraform       → Infrastructure
 Ansible/Scripts → Inside the box
-Packer/Docker → Build images
-Kubernetes → Orchestration
-Immutable → Deploy, don’t patch
+Packer/Docker   → Build images
+Kubernetes      → Orchestration
+Immutable       → Deploy, don’t patch
 ```
+
+<br>
+
 
 ---
 ---
@@ -631,5 +627,7 @@ Immutable → Deploy, don’t patch
 ## Architecture Goal
 
 <p align="center">
-  <img src="./assets/images/ch3_IAC.png" alt="architecture_goal" width="400"/>
+  <img src="./assets/images/ch3_IAC.png" alt="architecture_goal" width="500"/>
 </p>
+
+
