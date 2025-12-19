@@ -1,4 +1,5 @@
-[click here for AWS task to get you hands on]()
+[click here for AWS task to get you hands on](https://github.com/SereneSyntax04/AWS)
+[click here for AWS and infra-orchestration task ](https://github.com/SereneSyntax04/Infra-orchestration)
 <br>
 
 ## AWS Explained in Detail (For Beginners)
