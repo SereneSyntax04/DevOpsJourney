@@ -27,28 +27,11 @@ Cloud computing is **on-demand access to compute, storage, and networking** over
 
 ## Cloud Service Models
 
-<div style="display: flex; align-items: stretch; gap: 24px;">
 
-  <img src="./assets/images/serviceModel.webp" alt="Cloud service models" height=auto width="500" />
+| | |
+|---|---|
+| <img src="./assets/images/serviceModel.webp" width="450" /> | **SaaS – Software as a Service**<br>• Fully managed applications<br>• No infrastructure or platform management<br>• Examples: Salesforce, Office 365<br><br>**PaaS – Platform as a Service**<br>• Deploy code, provider manages OS/runtime<br>• Examples: Azure App Service, Google App Engine<br><br>**IaaS – Infrastructure as a Service**<br>• VM-level access with OS control<br>• Examples: AWS EC2, Azure VMs, GCP Compute Engine<br>• **Primary layer for Infrastructure as Code** |
 
-  <div>
-
-### SaaS – Software as a Service
-- Fully managed applications  
-- No infrastructure or platform management  
-- Examples: Salesforce, Office 365  
-
-### PaaS – Platform as a Service
-- Deploy code, provider manages OS/runtime  
-- Examples: Azure App Service, Google App Engine  
-
-### IaaS – Infrastructure as a Service
-- VM-level access with OS control  
-- Examples: AWS EC2, Azure VMs, GCP Compute Engine  
-- **Primary layer for Infrastructure as Code**
-
-  </div>
-</div>
 
 
 <br>
