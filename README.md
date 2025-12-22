@@ -12,4 +12,4 @@ My DevOps learning journey with structured notes and practical insights, startin
 
 - [Understanding CI CD](./linkedin_foundation/devops_foundation_cicd.md)
 
-- [Jenkins](./linkedin_foundation/jenkins.md)
+- [Jenkins](./linkedin_foundation/learning_foundation_jenkins.md)
