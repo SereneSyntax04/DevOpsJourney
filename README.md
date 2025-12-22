@@ -11,3 +11,5 @@ My DevOps learning journey with structured notes and practical insights, startin
 - [understanding Infra as Code](./linkedin_foundation/devops_foundation_IAC.md)
 
 - [Understanding CI CD](./linkedin_foundation/devops_foundation_cicd.md)
+
+- [Jenkins](./linkedin_foundation/jenkins.md)
