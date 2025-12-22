@@ -245,3 +245,10 @@ Manual testing decreases as pipeline maturity increases.
 | **Shift Left** | Moving testing, security, and validation as early as possible in the development lifecycle |
 
 
+
+---
+
+
+<br><br>
+
+[Click here to redirect to INDEX](../README.md) 

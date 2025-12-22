@@ -355,3 +355,7 @@ This prevents entering the token every time.
 ⚠️ Copy the token immediately — it cannot be viewed again.
 
 ---
+
+<br><br>
+
+[Click here to redirect to INDEX](../README.md) 
