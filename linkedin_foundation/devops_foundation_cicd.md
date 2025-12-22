@@ -174,21 +174,76 @@ Security becomes **continuous**, not last-minute panic.
 
 Managers love it. Developers love it. Users love it.
 
-<br>
+<br><br>
 
-## 🧱 CI/CD Pipeline (High Level)
+<h1 align='center'> 🧱 CI/CD Pipeline (High Level)</h1>
 
-| Stage | Purpose |
-|-----|--------|
-| Source Control | Track changes |
-| Build | Compile / package |
-| Test | Validate correctness |
-| Artifact Management | Store builds |
-| Deploy | Release safely |
+A **build pipeline** is the complete sequence of automated steps that take code from a repository to a **running service in production**.  
+
+How stages flow and provide feedback matters **more than the tools themselves**.
+
+---
 
 <p align="center">
   <img src="./assets/images/pipeline.png" alt="CI/CD Pipeline Diagram" width="700"/>
 </p>
+
+<br>
+
+### 🔗 Pipeline Stages Breakdown
+
+| Stage | What Happens | Tools (Examples) | Key Purpose |
+|----|-------------|------------------|-------------|
+| **Source Control** | Store all code: app, tests, deploy scripts, infra | Git, GitHub, GitLab, Bitbucket | Versioning & collaboration |
+| **Build Trigger** | Detect code change and start pipeline | Jenkins, GitHub Actions, GitLab CI, CircleCI | Automation |
+| **Build / Compile** | Compile or prepare application | Maven, Gradle, Make, Go compiler | Runnable code |
+| **Unit Testing** | Run isolated tests (no external systems) | JUnit, PyTest, Jest | Early bug detection |
+| **Package Artifact** | Bundle code into deployable unit | JAR/WAR, RPM, Docker Image | Consistency |
+| **Artifact Repository** | Store versioned artifacts | Nexus, Artifactory, S3, Docker Registry | Reusability |
+| **Deploy (Test Env)** | Automated deployment to test/CI env | Helm, Ansible, Terraform | Deployment validation |
+| **Integration Testing** | Test real running service | API / REST tests | System correctness |
+| **Acceptance Testing** | End-to-end validation | Selenium, Cypress, Manual (initially) | Business validation |
+| **Deploy (Production)** | Same artifact, same deploy tool | Same as test deploy | Safe release |
+
+---
+
+## 🧠 Core Pipeline Rules
+
+```
+Everything is code : application, infrastructure, deployment
+Same artifact everywhere : build once, deploy many times
+Same deploy process for test & prod : no “special” production steps
+```
+
+<br>
+
+## 🧪 Testing Strategy in the Pipeline
+
+| Test Type | When It Runs | Purpose |
+|--------|------------|--------|
+| Unit Tests | During build | Validate logic |
+| Integration Tests | After test deployment | Validate service |
+| Acceptance Tests | Pre-prod / prod | Validate behavior |
+
+Manual testing decreases as pipeline maturity increases.
+
+
+---
+---
+<br><br>
+
+<h1 align='center'> 📘 Glossary of CI/CD Terms </h1>
+
+| Term | Definition |
+|----|-----------|
+| **Continuous Integration (CI)** | Automatically and frequently building and unit testing the entire application, ideally on every code commit |
+| **Continuous Delivery (CD)** | Automatically deploying every successful build to a production-like environment and validating it with automated tests |
+| **Continuous Deployment** | Automatically deploying every build to production after it passes all automated tests |
+| **Integration Testing** | Tests performed as multiple application components are combined and validated together |
+| **End-to-End (E2E) Testing** | Tests that validate the complete user flow of an application, simulating real user behavior |
+| **Security Testing** | Tests designed to detect vulnerabilities in code and runtime to prevent breaches and data leaks |
+| **Shift Left** | Moving testing, security, and validation as early as possible in the development lifecycle |
+
 
 ---
 ---
