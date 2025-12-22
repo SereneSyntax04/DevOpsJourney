@@ -1,30 +1,15 @@
 # Jenkins — Beginner Friendly Introduction 🚀
 
 <p align="center">
-  <img src="./assets/images/automation_scope.png" width="450" />
+  <img src="./assets/images/jenkins.png" width="450" />
 </p>
 
 ## What is Jenkins?
 
 Jenkins is an **open-source automation server** used to **build, test, and deploy** applications automatically. It mainly helps teams implement **CI/CD (Continuous Integration & Continuous Delivery)** without manual effort.
 
-<br>
-
-## Why Choose Jenkins?
-
-Instead of long paragraphs, here’s the real talk 👇
-
-| Reason                 | Why It Matters                                           |
-| ---------------------- | -------------------------------------------------------- |
-| **Free & Open Source** | No license cost. Same tool for students and enterprises. |
-| **Easy UI**            | Clean, web-based interface with built-in help.           |
-| **MIT License**        | You can use, modify, and share it freely.                |
-| **Plugin Ecosystem**   | 1000+ plugins for Git, Docker, AWS, Slack, etc.          |
-| **Highly Extensible**  | If a feature doesn’t exist, you can add it via plugins.  |
-| **Strong Community**   | Millions of users, meetups, docs, tutorials everywhere.  |
-| **Scales Well**        | Works on your laptop and in large production servers.    |
-
-👉 Bottom line: Jenkins is popular because it **adapts to almost any workflow**.
+- Jenkins is free, open-source, and easy to use, with a massive plugin ecosystem.
+- It scales from student laptops to enterprise servers, adapting to almost any workflow.
 
 <br>
 
