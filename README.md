@@ -9,3 +9,5 @@ My DevOps learning journey with structured notes and practical insights, startin
 - [GIT basic theory and command](./linkedin_foundation/gitBasics.md)
 
 - [understanding Infra as Code](./linkedin_foundation/devops_foundation_IAC.md)
+
+- [Understanding CI CD](./linkedin_foundation/devops_foundation_cicd.md)
