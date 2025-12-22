@@ -44,16 +44,9 @@ Jenkins runs on Windows, macOS, and Linux with 256 MB RAM, 1 GB storage, and Jav
 
 <h1 align='center'> Install Jenkins Using Docker 🐳</h1>
 
-### Prerequisites (Quick Check)
-
-| Requirement | Minimum                                           |
-| ----------- | ------------------------------------------------- |
-| Privileges  | Admin / Root access                               |
-| RAM         | **4 GB+**                                         |
-| Disk        | **10 GB+**                                        |
-| Knowledge   | Basic idea of containers (helpful, not mandatory) |
-
----
+```
+You need admin access, 4 GB+ RAM, 10 GB disk, and basic Docker awareness (optional but helpful).
+```
 
 ### Step 1: Install Docker Desktop
 
@@ -151,3 +144,23 @@ Open your browser and go to:
 ---
 ---
 <br><br>
+
+
+<h1 align='center'>Deletion</h1>
+- Jenkins runs in a Docker container.
+- Deleting the container removes Jenkins temporarily, but deleting the container + volume removes everything (jobs, users, configs).
+
+## Delete only Jenkins container (data stays)
+docker rm -f jenkins
+
+## Delete Jenkins container + all data (clean wipe)
+docker rm -f jenkins
+docker volume rm jenkins_volume
+
+## (Optional) Remove Jenkins image
+docker rmi jenkins/jenkins:lts-jdk21
+
+---
+---
+<br><br>
+
