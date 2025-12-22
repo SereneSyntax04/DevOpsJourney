@@ -142,6 +142,104 @@ Open your browser and go to:
 🎉 Jenkins is now running inside Docker!
 
 ---
+<br>
+
+
+## Finish Jenkins Installation 
+
+### Step 1: Unlock Jenkins
+
+After opening Jenkins at **[http://localhost:8080](http://localhost:8080)**, you must unlock it.
+
+```bash
+docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+```
+
+* Copy the password
+* Paste it into the Jenkins unlock screen
+
+<br>
+
+### Step 2: Install Suggested Plugins
+
+* Choose **Install suggested plugins**
+* Wait 1–2 minutes for installation to finish
+
+These plugins cover most common Jenkins use cases.
+
+<br>
+
+### Step 3: Create Admin User
+
+* Enter **username & password**
+* Add **name and email** (can be dummy, but valid format)
+* Click **Save and Continue**
+
+<br>
+
+### Step 4: Instance Configuration
+
+* Accept the default Jenkins URL
+* Click **Save and Finish**
+
+🎉 Jenkins setup is complete.
+
+<br>
+
+## Jenkins User Interface (What Matters)
+
+| Menu                      | Purpose                 |
+| ------------------------- | ----------------------- |
+| **New Item**              | Create jobs (most used) |
+| **Manage Jenkins**        | System configuration    |
+| **Build Queue**           | Jobs waiting to run     |
+| **Build Executor Status** | Jobs currently running  |
+
+📌 You may see a security warning about controller builds — safe to ignore for learning.
+
+<br>
+
+## Manage Plugins (Basics)
+
+Path: **Manage Jenkins → Plugins**
+
+| Action    | What It Does                       |
+| --------- | ---------------------------------- |
+| Available | Install new plugins                |
+| Installed | View / disable / uninstall plugins |
+| Disable   | Temporarily turn off a plugin      |
+| Uninstall | Completely remove a plugin         |
+
+🔁 After uninstalling a plugin, restart Jenkins:
+
+```
+http://localhost:8080/safeRestart
+```
+
+<br>
+
+## Manage Tools (Basics)
+
+Path: **Manage Jenkins → Tools**
+
+Used to configure tools Jenkins jobs depend on.
+
+| Tool  | Example Use              |
+| ----- | ------------------------ |
+| Java  | Build Java apps          |
+| Maven | Build & package projects |
+| Git   | Source code checkout     |
+
+### Example: Add Maven
+
+* Click **Add Maven**
+* Name it (e.g., `Maven-3.9.9`)
+* Enable **automatic installation**
+* Click **Save**
+
+📌 Jenkins installs the tool automatically when a job needs it.
+
+---
 ---
 <br><br>
 
@@ -163,4 +261,3 @@ docker rmi jenkins/jenkins:lts-jdk21
 ---
 ---
 <br><br>
-
