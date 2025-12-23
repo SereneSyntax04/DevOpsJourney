@@ -484,8 +484,508 @@ Useful for identifying slow or unstable jobs.
 
 <h1 align='center'>Chapter 3: Job Workspaces,Artifacts and Parameters.</h1>
 
-#
+# Using a Global Build Tool
 
+Jenkins allows you to configure tools **once** and reuse them across multiple jobs. This ensures consistency and avoids repeating setup for every project.
+
+### Tools Used in This Chapter
+
+| Tool  | Purpose                             |
+| ----- | ----------------------------------- |
+| Git   | Fetch source code from repositories |
+| Maven | Build and package Java applications |
+
+### High-Level Flow
+
+1. Configure **Git** and **Maven** in **Manage Jenkins → Tools**
+2. Create a job and connect it to a Git repository
+3. Use Maven to build the project
+4. Run the compiled Java application
+
+### Job Configuration Steps
+
+* **Source Code Management** → Select **Git**
+* Paste the **repository HTTPS URL**
+* Update branch from `master` → `main` (common GitHub default)
+* If repo is private, add credentials
+
+### Build Steps
+
+1. **Invoke top-level Maven targets**
+
+   * Select configured Maven version (e.g., `maven-3.9.9`)
+   * Goals: `package`
+
+2. **Run Java Application**
+
+   * macOS / Linux / Docker → `Execute Shell`
+   * Windows → `Execute Windows Batch Command`
+
+### Output Verification
+
+* Git checkout confirmation
+* Maven build and dependency download logs
+* Final output (example): `Hello, world!`
+
+<br>
+
+# Job Workspace
+
+Each Jenkins job gets a dedicated **workspace** on the server.
+
+### What the Workspace Contains
+
+* Source code checked out from Git
+* Build outputs (JARs, logs, reports)
+* Temporary files used during the build
+
+### Workspace Actions
+
+| Action             | Description                 |
+| ------------------ | --------------------------- |
+| Browse Workspace   | View files and folders      |
+| Wipe Out Workspace | Deletes all workspace files |
+
+⚠️ No undo for workspace deletion — next build recreates it.
+
+### Automatic Cleanup Options
+
+* **Before build**: Environment → *Delete workspace before build starts*
+* **After build**: Post-build action → *Delete workspace when job is done*
+
+<br>
+
+# Managing Artifacts
+
+Artifacts are **outputs produced by a build**.
+
+### Common Artifact Examples
+
+* JAR / WAR files
+* Executables
+* Reports and logs
+
+### Archiving Artifacts
+
+1. Go to **Post-Build Actions**
+2. Select **Archive the artifacts**
+3. Provide file path (relative to workspace)
+
+#### Tips
+
+* Jenkins suggests correct paths if entered incorrectly
+* Use wildcards to simplify paths:
+
+```
+**/*.jar
+```
+
+### Result
+
+* Artifacts get a **direct download link**
+* Persist across builds
+
+<br>
+
+# Parameters and Environment Variables
+
+Parameterized jobs make Jenkins builds **reusable and flexible**.
+
+### Key Concepts
+
+* Parameters become **environment variables**
+* Typically written in **UPPERCASE**
+* Case-sensitive on Linux/macOS/Docker
+
+### Accessing Variables
+
+| Platform               | Syntax       |
+| ---------------------- | ------------ |
+| Windows                | `%VAR_NAME%` |
+| Linux / macOS / Docker | `$VAR_NAME`  |
+
+### Useful Built-in Variables
+
+| Variable     | Purpose                  |
+| ------------ | ------------------------ |
+| BUILD_ID     | Unique build identifier  |
+| BUILD_NUMBER | Incremental build number |
+
+<br>
+
+## String Parameters
+
+Used for free-text input like versions.
+
+### Example
+
+* Name: `VERSION`
+* Default: `1.0.0`
+* Description: Version number for build
+
+### Result
+
+* Job shows **Build with Parameters**
+* Input value is available during execution
+
+<br>
+
+## Choice Parameters
+
+Used to restrict input to predefined values.
+
+### Example
+
+* Name: `ENVIRONMENT`
+* Choices:
+
+  * development
+  * staging
+  * production
+
+### Benefit
+
+Prevents invalid inputs and enforces consistency.
+
+<br>
+
+## Boolean Parameters
+
+Used for on/off decisions.
+
+### Example
+
+* Name: `RUN_TESTS`
+* Checkbox input
+* Default: unchecked (`false`)
+
+### Usage
+
+Scripts can conditionally execute steps based on parameter value.
+
+<br>
+
+## Scheduling Jobs (Cron)
+
+Jenkins can run jobs automatically using **Cron-style schedules**.
+
+### Cron Fields Order
+
+```
+MINUTE HOUR DAY MONTH DAY_OF_WEEK
+```
+
+### Common Examples
+
+| Schedule    | Meaning               |
+| ----------- | --------------------- |
+| `0 0 * * *` | Every day at midnight |
+| `H * * * *` | Once every hour       |
+| `@daily`    | Once per day          |
+| `@midnight` | Overnight (12–3 AM)   |
+
+# Jenkins Enhancement: `H`
+
+* Spreads job execution to reduce server load
+* Prevents multiple jobs from running at the same second
+
+### Time Zone Awareness
+
+* Schedules follow **server time zone**
+* Can specify explicitly:
+
+```
+TZ=Europe/London
+```
+
+### Verification
+
+* Jenkins shows last and next run time
+* Build log states: *Started by timer*
+
+<br>
+
+```
+Key Takeaways
+
+- Global tools simplify job configuration
+- Workspaces isolate job files
+- Artifacts preserve important outputs
+- Parameters make jobs reusable
+- Scheduling enables automation
+```
+
+---
+---
+<br><br>
+
+
+
+<h1 align='center'>Chapter 4: Organize Jobs with Views and Folders.</h1>
+
+# Why Views and Folders Matter
+
+As Jenkins grows, job sprawl becomes real. In large teams (for example, multiple apps per team), you can easily end up with **hundreds of jobs**. Views and folders exist to keep Jenkins **usable, searchable, and sane**.
+
+* **Views** → Logical filters to *see* jobs
+* **Folders** → Physical-like structure to *store* jobs
+
+<br>
+
+## Views in Jenkins
+
+### What is a View?
+
+A **View** is a filtered dashboard that displays jobs based on rules you define.
+
+Think of it as:
+
+> “Show me only the jobs I care about right now.”
+
+Key points:
+
+* Views do **not** move jobs
+* A job can appear in **multiple views**
+* The default **All** tab is itself a view
+
+<br>
+
+### Create a View (List View)
+
+**Steps:**
+
+1. On Jenkins dashboard, click **➕ (plus)** next to the *All* tab
+2. Enter a **View Name** (example: `Build`)
+3. Select **List View** → **Create**
+4. (Optional) Add a description
+
+<br>
+
+### Filter Jobs Using Regular Expressions
+
+Instead of manually selecting jobs, use **regex**.
+
+Example:
+
+```text
+.*BUILD.*
+```
+
+Meaning:
+
+* `.*` → match any characters
+* `BUILD` → job name contains "build"
+
+✔ Automatically includes **existing and future jobs** with `build` in their name.
+
+Repeat the same for:
+
+* `TEST` → `.*TEST.*`
+* `DEPLOY` → `.*DEPLOY.*`
+
+<br>
+
+### Recursive Views (Important)
+
+By default, views only show jobs at the **same level**.
+
+If jobs are inside folders:
+
+1. Edit the view
+2. Enable **Recurse in subfolders**
+
+✔ Now the view displays jobs across all folders.
+
+<br>
+
+## Folders in Jenkins
+
+### What is a Folder?
+
+A **Folder** is a container that organizes jobs like directories in a file system.
+
+Folders can contain:
+
+* Jobs
+* Views
+* Other folders
+
+Each folder has its **own namespace**, meaning:
+
+* Jobs inside folders can share names
+* Isolation improves clarity and access control
+
+<br>
+
+### Create a Folder
+
+**Steps:**
+
+1. From Jenkins dashboard → **New Item**
+2. Enter folder name (example: `Cyclones`)
+3. Select **Folder** → **OK**
+4. Add a description
+5. Click **Save**
+
+<br>
+
+### Move Jobs into a Folder
+
+1. Open job menu (dropdown)
+2. Select **Move**
+3. Choose destination folder
+4. Confirm
+
+⚠ Jobs must be moved **one at a time** (no drag-and-drop).
+
+<br>
+
+### Views + Folders = Best Practice
+
+The most scalable setup:
+
+* **Folders** → Organize by team/project
+* **Views** → Filter by job type (Build/Test/Deploy)
+
+✔ Clean dashboard
+✔ Faster navigation
+✔ Enterprise-ready structure
+
+<br>
+
+## Search with Command Palette
+
+The **Command Palette** provides instant navigation.
+
+### Shortcut
+
+* **macOS** → `Cmd + K`
+* **Windows/Linux** → `Ctrl + K`
+
+### What You Can Search
+
+* Jobs
+* Folders
+* Views
+* Users
+* Builds
+
+Examples:
+
+* `Cyclones` → shows folder + jobs
+* `build` → jobs + views containing "build"
+* `Cyclones deploy 1` → first deploy build
+
+✔ Selecting a result jumps directly to it.
+
+<br>
+
+## Deleting Views and Folders (Very Important)
+
+### Deleting a View
+
+* Removes only the **view**
+* Jobs inside the view are **NOT deleted**
+
+Safe operation ✔
+
+<br>
+
+### Deleting a Folder
+
+* Deletes the folder
+* **Deletes ALL contents inside it**
+
+  * Jobs
+  * Views
+  * Subfolders
+
+🚨 **Permanent and destructive**
+
+> Always double-check before deleting folders.
+
+---
+---
+<br>
+
+
+# Conclusion: Pipeline as Code
+
+So far, jobs were configured manually (freestyle jobs). Jenkins also supports **Pipeline as Code**.
+
+### Jenkins Pipeline
+
+* Defined in a `Jenkinsfile`
+* Stored in source control (Git)
+* Fully versioned and auditable
+
+---
+
+### Pipeline Structure
+
+| Component | Purpose                              |
+| --------- | ------------------------------------ |
+| Pipeline  | Entire job definition                |
+| Stages    | Logical phases (Build, Test, Deploy) |
+| Steps     | Commands inside each stage           |
+
+---
+
+### Benefits of Pipelines
+
+* Configuration as code
+* Easier maintenance
+* Visual stage tracking
+* Better debugging
+* Industry standard for CI/CD
+
+---
+
+## Build Agents and Cloud Runners
+
+### What is a Build Agent?
+
+A **build agent** is a separate machine that Jenkins uses to run jobs.
+
+Benefits:
+
+* Parallel execution
+* OS-specific builds
+* Tool isolation
+
+---
+
+### Cloud-Based Agents
+
+Jenkins can dynamically create agents using cloud providers:
+
+* AWS
+* Azure
+* Google Cloud
+
+Using plugins:
+
+* Agents spin up **on demand**
+* Jobs run
+* Agents are destroyed
+
+✔ Faster builds
+✔ Lower cloud cost
+✔ Massive scalability
+
+---
+
+```
+Chapter Summary
+
+- Views filter jobs for better visibility
+- Folders organize jobs structurally
+- Regex makes views dynamic
+- Command palette speeds navigation
+- Deleting folders is destructive
+- Pipelines bring jobs-as-code
+- Build agents enable Jenkins to scale
+```
 
 
 ---
@@ -494,6 +994,8 @@ Useful for identifying slow or unstable jobs.
 <h1 align='center'>Deletion</h1>
 - Jenkins runs in a Docker container.
 - Deleting the container removes Jenkins temporarily, but deleting the container + volume removes everything (jobs, users, configs).
+
+# commands for deletion
 
 ## Delete only Jenkins container (data stays)
 docker rm -f jenkins
