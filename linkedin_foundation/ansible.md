@@ -104,3 +104,6 @@ ansible-playbook -i inventory scale.yml
 > Ansible automates configuration management, orchestrating tasks across servers, so you never have to manually install, configure, or update software again.
 
 ---
+
+
+[return to course](devops_foundation_IAC.md)
