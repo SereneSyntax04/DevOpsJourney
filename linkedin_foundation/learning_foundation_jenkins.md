@@ -56,7 +56,9 @@ Docker Desktop provides the runtime + CLI needed to run Jenkins containers.
 After installation, **start Docker Desktop** and wait until it shows:
 
 > 🟢 Docker Desktop is running
-
+<p align="center"> 
+  <img src="./assets/jenkinsImg/st1.png" alt="desktop running" width="400"/> 
+</p>
 ---
 
 ### Step 2: Verify Docker Installation
@@ -69,7 +71,10 @@ docker run hello-world
 ```
 
 ✅ If you see *"Hello from Docker"*, Docker is working correctly.
-
+<p align="center"> 
+  <img src="./assets/jenkinsImg/st2.png" alt="check docker" width="400"/>  <br>
+  <img src="./assets/jenkinsImg/st3.png" alt="check container" width = "400"/>
+</p>
 ---
 
 ### Step 3: Pull Jenkins Image (LTS + Java 21)
@@ -80,6 +85,9 @@ This image already includes Jenkins + Java.
 docker pull jenkins/jenkins:lts-jdk21
 ```
 
+<p align="center"> 
+  <img src="./assets/jenkinsImg/st4.png" alt="pull" width="400"/>  
+</p>
 ---
 
 ### Step 4: Create a Volume for Jenkins Data
@@ -89,6 +97,10 @@ This prevents data loss when the container stops.
 ```bash
 docker volume create jenkins_volume
 ```
+
+<p align="center"> 
+  <img src="./assets/jenkinsImg/st5.png" alt="volume" width="400"/>  
+</p>
 
 📌 Without a volume → jobs, users, and configs will be lost.
 
@@ -106,7 +118,12 @@ docker run --detach \
   jenkins/jenkins:lts-jdk21
 ```
 
-#### What this command does (quick view)
+<p align="center"> 
+  <img src="./assets/jenkinsImg/st6.png" alt="jenkins container" width="400"/>  
+</p>
+
+
+#### What this command does 
 
 | Option                | Purpose                      |
 | --------------------- | ---------------------------- |
@@ -119,13 +136,13 @@ docker run --detach \
 
 ### Step 6: Get Initial Admin Password
 
-Jenkins generates a one-time password on first startup.
+Jenkins generates a one-time password on first startup. **(run command in powershell if using windows.)**
 
-```bash
+```powershell
 docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 ```
 
-📋 Copy this password — you’ll need it in the browser.
+📋 Copy this password — you’ll need it in the browser. 
 
 ---
 
@@ -134,6 +151,10 @@ docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 Open your browser and go to:
 
 👉 **[http://localhost:8080](http://localhost:8080)**
+
+<p align="center"> 
+  <img src="./assets/jenkinsImg/st7.png" alt="setup" width="400"/>  
+</p>
 
 * Paste the admin password
 * Install suggested plugins
@@ -167,6 +188,10 @@ docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 
 These plugins cover most common Jenkins use cases.
 
+<p align="center"> 
+  <img src="./assets/jenkinsImg/st8.png" alt="plugin installation" width="400"/>  
+</p>
+
 <br>
 
 ### Step 3: Create Admin User
@@ -175,12 +200,21 @@ These plugins cover most common Jenkins use cases.
 * Add **name and email** (can be dummy, but valid format)
 * Click **Save and Continue**
 
+
+<p align="center"> 
+  <img src="./assets/jenkinsImg/st9.png" alt="create admin user" width="400"/> 
+</p>
+
 <br>
 
 ### Step 4: Instance Configuration
 
 * Accept the default Jenkins URL
 * Click **Save and Finish**
+
+<p align="center"> 
+  <img src="./assets/jenkinsImg/st10.png" alt="finish setup" width="400"/> 
+</p>
 
 🎉 Jenkins setup is complete.
 
@@ -197,11 +231,19 @@ These plugins cover most common Jenkins use cases.
 
 📌 You may see a security warning about controller builds — safe to ignore for learning.
 
+<p align="center"> 
+  <img src="./assets/jenkinsImg/st11.png" alt="finish setup" width="400"/> 
+</p>
+
 <br>
 
 ## Manage Plugins (Basics)
 
 Path: **Manage Jenkins → Plugins**
+
+<p align="center"> 
+  <img src="./assets/jenkinsImg/st12.png" alt="finish setup" width="400"/> 
+</p>
 
 | Action    | What It Does                       |
 | --------- | ---------------------------------- |
