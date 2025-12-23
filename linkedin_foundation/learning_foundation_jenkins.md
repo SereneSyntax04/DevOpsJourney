@@ -286,6 +286,211 @@ Used to configure tools Jenkins jobs depend on.
 <br><br>
 
 
+<h1 align='center'>Chapter 2: Jenkins Job</h1>
+
+# Your First Jenkins Job (Hello Jenkins)
+
+Just like *Hello World* in programming, this job confirms Jenkins is working correctly.
+
+### Steps to Create the Job
+
+1. From Jenkins Dashboard → click **New Item**
+2. Enter job name: `Hello-Jenkins`
+   📌 Avoid spaces in job names (CLI & API friendly)
+3. Select **Freestyle Project** → Click **OK**
+
+---
+
+### Configure the Job
+
+Scroll to **Build** section → **Add Build Step**
+
+| System                 | Build Step                    |
+| ---------------------- | ----------------------------- |
+| Windows                | Execute Windows batch command |
+| Linux / macOS / Docker | Execute Shell                 |
+
+Command to add:
+
+```bash
+echo "Hello, Jenkins"
+```
+
+Click **Apply** → **Save**
+
+---
+
+### Run the Job
+
+* Click **Build Now**
+* Under **Build History**:
+
+  * 🟢 Green check → Success
+  * 🔴 Red X → Failure
+
+Click the build number or check mark to view **Console Output**.
+
+---
+
+## Jenkins Job Types (Overview)
+
+| Job Type                 | Purpose                          |
+| ------------------------ | -------------------------------- |
+| **Freestyle**            | Most common, flexible jobs       |
+| **Pipeline**             | CI/CD as code (Jenkinsfile)      |
+| **Multi-configuration**  | Same job, multiple parameters    |
+| **Multibranch Pipeline** | Different branches, same repo    |
+| **Organization Folder**  | Auto-detect repos                |
+| **Folder**               | Organize jobs (not a job itself) |
+
+📌 Course focus: **Freestyle jobs**
+
+---
+
+## Job Configuration Sections (What Matters)
+
+### General
+
+| Option             | Purpose                    |
+| ------------------ | -------------------------- |
+| Description        | Explains what the job does |
+| Discard Old Builds | Prevents disk from filling |
+
+---
+
+### Source Code Management (SCM)
+
+Used to pull code from repositories.
+
+| Feature     | Use                   |
+| ----------- | --------------------- |
+| Git URL     | Repo location         |
+| Credentials | Secure repo access    |
+| Branch      | Code version to build |
+
+Works with GitHub, GitLab, Bitbucket.
+
+---
+
+### Build Triggers (How Jobs Start)
+
+| Trigger                | Use Case                         |
+| ---------------------- | -------------------------------- |
+| Manual                 | Click **Build Now**              |
+| Build After Other Jobs | Job dependencies                 |
+| Build Periodically     | Scheduled (cron)                 |
+| GitHub Webhook         | CI on code changes               |
+| Poll SCM               | Not recommended (resource heavy) |
+
+📌 Webhooks are preferred over polling.
+
+---
+
+### Build Environment
+
+| Option           | Why It’s Useful         |
+| ---------------- | ----------------------- |
+| Delete Workspace | Clean build every run   |
+| Inject Secrets   | Secure passwords & keys |
+| Timeout          | Stop stuck jobs         |
+
+---
+
+### Build Steps (What Jenkins Executes)
+
+| Type           | Example          |
+| -------------- | ---------------- |
+| Execute Shell  | Bash scripts     |
+| Execute Batch  | Windows commands |
+| Maven / Gradle | Java builds      |
+
+✔ Multiple build steps allowed
+✔ Steps can be reordered
+
+---
+
+### Post-Build Actions
+
+Actions after job finishes.
+
+| Action             | Purpose           |
+| ------------------ | ----------------- |
+| Archive Artifacts  | Save build output |
+| Trigger Job        | Chain jobs        |
+| Email Notification | Notify users      |
+
+---
+
+## Run & Monitor Jobs
+
+### Build Status Indicators
+
+| Icon           | Meaning   |
+| -------------- | --------- |
+| 🟢 Green Check | Success   |
+| 🔴 Red X       | Failure   |
+| 🔵 Blue Circle | First run |
+| 🔄 Spinning    | Running   |
+
+Each run gets a unique **Build ID**.
+
+---
+
+## Console Output (Logs)
+
+* Click build number → **Console Output**
+* Shows:
+
+  * Commands executed
+  * Output logs
+  * Errors (if any)
+
+📌 Console updates **live** while job runs.
+
+---
+
+## Simulating a Failed Build
+
+Linux / macOS / Docker:
+
+```bash
+exit 1
+```
+
+Windows (Batch):
+
+```bat
+exit /B 1
+```
+
+Any non-zero exit code → **Build Failure**
+
+---
+
+## Monitor Build Trends
+
+* Expand **Build History**
+* View:
+
+  * Success vs Failure timeline
+  * Build duration trends
+
+Useful for identifying slow or unstable jobs.
+
+---
+---
+<br><br>
+
+
+<h1 align='center'>Chapter 3: Job Workspaces,Artifacts and Parameters.</h1>
+
+#
+
+
+
+---
+---
+<br><br>
 <h1 align='center'>Deletion</h1>
 - Jenkins runs in a Docker container.
 - Deleting the container removes Jenkins temporarily, but deleting the container + volume removes everything (jobs, users, configs).
@@ -305,11 +510,7 @@ docker rmi jenkins/jenkins:lts-jdk21
 <br><br>
 
 
-
-
-
 ---
-
 <br><br>
 
 [Click here to redirect to INDEX](../README.md) 
