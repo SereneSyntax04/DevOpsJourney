@@ -420,4 +420,4 @@ FodyWeavers.xsd
 
 
 # text documnent
-.txt
+*.txt
