@@ -4,12 +4,23 @@ My DevOps learning journey with structured notes and practical insights, startin
 
 ---
 
+# Foundations of Devops:
+
 - [Basic Devops theory](./linkedin_foundation/devops_foundation.md)
 
-- [GIT basic theory and command](./linkedin_foundation/gitBasics.md)
+- [GIT basic theory and command](./linkedin_foundation/devops_foundation_Git.md)
 
 - [understanding Infra as Code](./linkedin_foundation/devops_foundation_IAC.md)
 
 - [Understanding CI CD](./linkedin_foundation/devops_foundation_cicd.md)
 
-- [Jenkins](./linkedin_foundation/learning_foundation_jenkins.md)
+- [Jenkins](./linkedin_foundation/devops_foundation_jenkins.md)
+
+
+---
+<br>
+
+
+# Linux for DevOps
+
+- [linux: overview](/lin_linux/linux_basic.md)
