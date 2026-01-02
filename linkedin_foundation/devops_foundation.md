@@ -1,5 +1,9 @@
 <h1 align='center'>Devops Foundation</h1>
 
+<p align="center">
+  <img src="./assets/images/cicdTool.webp" alt="DevOps Infinity Loop" width="650"/>
+</p>
+
 ---
 <br><br>
 
