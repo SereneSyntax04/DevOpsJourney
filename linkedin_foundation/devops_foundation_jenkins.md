@@ -470,24 +470,6 @@ Each run gets a unique **Build ID**.
 
 ---
 
-## Simulating a Failed Build
-
-Linux / macOS / Docker:
-
-```bash
-exit 1
-```
-
-Windows (Batch):
-
-```bat
-exit /B 1
-```
-
-Any non-zero exit code → **Build Failure**
-
----
-
 ## Monitor Build Trends
 
 * Expand **Build History**
