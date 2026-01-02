@@ -480,6 +480,10 @@ Each run gets a unique **Build ID**.
 
 Useful for identifying slow or unstable jobs.
 
+
+## jenkins Task
+[Automate System Monitoring with Jenkins](jenkinsTask.md)
+
 ---
 ---
 <br><br>
