@@ -120,3 +120,4 @@ system-report.txt
 The Jenkins job runs daily, collects system information, and archives the report for future reference.
 
 
+[Return to course](devops_foundation_jenkins.md)
