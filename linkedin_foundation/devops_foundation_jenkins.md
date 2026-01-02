@@ -59,6 +59,7 @@ After installation, **start Docker Desktop** and wait until it shows:
 <p align="center"> 
   <img src="./assets/jenkinsImg/st1.png" alt="desktop running" width="400"/> 
 </p>
+
 ---
 
 ### Step 2: Verify Docker Installation
@@ -75,6 +76,7 @@ docker run hello-world
   <img src="./assets/jenkinsImg/st2.png" alt="check docker" width="400"/>  <br>
   <img src="./assets/jenkinsImg/st3.png" alt="check container" width = "400"/>
 </p>
+
 ---
 
 ### Step 3: Pull Jenkins Image (LTS + Java 21)
@@ -88,6 +90,7 @@ docker pull jenkins/jenkins:lts-jdk21
 <p align="center"> 
   <img src="./assets/jenkinsImg/st4.png" alt="pull" width="400"/>  
 </p>
+
 ---
 
 ### Step 4: Create a Volume for Jenkins Data
@@ -299,6 +302,11 @@ Just like *Hello World* in programming, this job confirms Jenkins is working cor
    📌 Avoid spaces in job names (CLI & API friendly)
 3. Select **Freestyle Project** → Click **OK**
 
+<p align="center"> 
+  <img src="./assets/jenkinsImg/st13.png" alt="desktop running" width="400"/> <br>
+  <img src="./assets/jenkinsImg/st14.png" alt="desktop running" width="400"/>
+</p>
+
 ---
 
 ### Configure the Job
@@ -316,6 +324,11 @@ Command to add:
 echo "Hello, Jenkins"
 ```
 
+<p align="center"> 
+  <img src="./assets/jenkinsImg/st15.png" alt="desktop running" width="400"/> <br>
+  <img src="./assets/jenkinsImg/st16.png" alt="desktop running" width="400"/> 
+</p>
+
 Click **Apply** → **Save**
 
 ---
@@ -328,7 +341,15 @@ Click **Apply** → **Save**
   * 🟢 Green check → Success
   * 🔴 Red X → Failure
 
+<p align="center"> 
+  <img src="./assets/jenkinsImg/st17.png" alt="desktop running" width="400"/> <br>
+</p>
+
 Click the build number or check mark to view **Console Output**.
+
+<p align="center"> 
+  <img src="./assets/jenkinsImg/st18.png" alt="desktop running" width="400"/> 
+</p>
 
 ---
 

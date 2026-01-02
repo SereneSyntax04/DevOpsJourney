@@ -837,8 +837,6 @@ You:
 📌 **Short takeaway:**
 IaC requires discipline—*all changes go through code*, no exceptions.
 
-> 👉 *Deep dive candidate:* Cultural change, DevOps mindset, and resistance to automation.
-
 <br>
 
 ## 🔁 Continuous Integration for Infrastructure
@@ -864,8 +862,6 @@ Benefits:
 📌 **Short takeaway:**
 Infrastructure should be built and deployed **only via pipelines**, never from laptops.
 
-> 👉 *Deep dive candidate:* CI tools, pipelines, approvals, and promotion strategies.
-
 <br>
 
 ## 📦 Artifacts in Infrastructure
@@ -879,14 +875,8 @@ Artifacts are **immutable, versioned outputs** of a build process.
 * ZIP packages
 * OS packages (RPM, DEB)
 
-<p align="center">
-  <img src="./assets/images/artifacts.png" width="450" />
-</p>
-
 📌 **Short takeaway:**
 Artifacts must **never change after creation**—immutability is non-negotiable.
-
-> 👉 *Deep dive candidate:* Artifact repositories, versioning strategies, and promotion models.
 
 <br>
 
@@ -917,8 +907,6 @@ Infrastructure testing follows the **testing pyramid**.
 
 📌 **Short takeaway:**
 Test infra like software—**more unit tests, fewer end-to-end tests**.
-
-> 👉 *Deep dive candidate:* Terratest, Kitchen-Terraform, testing strategies.
 
 <br>
 
@@ -952,8 +940,6 @@ Observability + on-call ownership ensures real fixes, not band-aids.
 📌 **Short takeaway:**
 The person who writes the code is best positioned to support it.
 
-> 👉 *Deep dive candidate:* SRE model, on-call practices, incident response.
-
 <br>
 
 ## ⚙️ Automate Everything (That Makes Sense)
@@ -965,10 +951,6 @@ Beyond infrastructure, many system components can be treated as code:
 * Runbooks
 * Documentation
 * SaaS configurations
-
-<p align="center">
-  <img src="./assets/images/automation_scope.png" width="450" />
-</p>
 
 📌 **Short takeaway:**
 If it affects reliability, performance, or security—**it belongs in code**.
@@ -992,8 +974,6 @@ GitOps uses **Git as the single source of truth** for declarative systems.
 
 📌 **Short takeaway:**
 GitOps is powerful—but not mandatory. It works best with **Kubernetes and declarative systems**.
-
-> 👉 *Deep dive candidate:* GitOps vs traditional CI/CD, pros & cons.
 
 <br>
 
