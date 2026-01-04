@@ -491,50 +491,39 @@ Useful for identifying slow or unstable jobs.
 
 <h1 align='center'>Chapter 3: Job Workspaces,Artifacts and Parameters.</h1>
 
-# Using a Global Build Tool
+## Using a Global Build Tool in Jenkins
 
 Jenkins allows you to configure tools **once** and reuse them across multiple jobs. This ensures consistency and avoids repeating setup for every project.
 
-### Tools Used in This Chapter
+---
+
+## Tools Used
 
 | Tool  | Purpose                             |
 | ----- | ----------------------------------- |
 | Git   | Fetch source code from repositories |
 | Maven | Build and package Java applications |
 
-### High-Level Flow
 
-1. Configure **Git** and **Maven** in **Manage Jenkins → Tools**
-2. Create a job and connect it to a Git repository
-3. Use Maven to build the project
-4. Run the compiled Java application
+## High-Level Flow
 
-### Job Configuration Steps
 
-* **Source Code Management** → Select **Git**
-* Paste the **repository HTTPS URL**
-* Update branch from `master` → `main` (common GitHub default)
-* If repo is private, add credentials
-
-### Build Steps
-
-1. **Invoke top-level Maven targets**
-
-   * Select configured Maven version (e.g., `maven-3.9.9`)
-   * Goals: `package`
-
-2. **Run Java Application**
-
-   * macOS / Linux / Docker → `Execute Shell`
-   * Windows → `Execute Windows Batch Command`
-
-### Output Verification
-
-* Git checkout confirmation
-* Maven build and dependency download logs
-* Final output (example): `Hello, world!`
-
+1️⃣ Configure Git and Maven in Manage Jenkins → Tools
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st25.png" width="180"> <img src="assets/jenkinsImg/st26.png" width="180"> </div>
 <br>
+
+2️⃣ Create a Jenkins Job and Connect GitHub Repository
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st27.png" width="160"> <img src="assets/jenkinsImg/st28.png" width="160"> <img src="assets/jenkinsImg/st29.png" width="160"> </div>
+<br>
+
+3️⃣ Build the Project Using Maven
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st30.png" width="180"> <img src="assets/jenkinsImg/st31.png" width="180"> </div>
+<br>
+
+4️⃣ Run the Compiled Java Application
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st32.png" width="250"> </div>
+
+---
 
 # Job Workspace
 

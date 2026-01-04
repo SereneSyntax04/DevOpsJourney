@@ -20,6 +20,9 @@ Create a Jenkins freestyle job that generates a daily system report from the mac
 3. Enter name: `system-report`
 4. Select **Freestyle project**
 5. Click **OK**
+<p align="center"> 
+  <img src="./assets/jenkinsImg/st19.png" alt="desktop running" width="500"/> 
+</p>
 
 ---
 
@@ -29,6 +32,9 @@ Schedule the job to run once a day. Options include the following, among others:
 - H H * * *
 - @daily
 - @midnight
+<p align="center"> 
+  <img src="./assets/jenkinsImg/st20.png" alt="desktop running" width="500"/> 
+</p>
 
 ---
 
@@ -61,6 +67,10 @@ echo "" >> $REPORT_FILE
 echo "Logged-in Users:" >> $REPORT_FILE
 who >> $REPORT_FILE
 ```
+
+<p align="center"> 
+  <img src="./assets/jenkinsImg/st21.png" alt="desktop running" width="500"/> 
+</p>
 
 ---
 
@@ -104,6 +114,10 @@ query user >> %REPORT_FILE%
 system-report.txt
 ```
 
+<p align="center"> 
+  <img src="./assets/jenkinsImg/st22.png" alt="desktop running" width="500"/> 
+</p>
+
 ---
 
 ## Step 5: Verification
@@ -112,6 +126,11 @@ system-report.txt
 2. Confirm build status is **SUCCESS**
 3. Open **Console Output** to verify execution
 4. Download `system-report.txt` from **Artifacts**
+
+<p align="center"> 
+  <img src="./assets/jenkinsImg/st23.png" alt="desktop running" width="500"/>  <br><br>
+  <img src="./assets/jenkinsImg/st24.png" alt="desktop running" width="500"/>
+</p>
 
 ---
 
