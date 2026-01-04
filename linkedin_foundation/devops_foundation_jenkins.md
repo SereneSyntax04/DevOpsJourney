@@ -526,6 +526,7 @@ Jenkins allows you to configure tools **once** and reuse them across multiple jo
 <div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st32.png" width="500"> </div>
 
 ---
+<br>
 
 # Job Workspace
 
@@ -536,6 +537,8 @@ Each Jenkins job gets a dedicated **workspace** on the server.
 * Source code checked out from Git
 * Build outputs (JARs, logs, reports)
 * Temporary files used during the build
+
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st33.png" width="00"> </div>
 
 ### Workspace Actions
 
@@ -583,6 +586,7 @@ Artifacts are **outputs produced by a build**.
 * Artifacts get a **direct download link**
 * Persist across builds
 
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st34.png" width="300"> <img src="assets/jenkinsImg/st35.png" width="300"> <img src="assets/jenkinsImg/st36.png" width="300"></div>
 <br>
 
 # Parameters and Environment Variables
