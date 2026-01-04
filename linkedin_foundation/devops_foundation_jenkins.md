@@ -509,19 +509,21 @@ Jenkins allows you to configure tools **once** and reuse them across multiple jo
 
 
 1️⃣ Configure Git and Maven in Manage Jenkins → Tools
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st25.png" width="180"> <img src="assets/jenkinsImg/st26.png" width="180"> </div>
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st25.png" width="400"> <img src="assets/jenkinsImg/st26.png" width="400"> </div>
 <br>
 
+
+
 2️⃣ Create a Jenkins Job and Connect GitHub Repository
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st27.png" width="160"> <img src="assets/jenkinsImg/st28.png" width="160"> <img src="assets/jenkinsImg/st29.png" width="160"> </div>
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st27.png" width="300"> <img src="assets/jenkinsImg/st28.png" width="300"> <img src="assets/jenkinsImg/st29.png" width="300"> </div>
 <br>
 
 3️⃣ Build the Project Using Maven
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st30.png" width="180"> <img src="assets/jenkinsImg/st31.png" width="180"> </div>
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st30.png" width="400"> <img src="assets/jenkinsImg/st31.png" width="400"> </div>
 <br>
 
 4️⃣ Run the Compiled Java Application
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st32.png" width="250"> </div>
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st32.png" width="500"> </div>
 
 ---
 
@@ -1004,10 +1006,6 @@ docker volume rm jenkins_volume
 docker rmi jenkins/jenkins:lts-jdk21
 
 ---
----
-<br><br>
-
-
 ---
 <br><br>
 
