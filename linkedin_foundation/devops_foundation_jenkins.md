@@ -707,15 +707,8 @@ TZ=Europe/London
 
 <br>
 
-```
-Key Takeaways
-
-- Global tools simplify job configuration
-- Workspaces isolate job files
-- Artifacts preserve important outputs
-- Parameters make jobs reusable
-- Scheduling enables automation
-```
+## jenkins Task
+[Automate System Monitoring with Jenkins](jenkinsTask.md)
 
 ---
 ---
@@ -977,17 +970,8 @@ Using plugins:
 
 ---
 
-```
-Chapter Summary
-
-- Views filter jobs for better visibility
-- Folders organize jobs structurally
-- Regex makes views dynamic
-- Command palette speeds navigation
-- Deleting folders is destructive
-- Pipelines bring jobs-as-code
-- Build agents enable Jenkins to scale
-```
+## jenkins Task
+[Automate System Monitoring with Jenkins](jenkinsTask.md)
 
 
 ---
