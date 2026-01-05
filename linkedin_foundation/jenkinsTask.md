@@ -1,5 +1,5 @@
 
-# Automate System Monitoring with Jenkins
+# Task 1: Automate System Monitoring with Jenkins
 
 ## Objective
 Create a Jenkins freestyle job that generates a daily system report from the machine where Jenkins is running and archives the report.
@@ -145,7 +145,7 @@ The Jenkins job runs daily, collects system information, and archives the report
 
 
 
-# Use a Build Tool and Parameters (Jenkins)
+# Task 2: Use a Build Tool and Parameters (Jenkins)
 
 ## Challenge Overview
 
@@ -343,7 +343,7 @@ The Jenkins job successfully:
 
 
 
-# Create Folders and Views (Jenkins)
+# Task 3: Create Folders and Views (Jenkins)
 
 ## Challenge Overview
 
@@ -525,3 +525,9 @@ Jenkins
 <br><br>
 
 [Return to course](devops_foundation_jenkins.md)
+
+
+
+
+https://github.com/managedkaos/java-calculator
+https://github.com/LinkedInLearning/learning-jenkins-3981454/blob/main/ch5_conclusion/05_01_pipeline_as_code/README.md

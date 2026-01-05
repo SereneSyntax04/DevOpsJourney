@@ -482,7 +482,7 @@ Useful for identifying slow or unstable jobs.
 
 
 ## jenkins Task
-[Automate System Monitoring with Jenkins](jenkinsTask.md)
+[Task 1: Automate System Monitoring with Jenkins](jenkinsTask.md)
 
 ---
 ---
@@ -708,7 +708,7 @@ TZ=Europe/London
 <br>
 
 ## jenkins Task
-[Automate System Monitoring with Jenkins](jenkinsTask.md)
+[Task 2: Use a Build Tool and Parameters](jenkinsTask.md)
 
 ---
 ---
@@ -971,7 +971,7 @@ Using plugins:
 ---
 
 ## jenkins Task
-[Automate System Monitoring with Jenkins](jenkinsTask.md)
+[Task 3: Create Folders and Views](jenkinsTask.md)
 
 
 ---
