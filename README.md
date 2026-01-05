@@ -33,4 +33,4 @@ My DevOps learning journey with structured notes and practical insights, startin
 
 # BitBucket
 
--[bitbucket notes](/linkedin_bitbucket/bitbucket.md)
+- [bitbucket notes](/linkedin_bitbucket/bitbucket.md)
