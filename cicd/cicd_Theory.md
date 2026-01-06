@@ -1,4 +1,4 @@
-<h1 align='center'>Devops Foundation: <br> CI/CD</h1>
+<h1 align='center'>Foundation: <br> CI/CD</h1>
 
 <p align="center">
   <img src="./assets/images/cicdTool.webp" alt="DevOps Infinity Loop" width="650"/>
@@ -506,4 +506,4 @@ If all tests pass:
 
 <br><br>
 
-[Click here to redirect to INDEX](../README.md) 
+[Click here to redirect to INDEX](/README.md) 

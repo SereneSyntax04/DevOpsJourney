@@ -20,19 +20,19 @@ My DevOps learning journey with structured notes and practical insights, startin
 
 - [understanding Infra as Code](./linkedin_foundation/devops_foundation_IAC.md)
 
-- [Understanding CI CD](./linkedin_foundation/devops_foundation_cicd.md)
-
-
 ---
 <br>
 
 
 # CI/CD Tools & Automation
-- [Jenkins](./linkedin_foundation/devops_foundation_jenkins.md)
 
-- [Bitbucket notes](/linkedin_bitbucket/bitbucket.md)
+- [Understanding CI CD](/cicd/cicd_Theory.md)
 
-- [Bitbucket pipeline](/linkedin_bitbucket/pipeline.md)
+- [Jenkins](/cicd/jenkins/jenkins.md)
+
+- [Bitbucket notes](/cicd/bitbucket.md)
+
+- [Bitbucket pipeline](/cicd/pipeline.md)
 
 
 ---

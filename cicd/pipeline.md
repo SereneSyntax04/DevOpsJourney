@@ -101,3 +101,7 @@ Bitbucket’s Free Tier is generous for learning and small teams but has limits.
 - Free tier is sufficient for practice and small projects.
 
 ---
+
+<br><br>
+
+[Click here to redirect to INDEX](../README.md) 

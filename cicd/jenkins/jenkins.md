@@ -1,7 +1,7 @@
 # Jenkins — Beginner Friendly Introduction 🚀
 
 <p align="center">
-  <img src="./assets/images/jenkins.png" width="450" />
+  <img src="/cicd/assets/images/jenkins.png" width="450" />
 </p>
 
 ## What is Jenkins?
@@ -57,7 +57,7 @@ After installation, **start Docker Desktop** and wait until it shows:
 
 > 🟢 Docker Desktop is running
 <p align="center"> 
-  <img src="./assets/jenkinsImg/st1.png" alt="desktop running" width="400"/> 
+  <img src="/cicd/assets/jenkinsImg/st1.png" alt="desktop running" width="400"/> 
 </p>
 
 ---
@@ -73,8 +73,8 @@ docker run hello-world
 
 ✅ If you see *"Hello from Docker"*, Docker is working correctly.
 <p align="center"> 
-  <img src="./assets/jenkinsImg/st2.png" alt="check docker" width="400"/>  <br>
-  <img src="./assets/jenkinsImg/st3.png" alt="check container" width = "400"/>
+  <img src="/cicd/assets/jenkinsImg/st2.png" alt="check docker" width="400"/>  <br>
+  <img src="/cicd/assets/jenkinsImg/st3.png" alt="check container" width = "400"/>
 </p>
 
 ---
@@ -88,7 +88,7 @@ docker pull jenkins/jenkins:lts-jdk21
 ```
 
 <p align="center"> 
-  <img src="./assets/jenkinsImg/st4.png" alt="pull" width="400"/>  
+  <img src="/cicd/assets/jenkinsImg/st4.png" alt="pull" width="400"/>  
 </p>
 
 ---
@@ -102,7 +102,7 @@ docker volume create jenkins_volume
 ```
 
 <p align="center"> 
-  <img src="./assets/jenkinsImg/st5.png" alt="volume" width="400"/>  
+  <img src="/cicd/assets/jenkinsImg/st5.png" alt="volume" width="400"/>  
 </p>
 
 📌 Without a volume → jobs, users, and configs will be lost.
@@ -122,7 +122,7 @@ docker run --detach \
 ```
 
 <p align="center"> 
-  <img src="./assets/jenkinsImg/st6.png" alt="jenkins container" width="400"/>  
+  <img src="/cicd/assets/jenkinsImg/st6.png" alt="jenkins container" width="400"/>  
 </p>
 
 
@@ -156,7 +156,7 @@ Open your browser and go to:
 👉 **[http://localhost:8080](http://localhost:8080)**
 
 <p align="center"> 
-  <img src="./assets/jenkinsImg/st7.png" alt="setup" width="400"/>  
+  <img src="/cicd/assets/jenkinsImg/st7.png" alt="setup" width="400"/>  
 </p>
 
 * Paste the admin password
@@ -192,7 +192,7 @@ docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 These plugins cover most common Jenkins use cases.
 
 <p align="center"> 
-  <img src="./assets/jenkinsImg/st8.png" alt="plugin installation" width="400"/>  
+  <img src="/cicd/assets/jenkinsImg/st8.png" alt="plugin installation" width="400"/>  
 </p>
 
 <br>
@@ -205,7 +205,7 @@ These plugins cover most common Jenkins use cases.
 
 
 <p align="center"> 
-  <img src="./assets/jenkinsImg/st9.png" alt="create admin user" width="400"/> 
+  <img src="/cicd/assets/jenkinsImg/st9.png" alt="create admin user" width="400"/> 
 </p>
 
 <br>
@@ -216,7 +216,7 @@ These plugins cover most common Jenkins use cases.
 * Click **Save and Finish**
 
 <p align="center"> 
-  <img src="./assets/jenkinsImg/st10.png" alt="finish setup" width="400"/> 
+  <img src="/cicd/assets/jenkinsImg/st10.png" alt="finish setup" width="400"/> 
 </p>
 
 🎉 Jenkins setup is complete.
@@ -235,7 +235,7 @@ These plugins cover most common Jenkins use cases.
 📌 You may see a security warning about controller builds — safe to ignore for learning.
 
 <p align="center"> 
-  <img src="./assets/jenkinsImg/st11.png" alt="finish setup" width="400"/> 
+  <img src="/cicd/assets/jenkinsImg/st11.png" alt="finish setup" width="400"/> 
 </p>
 
 <br>
@@ -245,7 +245,7 @@ These plugins cover most common Jenkins use cases.
 Path: **Manage Jenkins → Plugins**
 
 <p align="center"> 
-  <img src="./assets/jenkinsImg/st12.png" alt="finish setup" width="400"/> 
+  <img src="/cicd/assets/jenkinsImg/st12.png" alt="finish setup" width="400"/> 
 </p>
 
 | Action    | What It Does                       |
@@ -303,8 +303,8 @@ Just like *Hello World* in programming, this job confirms Jenkins is working cor
 3. Select **Freestyle Project** → Click **OK**
 
 <p align="center"> 
-  <img src="./assets/jenkinsImg/st13.png" alt="desktop running" width="400"/> <br>
-  <img src="./assets/jenkinsImg/st14.png" alt="desktop running" width="400"/>
+  <img src="/cicd/assets/jenkinsImg/st13.png" alt="desktop running" width="400"/> <br>
+  <img src="/cicd/assets/jenkinsImg/st14.png" alt="desktop running" width="400"/>
 </p>
 
 ---
@@ -325,8 +325,8 @@ echo "Hello, Jenkins"
 ```
 
 <p align="center"> 
-  <img src="./assets/jenkinsImg/st15.png" alt="desktop running" width="400"/> <br>
-  <img src="./assets/jenkinsImg/st16.png" alt="desktop running" width="400"/> 
+  <img src="/cicd/assets/jenkinsImg/st15.png" alt="desktop running" width="400"/> <br>
+  <img src="/cicd/assets/jenkinsImg/st16.png" alt="desktop running" width="400"/> 
 </p>
 
 Click **Apply** → **Save**
@@ -342,13 +342,13 @@ Click **Apply** → **Save**
   * 🔴 Red X → Failure
 
 <p align="center"> 
-  <img src="./assets/jenkinsImg/st17.png" alt="desktop running" width="400"/> <br>
+  <img src="/cicd/assets/jenkinsImg/st17.png" alt="desktop running" width="400"/> <br>
 </p>
 
 Click the build number or check mark to view **Console Output**.
 
 <p align="center"> 
-  <img src="./assets/jenkinsImg/st18.png" alt="desktop running" width="400"/> 
+  <img src="/cicd/assets/jenkinsImg/st18.png" alt="desktop running" width="400"/> 
 </p>
 
 ---
@@ -509,21 +509,21 @@ Jenkins allows you to configure tools **once** and reuse them across multiple jo
 
 
 1️⃣ Configure Git and Maven in Manage Jenkins → Tools
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st25.png" width="400"> <img src="assets/jenkinsImg/st26.png" width="400"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st25.png" width="400"> <img src="/cicd/assets/jenkinsImg/st26.png" width="400"> </div>
 <br>
 
 
 
 2️⃣ Create a Jenkins Job and Connect GitHub Repository
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st27.png" width="300"> <img src="assets/jenkinsImg/st28.png" width="300"> <img src="assets/jenkinsImg/st29.png" width="300"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st27.png" width="300"> <img src="/cicd/assets/jenkinsImg/st28.png" width="300"> <img src="/cicd/assets/jenkinsImg/st29.png" width="300"> </div>
 <br>
 
 3️⃣ Build the Project Using Maven
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st30.png" width="400"> <img src="assets/jenkinsImg/st31.png" width="400"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st30.png" width="400"> <img src="/cicd/assets/jenkinsImg/st31.png" width="400"> </div>
 <br>
 
 4️⃣ Run the Compiled Java Application
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st32.png" width="500"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st32.png" width="500"> </div>
 
 ---
 <br>
@@ -538,7 +538,7 @@ Each Jenkins job gets a dedicated **workspace** on the server.
 * Build outputs (JARs, logs, reports)
 * Temporary files used during the build
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st33.png" width="00"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st33.png" width="00"> </div>
 
 ### Workspace Actions
 
@@ -586,7 +586,7 @@ Artifacts are **outputs produced by a build**.
 * Artifacts get a **direct download link**
 * Persist across builds
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st34.png" width="300"> <img src="assets/jenkinsImg/st35.png" width="300"> <img src="assets/jenkinsImg/st36.png" width="300"></div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st34.png" width="300"> <img src="/cicd/assets/jenkinsImg/st35.png" width="300"> <img src="/cicd/assets/jenkinsImg/st36.png" width="300"></div>
 <br>
 
 # Parameters and Environment Variables
@@ -624,14 +624,14 @@ Used for free-text input like versions.
 * Default: `1.0.0`
 * Description: Version number for build
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st37.png" width="400"> <img src="assets/jenkinsImg/st38.png" width="400"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st37.png" width="400"> <img src="/cicd/assets/jenkinsImg/st38.png" width="400"> </div>
 
 
 ### Result
 * Job shows **Build with Parameters**
 * Input value is available during execution
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st39.png" width="300"> <img src="assets/jenkinsImg/st40.png" width="300"> <img src="assets/jenkinsImg/st41.png" width="300"></div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st39.png" width="300"> <img src="/cicd/assets/jenkinsImg/st40.png" width="300"> <img src="/cicd/assets/jenkinsImg/st41.png" width="300"></div>
 
 <br>
 
@@ -648,9 +648,9 @@ Used to restrict input to predefined values.
   * staging
   * production
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st42.png" width="300"> <img src="assets/jenkinsImg/st43.png" width="300"> <img src="assets/jenkinsImg/st44.png" width="300"></div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st42.png" width="300"> <img src="/cicd/assets/jenkinsImg/st43.png" width="300"> <img src="/cicd/assets/jenkinsImg/st44.png" width="300"></div>
 <br>
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st45.png" width="300"> <img src="assets/jenkinsImg/st46.png" width="300"> <img src="assets/jenkinsImg/st47.png" width="300"></div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st45.png" width="300"> <img src="/cicd/assets/jenkinsImg/st46.png" width="300"> <img src="/cicd/assets/jenkinsImg/st47.png" width="300"></div>
 
 ### Benefit
 Prevents invalid inputs and enforces consistency.
@@ -677,9 +677,9 @@ else
 fi
 ```
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st48.png" width="300"> <img src="assets/jenkinsImg/st49.png" width="300"> <img src="assets/jenkinsImg/st50.png" width="300"></div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st48.png" width="300"> <img src="/cicd/assets/jenkinsImg/st49.png" width="300"> <img src="/cicd/assets/jenkinsImg/st50.png" width="300"></div>
 <br>
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st51.png" width="300"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st51.png" width="300"> </div>
 
 ### Usage
 Scripts can conditionally execute steps based on parameter value.
@@ -692,7 +692,7 @@ Jenkins can run jobs automatically using **Cron-style schedules**.
 
 ### Cron Fields Order
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/cron-style.png" width="500"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/cron-style.png" width="500"> </div>
 
 ```
 MINUTE HOUR DAY MONTH DAY_OF_WEEK
@@ -721,7 +721,7 @@ MINUTE HOUR DAY MONTH DAY_OF_WEEK
 TZ=Europe/London
 ```
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st52.png" width="300"> <img src="assets/jenkinsImg/st53.png" width="300"> <img src="assets/jenkinsImg/st54.png" width="300"></div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st52.png" width="300"> <img src="/cicd/assets/jenkinsImg/st53.png" width="300"> <img src="/cicd/assets/jenkinsImg/st54.png" width="300"></div>
 
 ### Verification
 
@@ -957,7 +957,7 @@ A **Jenkins Pipeline** is:
 
 This approach aligns with DevOps best practices.
 
-📄 [Refer to the pipeline code](/linkedin_foundation/jenkinsfile.md)
+📄 [Refer to the pipeline code](/cicd/jenkins/jenkinsfile.md)
 
 ---
 
@@ -983,9 +983,9 @@ This approach aligns with DevOps best practices.
 
 ## Pipeline Output
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st92.png" width="500"> <img src="assets/jenkinsImg/st93.png" width="500"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st92.png" width="500"> <img src="/cicd/assets/jenkinsImg/st93.png" width="500"> </div>
 <br>
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st94.png" width="300"></div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st94.png" width="300"></div>
 
 
 ---
@@ -1004,7 +1004,7 @@ The goal you specified requires a project to execute but there is no POM in this
 (/var/jenkins_home/workspace/java-calculator-pipeline)
 ```
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st95.png" width="700" height="150"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st95.png" width="700" height="150"> </div>
 
 #### Root Cause
 
@@ -1038,7 +1038,7 @@ To fix this, the project source code must be pulled from Git.
    Script Path: Jenkinsfile
    ```
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st96.png" width="400"> <img src="assets/jenkinsImg/st97.png" width="400"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st96.png" width="400"> <img src="/cicd/assets/jenkinsImg/st97.png" width="400"> </div>
 
 This ensures:
 
@@ -1066,7 +1066,7 @@ maven-3.9.12
 
 This caused tool resolution issues during pipeline execution.
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st98.png" width="700" height="200"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st98.png" width="700" height="200"> </div>
 
 ---
 
@@ -1087,7 +1087,7 @@ Steps to fix:
 
 Once the versions matched, the pipeline executed successfully.
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st99.png" width="400"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st99.png" width="400"> </div>
 
 ---
 
@@ -1102,7 +1102,7 @@ This implementation demonstrates:
 
 By defining pipelines in code and storing them in Git, Jenkins pipelines become more reliable, maintainable, and production-ready.
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st100.png" width="500"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st100.png" width="500"> </div>
 
 ---
 
@@ -1256,4 +1256,4 @@ docker rmi jenkins/jenkins:lts-jdk21
 ---
 <br><br>
 
-[Click here to redirect to INDEX](../README.md) 
+[Click here to redirect to INDEX](/README.md) 

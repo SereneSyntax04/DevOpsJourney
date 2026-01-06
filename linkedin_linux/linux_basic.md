@@ -415,3 +415,9 @@ Run with:
 bash script.sh
 ```
 📌 Shell scripts save time and prevent human errors.
+
+
+
+<br><br>
+
+[Click here to redirect to INDEX](../README.md) 

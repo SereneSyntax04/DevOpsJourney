@@ -21,7 +21,7 @@ Create a Jenkins freestyle job that generates a daily system report from the mac
 4. Select **Freestyle project**
 5. Click **OK**
 <p align="center"> 
-  <img src="./assets/jenkinsImg/st19.png" alt="desktop running" width="500"/> 
+  <img src="/cicd/assets/jenkinsImg/st19.png" alt="desktop running" width="500"/> 
 </p>
 
 ---
@@ -33,7 +33,7 @@ Schedule the job to run once a day. Options include the following, among others:
 - @daily
 - @midnight
 <p align="center"> 
-  <img src="./assets/jenkinsImg/st20.png" alt="desktop running" width="500"/> 
+  <img src="/cicd/assets/jenkinsImg/st20.png" alt="desktop running" width="500"/> 
 </p>
 
 ---
@@ -69,7 +69,7 @@ who >> $REPORT_FILE
 ```
 
 <p align="center"> 
-  <img src="./assets/jenkinsImg/st21.png" alt="desktop running" width="500"/> 
+  <img src="/cicd/assets/jenkinsImg/st21.png" alt="desktop running" width="500"/> 
 </p>
 
 ---
@@ -115,7 +115,7 @@ system-report.txt
 ```
 
 <p align="center"> 
-  <img src="./assets/jenkinsImg/st22.png" alt="desktop running" width="500"/> 
+  <img src="/cicd/assets/jenkinsImg/st22.png" alt="desktop running" width="500"/> 
 </p>
 
 ---
@@ -128,8 +128,8 @@ system-report.txt
 4. Download `system-report.txt` from **Artifacts**
 
 <p align="center"> 
-  <img src="./assets/jenkinsImg/st23.png" alt="desktop running" width="500"/>  <br><br>
-  <img src="./assets/jenkinsImg/st24.png" alt="desktop running" width="500"/>
+  <img src="/cicd/assets/jenkinsImg/st23.png" alt="desktop running" width="500"/>  <br><br>
+  <img src="/cicd/assets/jenkinsImg/st24.png" alt="desktop running" width="500"/>
 </p>
 
 ---
@@ -176,7 +176,7 @@ Navigate to:
 
     * Example: `C:\Program Files\Git\bin\git.exe`
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st55.png" width="300"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st55.png" width="300"> </div>
 
 ### Maven Configuration
 
@@ -186,7 +186,7 @@ Navigate to:
   * Enable **Install automatically**
   * Select the latest available Maven version
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st56.png" width="300"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st56.png" width="300"> </div>
 
 Save the configuration.
 
@@ -199,7 +199,7 @@ Save the configuration.
 * Project name: `java-calculator`
 * Click **OK**
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st57.png" width="300"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st57.png" width="300"> </div>
 
 ---
 
@@ -218,7 +218,7 @@ Navigate to **This project is parameterized** and add the following parameters:
   multiply
   divide
   ```
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st58.png" width="300"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st58.png" width="300"> </div>
 
 ### String Parameters
 
@@ -230,7 +230,7 @@ Navigate to **This project is parameterized** and add the following parameters:
 
    * Default value: `5`
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st59.png" width="300"> <img src="assets/jenkinsImg/st60.png" width="300"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st59.png" width="300"> <img src="/cicd/assets/jenkinsImg/st60.png" width="300"> </div>
 
 ---
 
@@ -247,7 +247,7 @@ Navigate to **This project is parameterized** and add the following parameters:
   ```
   */main
   ```
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st61.png" width="300"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st61.png" width="300"> </div>
 
 ---
 
@@ -264,7 +264,7 @@ Add build step:
   clean test package
   ```
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st62.png" width="300"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st62.png" width="300"> </div>
 
 ---
 
@@ -300,7 +300,7 @@ echo "Second number: $NUMBER_2"
 java -jar target/calculator-1.0-SNAPSHOT.jar $OPERATION $NUMBER_1 $NUMBER_2
 ```
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st63.png" width="300"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st63.png" width="300"> </div>
 
 ---
 
@@ -314,7 +314,7 @@ java -jar target/calculator-1.0-SNAPSHOT.jar $OPERATION $NUMBER_1 $NUMBER_2
   **/target/calculator-1.0-SNAPSHOT.jar
   ```
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st64.png" width="400"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st64.png" width="400"> </div>
 
 ### Publish JUnit Test Results
 
@@ -324,7 +324,7 @@ java -jar target/calculator-1.0-SNAPSHOT.jar $OPERATION $NUMBER_1 $NUMBER_2
   **/target/surefire-reports/*.xml
   ```
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st65.png" width="400"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st65.png" width="400"> </div>
 
 ---
 
@@ -335,10 +335,10 @@ java -jar target/calculator-1.0-SNAPSHOT.jar $OPERATION $NUMBER_1 $NUMBER_2
 3. Keep default values or modify numbers
 4. Run the build
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st66.png" width="300"> <img src="assets/jenkinsImg/st67.png" width="300"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st66.png" width="300"> <img src="/cicd/assets/jenkinsImg/st67.png" width="300"> </div>
 
 ### Try with different values
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st68.png" width="300"> <img src="assets/jenkinsImg/st69.png" width="300"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st68.png" width="300"> <img src="/cicd/assets/jenkinsImg/st69.png" width="300"> </div>
 
 ### Verification Checklist
 
@@ -347,7 +347,7 @@ java -jar target/calculator-1.0-SNAPSHOT.jar $OPERATION $NUMBER_1 $NUMBER_2
 * Calculator result is displayed
 * JAR file appears under **Artifacts**
 * Test results are published
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st70.png" width="400"></div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st70.png" width="400"></div>
 
 ---
 
@@ -399,7 +399,7 @@ Steps:
 3. Enter the job name
 4. Click **OK → Save**
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st71.png" width="500"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st71.png" width="500"> </div>
 
 ---
 
@@ -419,7 +419,7 @@ Steps:
 6. Enable **Recurse in subfolders**
 7. Save the view
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st72.png" width="300"> <img src="assets/jenkinsImg/st73.png" width="300"></div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st72.png" width="300"> <img src="/cicd/assets/jenkinsImg/st73.png" width="300"></div>
 
 ---
 
@@ -437,11 +437,11 @@ Steps:
 6. Enable **Recurse in subfolders**
 7. Save the view
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st74.png" width="300"> <img src="assets/jenkinsImg/st75.png" width="300"></div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st74.png" width="300"> <img src="/cicd/assets/jenkinsImg/st75.png" width="300"></div>
 
 <br>
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st76.png" width="300"> <img src="assets/jenkinsImg/st77.png" width="300"></div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st76.png" width="300"> <img src="/cicd/assets/jenkinsImg/st77.png" width="300"></div>
 
 ---
 
@@ -457,7 +457,7 @@ Create a new freestyle job:
 * This confirms the regular expression is working correctly
 
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st78.png" width="300"> <img src="assets/jenkinsImg/st79.png" width="300"></div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st78.png" width="300"> <img src="/cicd/assets/jenkinsImg/st79.png" width="300"></div>
 
 ---
 
@@ -477,9 +477,9 @@ Steps:
 3. Enter the folder name
 4. Click **OK → Save**
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st80.png" width="300" height="300"> <img src="assets/jenkinsImg/st81.png" width="350"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st80.png" width="300" height="300"> <img src="/cicd/assets/jenkinsImg/st81.png" width="350"> </div>
 <br>
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st82.png" width="300" height="300"> <img src="assets/jenkinsImg/st83.png" width="350" height="300"> <img src="assets/jenkinsImg/st84.png" width="300" height="300"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st82.png" width="300" height="300"> <img src="/cicd/assets/jenkinsImg/st83.png" width="350" height="300"> <img src="/cicd/assets/jenkinsImg/st84.png" width="300" height="300"> </div>
 
 ---
 
@@ -500,9 +500,9 @@ Move jobs based on their team name:
 
 > Use **Move** from the job menu or drag-and-drop (if enabled).
 
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st85.png" width="300" height="300"> <img src="assets/jenkinsImg/st86.png" width="350" height="300"> <img src="assets/jenkinsImg/st87.png" width="300" height="300"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st85.png" width="300" height="300"> <img src="/cicd/assets/jenkinsImg/st86.png" width="350" height="300"> <img src="/cicd/assets/jenkinsImg/st87.png" width="300" height="300"> </div>
 <br>
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st88.png" width="300" height="300"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st88.png" width="300" height="300"> </div>
 
 ---
 
@@ -510,7 +510,7 @@ Move jobs based on their team name:
 
 * Jobs remain visible in **Build** and **Deploy** views
 * Views work correctly across folders due to **recursive search**
-<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st89.png" width="300" height="300"> <img src="assets/jenkinsImg/st90.png" width="300" height="300"> </div>
+<div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st89.png" width="300" height="300"> <img src="/cicd/assets/jenkinsImg/st90.png" width="300" height="300"> </div>
 
 ---
 
