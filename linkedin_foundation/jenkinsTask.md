@@ -176,13 +176,17 @@ Navigate to:
 
     * Example: `C:\Program Files\Git\bin\git.exe`
 
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st55.png" width="300"> </div>
+
 ### Maven Configuration
 
 * Under **Maven installations**:
 
-  * Name: `maven-3.9.9`
+  * Name: `maven-3.9.12`
   * Enable **Install automatically**
   * Select the latest available Maven version
+
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st56.png" width="300"> </div>
 
 Save the configuration.
 
@@ -194,6 +198,8 @@ Save the configuration.
 * Select **Freestyle project**
 * Project name: `java-calculator`
 * Click **OK**
+
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st57.png" width="300"> </div>
 
 ---
 
@@ -212,6 +218,7 @@ Navigate to **This project is parameterized** and add the following parameters:
   multiply
   divide
   ```
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st58.png" width="300"> </div>
 
 ### String Parameters
 
@@ -222,6 +229,8 @@ Navigate to **This project is parameterized** and add the following parameters:
 2. **Name:** `NUMBER_2`
 
    * Default value: `5`
+
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st59.png" width="300"> <img src="assets/jenkinsImg/st60.png" width="300"> </div>
 
 ---
 
@@ -238,6 +247,7 @@ Navigate to **This project is parameterized** and add the following parameters:
   ```
   */main
   ```
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st61.png" width="300"> </div>
 
 ---
 
@@ -247,12 +257,14 @@ Add build step:
 
 **Invoke top-level Maven targets**
 
-* **Maven Version:** `maven-3.9.9`
+* **Maven Version:** `maven-3.9.12`
 * **Goals:**
 
   ```
   clean test package
   ```
+
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st62.png" width="300"> </div>
 
 ---
 
@@ -288,6 +300,8 @@ echo "Second number: $NUMBER_2"
 java -jar target/calculator-1.0-SNAPSHOT.jar $OPERATION $NUMBER_1 $NUMBER_2
 ```
 
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st63.png" width="300"> </div>
+
 ---
 
 ## Step 7: Configure Post-Build Actions
@@ -300,6 +314,8 @@ java -jar target/calculator-1.0-SNAPSHOT.jar $OPERATION $NUMBER_1 $NUMBER_2
   **/target/calculator-1.0-SNAPSHOT.jar
   ```
 
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st64.png" width="400"> </div>
+
 ### Publish JUnit Test Results
 
 * **Test report XMLs:**
@@ -307,6 +323,8 @@ java -jar target/calculator-1.0-SNAPSHOT.jar $OPERATION $NUMBER_1 $NUMBER_2
   ```
   **/target/surefire-reports/*.xml
   ```
+
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st65.png" width="400"> </div>
 
 ---
 
@@ -317,6 +335,11 @@ java -jar target/calculator-1.0-SNAPSHOT.jar $OPERATION $NUMBER_1 $NUMBER_2
 3. Keep default values or modify numbers
 4. Run the build
 
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st66.png" width="300"> <img src="assets/jenkinsImg/st67.png" width="300"> </div>
+
+### Try with different values
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st68.png" width="300"> <img src="assets/jenkinsImg/st69.png" width="300"> </div>
+
 ### Verification Checklist
 
 * Console Output shows parameter values
@@ -324,6 +347,7 @@ java -jar target/calculator-1.0-SNAPSHOT.jar $OPERATION $NUMBER_1 $NUMBER_2
 * Calculator result is displayed
 * JAR file appears under **Artifacts**
 * Test results are published
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st70.png" width="400"></div>
 
 ---
 
@@ -339,6 +363,7 @@ The Jenkins job successfully:
 
 ---
 <br><br>
+
 
 
 
@@ -374,6 +399,8 @@ Steps:
 3. Enter the job name
 4. Click **OK → Save**
 
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st71.png" width="500"> </div>
+
 ---
 
 ## Step 2: Create Views Based on Job Type
@@ -392,6 +419,8 @@ Steps:
 6. Enable **Recurse in subfolders**
 7. Save the view
 
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st72.png" width="300"> <img src="assets/jenkinsImg/st73.png" width="300"></div>
+
 ---
 
 ### View 2: Deploy
@@ -408,6 +437,12 @@ Steps:
 6. Enable **Recurse in subfolders**
 7. Save the view
 
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st74.png" width="300"> <img src="assets/jenkinsImg/st75.png" width="300"></div>
+
+<br>
+
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st76.png" width="300"> <img src="assets/jenkinsImg/st77.png" width="300"></div>
+
 ---
 
 ## Step 3: Create a New Job
@@ -420,6 +455,9 @@ Create a new freestyle job:
 
 * The job automatically appears in the **Build** view
 * This confirms the regular expression is working correctly
+
+
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st78.png" width="300"> <img src="assets/jenkinsImg/st79.png" width="300"></div>
 
 ---
 
@@ -438,6 +476,10 @@ Steps:
 2. Select **Folder**
 3. Enter the folder name
 4. Click **OK → Save**
+
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st80.png" width="300" height="300"> <img src="assets/jenkinsImg/st81.png" width="350"> </div>
+<br>
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st82.png" width="300" height="300"> <img src="assets/jenkinsImg/st83.png" width="350" height="300"> <img src="assets/jenkinsImg/st84.png" width="300" height="300"> </div>
 
 ---
 
@@ -458,12 +500,17 @@ Move jobs based on their team name:
 
 > Use **Move** from the job menu or drag-and-drop (if enabled).
 
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st85.png" width="300" height="300"> <img src="assets/jenkinsImg/st86.png" width="350" height="300"> <img src="assets/jenkinsImg/st87.png" width="300" height="300"> </div>
+<br>
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st88.png" width="300" height="300"> </div>
+
 ---
 
 ### Verification
 
 * Jobs remain visible in **Build** and **Deploy** views
 * Views work correctly across folders due to **recursive search**
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st89.png" width="300" height="300"> <img src="assets/jenkinsImg/st90.png" width="300" height="300"> </div>
 
 ---
 
@@ -526,8 +573,3 @@ Jenkins
 
 [Return to course](devops_foundation_jenkins.md)
 
-
-
-
-https://github.com/managedkaos/java-calculator
-https://github.com/LinkedInLearning/learning-jenkins-3981454/blob/main/ch5_conclusion/05_01_pipeline_as_code/README.md

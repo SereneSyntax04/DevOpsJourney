@@ -620,24 +620,27 @@ Parameterized jobs make Jenkins builds **reusable and flexible**.
 Used for free-text input like versions.
 
 ### Example
-
 * Name: `VERSION`
 * Default: `1.0.0`
 * Description: Version number for build
 
-### Result
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st37.png" width="400"> <img src="assets/jenkinsImg/st38.png" width="400"> </div>
 
+
+### Result
 * Job shows **Build with Parameters**
 * Input value is available during execution
 
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st39.png" width="300"> <img src="assets/jenkinsImg/st40.png" width="300"> <img src="assets/jenkinsImg/st41.png" width="300"></div>
+
 <br>
+
 
 ## Choice Parameters
 
 Used to restrict input to predefined values.
 
 ### Example
-
 * Name: `ENVIRONMENT`
 * Choices:
 
@@ -645,8 +648,11 @@ Used to restrict input to predefined values.
   * staging
   * production
 
-### Benefit
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st42.png" width="300"> <img src="assets/jenkinsImg/st43.png" width="300"> <img src="assets/jenkinsImg/st44.png" width="300"></div>
+<br>
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st45.png" width="300"> <img src="assets/jenkinsImg/st46.png" width="300"> <img src="assets/jenkinsImg/st47.png" width="300"></div>
 
+### Benefit
 Prevents invalid inputs and enforces consistency.
 
 <br>
@@ -656,13 +662,26 @@ Prevents invalid inputs and enforces consistency.
 Used for on/off decisions.
 
 ### Example
-
 * Name: `RUN_TESTS`
 * Checkbox input
 * Default: unchecked (`false`)
 
-### Usage
+```bash
+#!/bin/bash
+echo "RUN_TESTS = $RUN_TESTS"
+if [ "$RUN_TESTS" = "true" ];
+then
+    echo "RUNNING TESTS!";
+else
+    echo "No tests will be run...";
+fi
+```
 
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st48.png" width="300"> <img src="assets/jenkinsImg/st49.png" width="300"> <img src="assets/jenkinsImg/st50.png" width="300"></div>
+<br>
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st51.png" width="300"> </div>
+
+### Usage
 Scripts can conditionally execute steps based on parameter value.
 
 <br>
@@ -672,6 +691,8 @@ Scripts can conditionally execute steps based on parameter value.
 Jenkins can run jobs automatically using **Cron-style schedules**.
 
 ### Cron Fields Order
+
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/cron-style.png" width="500"> </div>
 
 ```
 MINUTE HOUR DAY MONTH DAY_OF_WEEK
@@ -699,6 +720,8 @@ MINUTE HOUR DAY MONTH DAY_OF_WEEK
 ```
 TZ=Europe/London
 ```
+
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st52.png" width="300"> <img src="assets/jenkinsImg/st53.png" width="300"> <img src="assets/jenkinsImg/st54.png" width="300"></div>
 
 ### Verification
 
