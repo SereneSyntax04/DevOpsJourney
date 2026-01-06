@@ -35,6 +35,15 @@ Monitoring is about **watching system health** using dashboards and alerts.
 
 They work best **together**, not separately.
 
+### Think of your system like a car:
+
+Monitoring → dashboard warning lights. “Engine temperature high!” or “Fuel low!” <br>
+✅ Tells you what is wrong.
+
+Observability → the mechanic inside the car looking under the hood. “Oh, coolant pipe is leaking, that’s why the temperature is high.” <br>
+✅ Tells you why it’s wrong.
+
+
 ---
 
 ## Why Observability is Important
@@ -650,3 +659,76 @@ You can:
 - Principle: Instrument system → collect signals → process with tools → analyze/alert.
 
 > Observability signals (metrics, logs, traces) are the foundation for all these monitoring techniques. Proper instrumentation and tooling selection are key for actionable insights.
+
+---
+<br>
+
+
+
+
+
+
+# Observability Techniques & Tools
+
+## Dashboards and Visualization
+- Dashboards group and present observability signals logically.
+- Best practices:
+  - Clear titles and descriptions.
+  - Group panels by subject.
+  - Keep dashboards concise and readable.
+  - Choose panel types that clearly tell the story (tables, charts, graphs).
+- Useful for understanding system health and drilling down into incidents.
+
+## Monitoring and Alerting
+- Alerts allow proactive response without constant dashboard monitoring.
+- Key steps:
+  - Set alert name, query, and conditions.
+  - Define thresholds for metrics (e.g., latency).
+  - Add annotations, runbooks, and dashboard links.
+  - Configure notification channels (email, Slack, SMS, phone calls).
+- Alerts are triggered when thresholds are breached.
+
+## SLIs, SLOs, and SLAs
+- **SLI (Service Level Indicator):** Key metric to measure system performance (e.g., latency, error rate).
+- **SLO (Service Level Objective):** Internal availability target for a service.
+- **SLA (Service Level Agreement):** Agreement with users on expected availability.
+- **Error Budget:** Allowable downtime based on SLO.
+- Example: 90% SLO → 10% error budget → daily allowance of 2h 24m downtime.
+- Benefits: Quantitative user experience measurement, incident prioritization, risk-taking within error budgets.
+
+## Incident Management
+- Focuses on using observability signals optimally to reduce downtime.
+- Incident response phases:
+  1. Detection
+  2. Triage
+  3. Diagnosis
+  4. Mitigation/Resolution
+  5. Monitoring
+- Roles: Incident manager, liaisons, subject matter experts.
+- Tools: PagerDuty, Splunk On-Call, Datadog Incident Management, Grafana OnCall.
+- Key features:
+  - OnCall schedules & escalation chains.
+  - Incident declaration & timeline.
+  - Post-incident reviews and actions.
+
+## Machine Learning & Observability
+- ML enhances observability in:
+  - **Anomaly Detection:** Detect unusual trends (e.g., sudden log spikes).
+  - **Root Cause Analysis:** Correlate signals to suggest probable causes.
+  - **Service Owner Discovery:** Identify responsible teams quickly.
+- Examples in Grafana Cloud:
+  - Metric forecasts (predict future values based on historical data).
+  - Outlier detection for metrics.
+  - Incident investigations (Sift investigations for Kubernetes apps).
+  - Holiday adjustments for expected traffic spikes.
+
+---
+<br>
+
+
+
+
+
+
+
+
