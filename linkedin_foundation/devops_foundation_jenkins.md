@@ -934,37 +934,192 @@ Safe operation ✔
 
 
 
-# Conclusion: Pipeline as Code
 
-So far, jobs were configured manually (freestyle jobs). Jenkins also supports **Pipeline as Code**.
+# Jenkins Pipeline as Code – Understanding & Error Resolution
 
-### Jenkins Pipeline
+## Overview
 
-* Defined in a `Jenkinsfile`
-* Stored in source control (Git)
-* Fully versioned and auditable
+Earlier, Jenkins jobs were created using **Freestyle projects**, which required manual configuration through the UI.  
+Jenkins also supports a modern and industry-standard approach called **Pipeline as Code**.
 
----
-
-### Pipeline Structure
-
-| Component | Purpose                              |
-| --------- | ------------------------------------ |
-| Pipeline  | Entire job definition                |
-| Stages    | Logical phases (Build, Test, Deploy) |
-| Steps     | Commands inside each stage           |
+With Pipeline as Code, the entire CI/CD workflow is defined in a file called a **Jenkinsfile** and stored in source control.
 
 ---
 
-### Benefits of Pipelines
+## What is Jenkins Pipeline?
 
-* Configuration as code
-* Easier maintenance
-* Visual stage tracking
-* Better debugging
-* Industry standard for CI/CD
+A **Jenkins Pipeline** is:
+
+- Defined using a `Jenkinsfile`
+- Stored in version control systems like Git
+- Fully versioned, auditable, and reusable
+- Written using Groovy-based syntax
+
+This approach aligns with DevOps best practices.
+
+📄 [Refer to the pipeline code](/linkedin_foundation/jenkinsfile.md)
 
 ---
+
+## Pipeline Structure
+
+| Component | Description |
+|---------|------------|
+| Pipeline | Complete job definition |
+| Stages | Logical phases such as Build, Test, Deploy |
+| Steps | Commands executed inside each stage |
+
+---
+
+## Benefits of Pipeline as Code
+
+- Configuration stored as code
+- Easy to maintain and update
+- Clear visual representation of stages
+- Better debugging and error tracking
+- Industry-standard CI/CD implementation
+
+---
+
+## Pipeline Output
+
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st92.png" width="500"> <img src="assets/jenkinsImg/st93.png" width="500"> </div>
+<br>
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st94.png" width="300"></div>
+
+
+---
+
+## Error Handling & Troubleshooting
+
+While executing the pipeline, the following errors were encountered and resolved.
+
+---
+
+### ❌ Error 1: Maven Could Not Find `pom.xml`
+
+#### Error Message
+```bash
+The goal you specified requires a project to execute but there is no POM in this directory
+(/var/jenkins_home/workspace/java-calculator-pipeline)
+```
+
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st95.png" width="700" height="150"> </div>
+
+#### Root Cause
+
+* Jenkins workspace did not contain the project source code
+* `pom.xml` was missing
+* Maven requires `pom.xml` to identify the project structure
+
+As a result, the command `mvn clean test` failed immediately.
+
+---
+
+### ✅ Solution: Use Pipeline Script from SCM
+
+To fix this, the project source code must be pulled from Git.
+
+#### Steps Followed
+
+1. Open Jenkins job → **Configure**
+2. Go to **Pipeline**
+3. Change **Definition** to:
+
+   ```
+   Pipeline script from SCM
+   ```
+4. Select **SCM: Git**
+5. Provide repository details:
+
+   ```
+   Repository URL: https://github.com/managedkaos/java-calculator.git
+   Branch: main (or master)
+   Script Path: Jenkinsfile
+   ```
+
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st96.png" width="400"> <img src="assets/jenkinsImg/st97.png" width="400"> </div>
+
+This ensures:
+
+* Jenkins clones the repository
+* `pom.xml` is available in the workspace
+* Maven commands execute successfully
+
+---
+
+### ❌ Error 2: Maven Tool Version Mismatch
+
+#### Issue
+
+The pipeline specified:
+
+```groovy
+maven 'maven-3.9.9'
+```
+
+But Jenkins had a different Maven version configured:
+
+```
+maven-3.9.12
+```
+
+This caused tool resolution issues during pipeline execution.
+
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st98.png" width="700" height="200"> </div>
+
+---
+
+### ✅ Solution: Configure Correct Maven Version
+
+Steps to fix:
+
+1. Go to **Manage Jenkins**
+2. Open **Global Tool Configuration**
+3. Under **Maven installations**
+4. Add a new Maven version:
+
+   ```
+   Name: maven-3.9.9
+   ```
+
+   *(or update the Jenkinsfile to match the installed version)*
+
+Once the versions matched, the pipeline executed successfully.
+
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st99.png" width="400"> </div>
+
+---
+
+## Conclusion
+
+This implementation demonstrates:
+
+* Practical use of **Pipeline as Code**
+* Real-world CI/CD pipeline setup
+* Troubleshooting common Jenkins & Maven issues
+* Industry-standard DevOps practices
+
+By defining pipelines in code and storing them in Git, Jenkins pipelines become more reliable, maintainable, and production-ready.
+
+<div style="display:flex; gap:10px;"> <img src="assets/jenkinsImg/st100.png" width="500"> </div>
+
+---
+
+✅ **Skills Demonstrated**
+
+* Jenkins Pipeline (Declarative)
+* Maven build automation
+* Git-based CI/CD
+* Error analysis and resolution
+
+
+---
+<br>
+
+
+
+
 
 ## Build Agents and Cloud Runners
 
@@ -1004,23 +1159,98 @@ Using plugins:
 
 
 
+# Jenkins Deletion (Docker-Based Setup)
 
+## Jenkins Running Inside Docker
 
-<h1 align='center'>Deletion</h1>
-- Jenkins runs in a Docker container.
-- Deleting the container removes Jenkins temporarily, but deleting the container + volume removes everything (jobs, users, configs).
+In this setup, Jenkins is running inside a **Docker container** with its data stored in a **Docker volume**.
 
-# commands for deletion
+- The **container** holds the running Jenkins process
+- The **volume** stores persistent data (jobs, users, plugins, configs)
+- Deleting only the container does **NOT** delete Jenkins data
+- Deleting both container and volume results in a **complete wipe**
 
-## Delete only Jenkins container (data stays)
+---
+
+## Check Existing Jenkins Resources (Recommended)
+
+Before deletion, verify what exists:
+
+```bash
+docker ps -a
+docker volume ls
+````
+
+---
+
+## Delete Only Jenkins Container 
+
+This stops and removes the Jenkins container, but **keeps all data intact**.
+
+```bash
 docker rm -f jenkins
+```
 
-## Delete Jenkins container + all data (clean wipe)
+✔ Jenkins UI is gone
+✔ Jobs, users, plugins remain in the volume
+✔ Jenkins can be recreated using the same volume
+
+---
+
+## Delete Jenkins Container + All Data (Permanent Deletion)
+
+This performs a **clean wipe** of Jenkins.
+
+```bash
 docker rm -f jenkins
 docker volume rm jenkins_volume
+```
 
-## (Optional) Remove Jenkins image
+⚠️ **Warning:**
+This permanently deletes:
+
+* All Jenkins jobs
+* Users & credentials
+* Plugins
+* Configuration files
+
+Use this only when you want a **fresh Jenkins installation**.
+
+---
+
+## Optional: Remove Jenkins Docker Image
+
+Remove the Jenkins image from the local system:
+
+```bash
 docker rmi jenkins/jenkins:lts-jdk21
+```
+
+If the image is in use, force removal:
+
+```bash
+docker rmi -f jenkins/jenkins:lts-jdk21
+```
+
+---
+
+## Complete Cleanup (Container + Volume + Image)
+
+```bash
+docker rm -f jenkins
+docker volume rm jenkins_volume
+docker rmi jenkins/jenkins:lts-jdk21
+```
+
+---
+
+## Best Practice
+
+* Always use **named volumes** for Jenkins data
+* Never delete volumes unless a clean reset is required
+* Backup volumes before permanent deletion
+
+
 
 ---
 ---
