@@ -571,5 +571,5 @@ Jenkins
 ---
 <br><br>
 
-[Return to course](devops_foundation_jenkins.md)
+[Return to course](/cicd/jenkins/jenkins.md)
 
