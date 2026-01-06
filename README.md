@@ -4,6 +4,14 @@ My DevOps learning journey with structured notes and practical insights, startin
 
 ---
 
+# Linux for DevOps
+
+- [linux: overview](/linkedin_linux/linux_basic.md)
+
+---
+<br>
+
+
 # Foundations of Devops:
 
 - [Basic Devops theory](./linkedin_foundation/devops_foundation.md)
@@ -14,24 +22,18 @@ My DevOps learning journey with structured notes and practical insights, startin
 
 - [Understanding CI CD](./linkedin_foundation/devops_foundation_cicd.md)
 
+
+---
+<br>
+
+
+# CI/CD Tools & Automation
 - [Jenkins](./linkedin_foundation/devops_foundation_jenkins.md)
 
-
----
-<br>
-
-
-# Linux for DevOps
-
-- [linux: overview](/linkedin_linux/linux_basic.md)
-
-
-
----
-<br>
-
-
-# BitBucket
-
 - [Bitbucket notes](/linkedin_bitbucket/bitbucket.md)
+
 - [Bitbucket pipeline](/linkedin_bitbucket/pipeline.md)
+
+
+---
+<br>
