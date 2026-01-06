@@ -922,9 +922,16 @@ Safe operation ✔
 
 > Always double-check before deleting folders.
 
+
+
+## jenkins Task
+[Task 3: Create Folders and Views](jenkinsTask.md)
+
 ---
 ---
 <br>
+
+
 
 
 # Conclusion: Pipeline as Code
@@ -992,14 +999,13 @@ Using plugins:
 ✔ Massive scalability
 
 ---
-
-## jenkins Task
-[Task 3: Create Folders and Views](jenkinsTask.md)
-
-
----
 ---
 <br><br>
+
+
+
+
+
 <h1 align='center'>Deletion</h1>
 - Jenkins runs in a Docker container.
 - Deleting the container removes Jenkins temporarily, but deleting the container + volume removes everything (jobs, users, configs).
