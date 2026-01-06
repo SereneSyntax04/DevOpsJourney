@@ -37,3 +37,8 @@ My DevOps learning journey with structured notes and practical insights, startin
 
 ---
 <br>
+
+
+# Observability
+
+- [Observability theory](/observability/observability.md)
