@@ -81,7 +81,7 @@ The downside is obvious: **these tools are expensive and pricing scales quickly 
 
 ---
 
-## Hands-on Experience: Grafana
+# Hands-on Experience: Grafana
 
 I worked hands-on with **Grafana Cloud** as the observability backend while building a fully containerized **Node.js application instrumented with OpenTelemetry**. Grafana was used not just for dashboards, but as a complete **trace and metrics exploration platform**.
 
@@ -114,7 +114,7 @@ Grafana taught me how observability works at a system level rather than just as 
 
 ---
 
-## Current Focus: SigNoz
+# Current Focus: SigNoz
 
 I am currently working with **SigNoz**, an open-source, full-stack observability platform built on **ClickHouse** and **OpenTelemetry**.
 
@@ -134,7 +134,7 @@ SigNoz strikes a strong balance between **cost efficiency and observability dept
 
 ---
 
-## Conclusion
+# Conclusion
 
 This case study reinforced one core idea:
 
