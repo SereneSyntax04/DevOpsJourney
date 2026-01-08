@@ -1,30 +1,385 @@
 
-# 🐳 Observability Mini Project 
+# 🐙 Observability Mini Project: Node.js + Docker + Grafana Cloud
+
+**Objective:** Build a fully containerized Node.js application instrumented with **OpenTelemetry**, sending traces and metrics to **Grafana Cloud**. This project demonstrates **end-to-end observability** for a simple app.
+
+---
+
+## ⚡ Introduction to Observability
+
+Observability is the ability to **understand the internal state of your system** from external outputs such as **logs, metrics, and traces**. Unlike simple monitoring, which only shows symptoms, observability helps answer **why something is happening**.
+
+In this project, we will:
+
+* Instrument a Node.js app automatically using **OpenTelemetry**.
+* Send telemetry (traces & metrics) to **Grafana Cloud OTLP endpoint**.
+* Visualize and explore traces using **Grafana Explore and Application Observability**.
+
+---
+
+## 🧰 Stack Used
+
+| Component               | Purpose                                                             |
+| ----------------------- | ------------------------------------------------------------------- |
+| **Node.js**             | Application runtime                                                 |
+| **Express.js**          | HTTP server framework                                               |
+| **Pino / pino-http**    | Logging framework                                                   |
+| **OpenTelemetry SDK**   | Auto-instrumentation & telemetry collection                         |
+| **OTLP HTTP Exporters** | Sends traces & metrics to Grafana Cloud                             |
+| **Docker**              | Containerization                                                    |
+| **Docker Compose**      | Multi-container orchestration                                       |
+| **Grafana Cloud**       | Cloud observability platform, visualizing traces, metrics, and logs |
+
+---
 
 ## 🧱 STEP 0: Prerequisites
 
-You only need **two things** for this project:
+You only need **two things**:
 
-✅ **Docker Desktop** (installed & running)  
-✅ **Grafana Cloud account + API token**
+✅ Docker Desktop installed & running
+✅ Grafana Cloud account + API token
 
-
-###  Install Docker Desktop
-
-Download and install **Docker Desktop** for your OS.
-
-Verify installation:
+Check Docker:
 
 ```bash
 docker --version
 docker compose version
 ```
-
 If both commands return a version, Docker is ready.
 
 <div style="display:flex; gap:10px;"> <img src="/observability/assets/grafanaImg/1.png" width="400"> </div>
 
 ---
+
+
+## 🧱 STEP 1: Create Grafana Cloud Account
+
+1. Go to [https://grafana.com](https://grafana.com)
+2. Sign up for a free account
+3. In Grafana Cloud:
+
+   * Hamburger menu → Connections → Add new → OpenTelemetry → Start setup
+
+---
+
+## 🧱 STEP 2: OpenTelemetry Setup (Important)
+
+Follow Grafana’s OTEL setup wizard:
+
+1. **Choose Language:** Other → Node.js SDK
+2. **Choose Infrastructure:** Other → Linux
+3. **Instrumentation Method:** OpenTelemetry Collector (for flexibility & routing)
+4. **Instrumentation Instructions:**
+
+   * Generate **API token**
+   * Copy values for:
+
+     * `OTEL_EXPORTER_OTLP_ENDPOINT`
+     * `OTEL_EXPORTER_OTLP_HEADERS`
+   * These will be used in `.env` file for Docker
+
+---
+
+## 🧱 STEP 3: Project Structure
+
+```text
+DockerGrafanaTask/
+│
+├── app/
+│   ├── index.js        # Main Node app
+│   ├── otel.js         # OpenTelemetry SDK & auto-instrumentation
+│   ├── package.json    # Dependencies & scripts
+│   └── Dockerfile      # Node container setup
+│
+├── docker-compose.yml  # Container orchestration
+└── .env                # Environment variables for OTEL
+```
+
+---
+
+## 🧱 STEP 4: Node App Code
+
+### [app/package.json]
+
+```json
+{
+  "name": "observability-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node -r ./otel.js index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "pino": "^8.17.0",
+    "pino-http": "^9.0.0",
+
+    "@opentelemetry/api": "^1.7.0",
+    "@opentelemetry/sdk-node": "^0.46.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.46.0",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.46.0",
+    "@opentelemetry/exporter-metrics-otlp-http": "^0.46.0",
+    "@opentelemetry/resources": "^1.7.0"
+  }
+}
+```
+
+> **Explanation:** Defines the Node app dependencies. The start script ensures **otel.js** loads before the app to automatically instrument all modules.
+
+---
+
+### [app/index.js]
+
+```js
+const express = require("express");
+const pinoHttp = require("pino-http");
+
+const app = express();
+app.use(pinoHttp()); // Logs all HTTP requests automatically
+
+// Root endpoint
+app.get("/", (req, res) => {
+  res.send("Hello from Docker Observability 👀");
+});
+
+// Slow endpoint for tracing demonstration
+app.get("/slow", async (req, res) => {
+  await new Promise(r => setTimeout(r, 2000));
+  res.send("Slow request 🐌");
+});
+
+// Start server on port 3000
+app.listen(3000, "0.0.0.0", () => {
+  console.log("App running on port 3000");
+});
+```
+
+> **Flow:** Requests to `/` and `/slow` are auto-instrumented. Spans are sent to the OTLP endpoint configured in `otel.js`.
+
+---
+
+### [app/otel.js]
+
+```js
+const { NodeSDK } = require("@opentelemetry/sdk-node");
+const { getNodeAutoInstrumentations } = require("@opentelemetry/auto-instrumentations-node");
+const { OTLPTraceExporter } = require("@opentelemetry/exporter-trace-otlp-http");
+const { OTLPMetricExporter } = require("@opentelemetry/exporter-metrics-otlp-http");
+const { Resource } = require("@opentelemetry/resources");
+
+// Parse headers from .env
+const headers = {};
+process.env.OTEL_EXPORTER_OTLP_HEADERS
+  ?.split(",")
+  .forEach(h => {
+    const [k, v] = h.split("=");
+    if (k && v) headers[k] = decodeURIComponent(v);
+  });
+
+// Initialize OTEL SDK
+const sdk = new NodeSDK({
+  resource: new Resource({
+    "service.name": process.env.OTEL_SERVICE_NAME || "node-docker-observability",
+    "deployment.environment": "dev"
+  }),
+  traceExporter: new OTLPTraceExporter({
+    url: process.env.OTEL_EXPORTER_OTLP_ENDPOINT, // Sends spans to Grafana OTLP
+    headers
+  }),
+  metricExporter: new OTLPMetricExporter({
+    url: process.env.OTEL_EXPORTER_OTLP_ENDPOINT.replace("/traces", "/metrics"), // Metrics endpoint
+    headers
+  }),
+  instrumentations: [getNodeAutoInstrumentations()] // Auto-instrument Node.js modules
+});
+
+// Start sending telemetry
+sdk.start()
+  .then(() => console.log("✅ OTEL SDK initialized"))
+  .catch(err => console.error("❌ OTEL SDK failed:", err));
+```
+
+> **Telemetry Flow:**
+> Node.js app → OTEL auto-instrumentation → OTLP Trace & Metric Exporter → Grafana Cloud
+
+---
+
+## 🧱 STEP 5: Dockerfile
+
+```dockerfile
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY package.json . 
+RUN npm install --only=production
+
+COPY . .
+
+EXPOSE 3000
+
+CMD ["npm", "start"] 
+```
+
+> Container builds Node app and installs production dependencies. Port 3000 exposed for browser/test requests.
+
+---
+
+## 🧱 STEP 6: Docker Compose
+
+```yaml
+version: "3.9"
+
+services:
+  app:
+    build: ./app
+    ports:
+      - "3000:3000"
+    environment:
+      OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT}
+      OTEL_EXPORTER_OTLP_HEADERS: ${OTEL_EXPORTER_OTLP_HEADERS}
+      OTEL_RESOURCE_ATTRIBUTES: ${OTEL_RESOURCE_ATTRIBUTES}
+```
+
+> **Explanation:** Docker Compose injects `.env` variables into the container. This allows OTEL SDK to send telemetry to Grafana Cloud without hardcoding credentials.
+
+---
+
+## 🧱 STEP 7: Environment Variables
+
+Create `.env` in project root:
+
+```env
+# Traces endpoint
+OTEL_EXPORTER_OTLP_ENDPOINT=https://otlp-gateway-prod-ap-south-1.grafana.net/otlp/v1/traces
+
+# API token for Grafana Cloud
+OTEL_EXPORTER_OTLP_HEADERS=Authorization=Basic MTQ4NzUzNzpnbGNfZXlKdklqb2lNVFl6...
+
+# Service attributes
+OTEL_RESOURCE_ATTRIBUTES=service.name=node-docker-observability
+```
+
+> **Tip:** Ensure `/v1/traces` is in the endpoint. Metrics are automatically derived from traces endpoint in `otel.js`.
+
+---
+
+## 🧱 STEP 8: Build & Run
+
+```bash
+docker compose up -d --build
+```
+
+Check logs:
+
+```bash
+docker logs -f <app-container-id>
+```
+
+Expected output:
+
+```
+App running on port 3000
+✅ OTEL SDK initialized
+```
+
+> Spans are now being sent to Grafana Cloud.
+
+---
+
+## 🧱 STEP 9: Explore Traces in Grafana
+
+1. Open **Grafana Cloud → Explore → Traces**
+2. Set `Service Name = node-docker-observability`
+3. You should see spans like:
+
+| Trace ID | Service                   | Span Name       |
+| -------- | ------------------------- | --------------- |
+| abc123   | node-docker-observability | fs.readFileSync |
+| def456   | node-docker-observability | http.get        |
+
+> Takes a few seconds for spans to appear.
+
+---
+
+## 🧱 STEP 10: Clean Up
+
+```bash
+docker compose down --rmi all --volumes
+```
+
+> Stops all containers, deletes images and volumes, cleaning up your project.
+
+---
+
+## ✅ Conclusion
+
+* A simple Node.js app was instrumented with **OpenTelemetry** and visualized in **Grafana Cloud**.
+* Auto-instrumentation captures HTTP requests, DB calls, and file system operations.
+* All telemetry flows: **Node app → OTEL SDK → OTLP Exporter → Grafana Cloud → Explore/Observability dashboard**.
+* You can now extend this project to include **custom spans**, **database queries**, **error monitoring**, and full **business-level observability**.
+
+---
+
+This file now contains **everything we did**, is clean, includes **comments on code**, and shows the full telemetry flow.
+
+---
+
+If you want, I can **also create a diagram showing how traffic flows** from Node.js → OTEL → Grafana, and you can embed it into this Markdown for better understanding.
+
+Do you want me to do that next?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## 🧱 STEP 1: Create Grafana Cloud Account (Free)
 
@@ -107,20 +462,18 @@ DockerGrafanaTask/
 ### [app/package.json](/observability/DockerGrafanaTask/app/package.json)
 
 ```json
+// This is dependency + startup control.
 {
-  // This is dependency + startup control.
   "name": "observability-demo",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node -r ./otel.js index.js" 
-    // Most important line [-r ./otel.js] = require otel BEFORE app starts
-    // Without this → no traces
+    "start": "node -r ./otel.js index.js"
   },
   "dependencies": {
-    "express": "^4.18.2", //web server
-    "pino": "^8.17.0", //structured logs
-    "pino-http": "^9.0.0", //metrics + traces auto capture
+    "express": "^4.18.2",
+    "pino": "^8.17.0",
+    "pino-http": "^9.0.0",
 
     "@opentelemetry/api": "^1.7.0",
     "@opentelemetry/sdk-node": "^0.46.0",
@@ -151,9 +504,10 @@ app.get("/", (req, res) => {
 app.get("/slow", async (req, res) => {
   await new Promise(r => setTimeout(r, 2000));
   res.send("Slow request 🐌");
-}); //artificial 2s delay (for trace visibility)
+});
 
-app.listen(3000, () => {
+
+app.listen(3000, "0.0.0.0", () => {
   console.log("App running on port 3000");
 });
 ```
@@ -171,33 +525,27 @@ const { OTLPMetricExporter } = require("@opentelemetry/exporter-metrics-otlp-htt
 const { Resource } = require("@opentelemetry/resources");
 
 const headers = {};
-process.env.OTEL_EXPORTER_OTLP_HEADERS //Read auth headers from env
+process.env.OTEL_EXPORTER_OTLP_HEADERS
   ?.split(",")
   .forEach(h => {
     const [k, v] = h.split("=");
-    headers[k] = v;
+    if (k && v) headers[k] = decodeURIComponent(v);
   });
 
 const sdk = new NodeSDK({
   resource: new Resource({
-    "service.name": "node-docker-observability" // Identify the service
+    "service.name": process.env.OTEL_SERVICE_NAME || "node-docker-observability",
+    "deployment.environment": "dev"
   }),
-  //Export telemetry
-
   traceExporter: new OTLPTraceExporter({
     url: process.env.OTEL_EXPORTER_OTLP_ENDPOINT,
     headers
-  }), //traceExporter → traces
-
+  }),
   metricExporter: new OTLPMetricExporter({
-    url: process.env.OTEL_EXPORTER_OTLP_ENDPOINT, //Destination:That is Grafana Cloud OTLP gateway.
+    url: process.env.OTEL_EXPORTER_OTLP_ENDPOINT.replace("/traces", "/metrics"),
     headers
-  }), //metricExporter → metrics
-
-  // Auto-instrumentation
+  }),
   instrumentations: [getNodeAutoInstrumentations()]
-  // This automatically instruments: Express, HTTP, DNS, Net, Timers
-  // No manual tracing code needed.
 });
 
 sdk.start();
@@ -210,24 +558,16 @@ sdk.start();
 ### [app/Dockerfile](/observability/DockerGrafanaTask/app/Dockerfile)
 
 ```dockerfile
-# This defines how the container is built.
-
-FROM node:18-alpine 
-# “Start my container from an existing Node.js image. (alpine → lightweight Linux distro)
+FROM node:18-alpine
 
 WORKDIR /app
-# Creates /app directory inside the container, All future commands run from /app
 
-COPY package.json . 
-# Copies only package.json , from your laptop → into container /app
+COPY package.json .
 RUN npm install --only=production
-# Installs dependencies listed in package.json , Skips devDependencies (OpenTelemetry libraries are production deps So they ARE installed)
 
 COPY . .
-#Copies everything in app/
 
 EXPOSE 3000
-# This container listens on port 3000
 
 CMD ["npm", "start"]
 
@@ -242,8 +582,6 @@ CMD ["npm", "start"]
 ### [docker-compose.yml](/observability/DockerGrafanaTask/docker-compose.yml)
 
 ```yaml
-version: "3.9"
-
 services:
   app:
     build: ./app
@@ -252,6 +590,8 @@ services:
     environment:
       OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT}
       OTEL_EXPORTER_OTLP_HEADERS: ${OTEL_EXPORTER_OTLP_HEADERS}
+      OTEL_RESOURCE_ATTRIBUTES: ${OTEL_RESOURCE_ATTRIBUTES}
+
 ```
 
 ---
@@ -261,11 +601,13 @@ services:
 Create `.env` file (same folder as compose):
 
 ```env
-OTEL_EXPORTER_OTLP_ENDPOINT=https://<your-grafana-endpoint>/otlp
-OTEL_EXPORTER_OTLP_HEADERS=Authorization=Basic%2<your-token>
+OTEL_EXPORTER_OTLP_ENDPOINT=https://<your-grafana-endpoint>/otlp/v1/traces 
+OTEL_EXPORTER_OTLP_HEADERS=Authorization=Basic <your-token>
 ```
 
 📌 `.env` is read automatically by Docker Compose.
+ensure to add /v1/traces at the end of OTLP_ENDPOINT
+OTEL_RESOURCE_ATTRIBUTES=service.name=node-docker-observability
 
 ---
 
@@ -275,109 +617,16 @@ OTEL_EXPORTER_OTLP_HEADERS=Authorization=Basic%2<your-token>
 cd DockerGrafanaTask
 ls 
 ls -a (to view .env file)
-docker compose up --build
-```
-
-You’ll see:
 
 ```
-App running on port 3000
-```
+
+
 
 ### Sequence of execution (VERY IMPORTANT)
-
-1. Container starts
-
-2. Docker runs npm start
-
-3. Node loads otel.js FIRST (-r)
-
-4. OpenTelemetry hooks into:
-
-  - HTTP
-
-  - Express
-
-  - Event loop
-
-5. Then index.js starts
-
-6. Express app listens on port 3000
-
-This ordering is CRITICAL
-If otel.js loads AFTER Express → no auto instrumentation
----
-
-## 🧱 STEP 8: Generate Traffic
-
-Browser or curl:
-
-```bash
-curl http://localhost:3000
-curl http://localhost:3000/slow
-```
-
-Hit `/slow` multiple times.
 
 ---
 
 ## 🧱 STEP 9: Observe in Grafana Cloud
-
-### Metrics 📊
-
-Grafana → **Explore → Metrics**
-
-* http.server.request.duration
-* http.server.request.count
-* CPU, memory
-
-### Logs 🧾
-
-Grafana → **Explore → Logs**
-
-* JSON logs
-* request path, latency, status
-
-### Traces 🧵
-
-Grafana → **Explore → Traces**
-
-* Click `/slow`
-* See 2s delay clearly
-
-This is **real observability**, not textbook nonsense.
-
----
-
-## 🧱 STEP 10: Add Alert 🚨
-
-Grafana → **Alerting**
-
-* Metric: request latency
-* Condition: >1.5s
-* Duration: 1 min
-* Notify email
-
-Trigger it with `/slow`.
-
----
-
-## 🧱 STEP 11: Chaos Test (Like a Pro 😈)
-
-```bash
-docker compose stop
-docker compose start
-```
-
-Now observe:
-
-* Metrics drop
-* Logs show restart
-* Traces break
-* Alerts fire
-
-👉 You’re seeing **signal correlation**, not just dashboards.
-
 ---
 
 ## 🧨 STEP 12: Destroy Everything (Clean Exit)
@@ -385,14 +634,3 @@ Now observe:
 ```bash
 docker compose down --rmi all --volumes
 ```
-
-💥 Gone.
-
-* No Node
-* No npm
-* No telemetry agents
-* No junk on disk
-
----
-
-

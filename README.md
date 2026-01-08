@@ -42,3 +42,5 @@ My DevOps learning journey with structured notes and practical insights, startin
 # Observability
 
 - [Observability theory](/observability/observability.md)
+
+- [Grafana Task](/observability/DockerGrafanaTask/GrafanaTaskReadme.md)

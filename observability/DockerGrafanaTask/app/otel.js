@@ -9,19 +9,20 @@ process.env.OTEL_EXPORTER_OTLP_HEADERS
   ?.split(",")
   .forEach(h => {
     const [k, v] = h.split("=");
-    headers[k] = v;
+    if (k && v) headers[k] = decodeURIComponent(v);
   });
 
 const sdk = new NodeSDK({
   resource: new Resource({
-    "service.name": "node-docker-observability"
+    "service.name": process.env.OTEL_SERVICE_NAME || "node-docker-observability",
+    "deployment.environment": "dev"
   }),
   traceExporter: new OTLPTraceExporter({
     url: process.env.OTEL_EXPORTER_OTLP_ENDPOINT,
     headers
   }),
   metricExporter: new OTLPMetricExporter({
-    url: process.env.OTEL_EXPORTER_OTLP_ENDPOINT,
+    url: process.env.OTEL_EXPORTER_OTLP_ENDPOINT.replace("/traces", "/metrics"),
     headers
   }),
   instrumentations: [getNodeAutoInstrumentations()]
