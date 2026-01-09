@@ -35,6 +35,8 @@ Monitoring is about **watching system health** using dashboards and alerts.
 
 They work best **together**, not separately.
 
+<div style="display:flex; gap:10px;"> <img src="/assets/images/monitoring.png" width="400">  </div>
+
 ### Think of your system like a car:
 
 Monitoring → dashboard warning lights. “Engine temperature high!” or “Fuel low!” <br>
@@ -69,6 +71,8 @@ Bottom line:
 ---
 
 ## Pillars of Observability (Signals)
+
+<div style="display:flex; gap:10px;"> <img src="/assets/images/pillar.png" width="400">  </div>
 
 > These are the **signals** in the mental model.
 
@@ -187,6 +191,7 @@ Used for:
 * Risk of vendor lock-in
 
 **Mental note:** fast start, less control.
+<div style="display:flex; gap:10px;"> <img src="/assets/images/vendorBased.png" width="400">  </div>
 
 ---
 
@@ -198,6 +203,7 @@ Used for:
 * More maintenance and scaling effort
 
 **Mental note:** more control, more responsibility.
+<div style="display:flex; gap:10px;"> <img src="/assets/images/opensource.png" width="400">  </div>
 
 ---
 
@@ -233,6 +239,8 @@ It provides:
 
 > Receive → Process → Export
 
+<div style="display:flex; gap:10px;"> <img src="/assets/images/otel.png" width="400">  </div>
+
 ---
 
 ### Pros of OpenTelemetry
@@ -250,16 +258,6 @@ It provides:
 * Limited support for some languages
 * Some features still evolving
 
----
-
-## Tools Used in Course
-
-> Mapping tools to the mental model:
-
-* **Node.js Application** → Source
-* **OpenTelemetry Libraries** → Instrumentation
-* **OpenTelemetry Collector** → Collector
-* **Grafana Cloud** → Backend + Visualization
 
 ---
 <br>
