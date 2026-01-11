@@ -76,9 +76,11 @@ Bottom line:
 
 > These are the **signals** in the mental model.
 
-### 1. Metrics
+### 1. Metrics (What)
 
-Numeric values showing system performance.
+Involves tracking system metrics like CPU usage, memory usage, and network performance. Provides alerts based on predefined thresholds and conditions
+- Numeric values showing system performance.
+- Monitoring tells us **what** is happening.
 
 Examples:
 
@@ -93,13 +95,13 @@ Used for:
 * Alerts
 * Trend analysis
 
-**Think:** numbers over time.
-
 ---
 
-### 2. Logs
+### 2. Logs (Why)
 
-Text records describing events in detail.
+Involves the collection of log data from various components of a system.
+- Logging explains **why** it is happening
+- Text records describing events in detail.
 
 Examples:
 
@@ -112,13 +114,13 @@ Used for:
 * Debugging
 * Understanding exact failures
 
-**Think:** detailed context.
-
 ---
 
-### 3. Traces
+### 3. Traces (How)
 
-Show the **journey of a single request** across services.
+Involves tracking the flow of a request or transaction as it moves through different services and components within a system.
+- Tracing shows **how** it is happening.
+- Show the **journey of a single request** across services.
 
 Example:
 
@@ -128,8 +130,6 @@ Used for:
 
 * Finding slow services
 * Debugging microservices
-
-**Think:** request path + timing.
 
 ---
 
@@ -264,7 +264,14 @@ It provides:
 
 
 
+## ⚒️ What are the Tools Available?
+1. **Monitoring Tools:** Prometheus, Grafana, Nagios, Zabbix, PRTG.
+2. **Observability Tools:** ELK Stack (Elasticsearch, Logstash, Kibana), EFK Stack (Elasticsearch, FluentBit, Kibana) Splunk, Jaeger, Zipkin, New Relic, Dynatrace, Datadog.
 
+
+
+---
+<br>
 
 
 # Metrics & Monitoring (Deep Dive)
