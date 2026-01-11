@@ -35,7 +35,7 @@ Monitoring is about **watching system health** using dashboards and alerts.
 
 They work best **together**, not separately.
 
-<div style="display:flex; gap:10px;"> <img src="/assets/images/monitoring.png" width="400">  </div>
+<div style="display:flex; gap:10px;"> <img src="/observability/assets/images/monitoring.png" width="400">  </div>
 
 ### Think of your system like a car:
 
