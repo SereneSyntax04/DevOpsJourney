@@ -72,7 +72,7 @@ Bottom line:
 
 ## Pillars of Observability (Signals)
 
-<div style="display:flex; gap:10px;"> <img src="/assets/images/pillar.png" width="400">  </div>
+<div style="display:flex; gap:10px;"> <img src="/observability/assets/images/pillar.png" width="400">  </div>
 
 > These are the **signals** in the mental model.
 
@@ -191,7 +191,7 @@ Used for:
 * Risk of vendor lock-in
 
 **Mental note:** fast start, less control.
-<div style="display:flex; gap:10px;"> <img src="/assets/images/vendorBased.png" width="400">  </div>
+<div style="display:flex; gap:10px;"> <img src="/observability/assets/images/vendorBased.png" width="400">  </div>
 
 ---
 
@@ -203,7 +203,7 @@ Used for:
 * More maintenance and scaling effort
 
 **Mental note:** more control, more responsibility.
-<div style="display:flex; gap:10px;"> <img src="/assets/images/opensource.png" width="400">  </div>
+<div style="display:flex; gap:10px;"> <img src="/observability/assets/images/opensource.png" width="400">  </div>
 
 ---
 
@@ -239,7 +239,7 @@ It provides:
 
 > Receive → Process → Export
 
-<div style="display:flex; gap:10px;"> <img src="/assets/images/otel.png" width="400">  </div>
+<div style="display:flex; gap:10px;"> <img src="/observability/assets/images/otel.png" width="400">  </div>
 
 ---
 
