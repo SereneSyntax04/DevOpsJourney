@@ -1,6 +1,6 @@
 
-# Terraform Docker Nginx — Workspace Based Setup
-TASK 1
+# TASK 1 Terraform Docker Nginx — Workspace Based Setup
+
 
 ## 🎯 Goal
 Use **Terraform workspaces** to run the same infrastructure code for multiple environments (`dev`, `prod`) using Docker (no AWS required).
