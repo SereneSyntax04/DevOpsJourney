@@ -1,6 +1,6 @@
 # list of terraform task executed.
 ```
-terraform-practice/
+Terraformtask/
 ├── task1-workspaces-nginx/        
 ├── task2-multi-container/
 ├── task3-data-sources/
