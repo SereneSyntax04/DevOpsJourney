@@ -286,8 +286,8 @@ terraform workspace select prod
 terraform destroy
 
 
- rm -rf .terraform .terraform.lock.hcl 
- rm -rf terraform.tfstate terraform.tfstate.d
+terraform workspace select default
+rm -rf .terraform .terraform.lock.hcl terraform.tfstate terraform.tfstate.d
 ```
 
 ---
