@@ -23,6 +23,16 @@ My DevOps learning journey with structured notes and practical insights, startin
 ---
 <br>
 
+# IAC 
+
+- [understanding Infra as Code](./linkedin_foundation/devops_foundation_IAC.md)
+
+- [Detailed terraform theory](/IAC/DetailedTheoryTerraform.md)
+
+- [Terraform Task](/IAC/Terraformtask/TaskReadme.md)
+
+---
+<br>
 
 # CI/CD Tools & Automation
 
