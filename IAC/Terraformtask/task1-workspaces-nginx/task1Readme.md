@@ -223,7 +223,7 @@ terraform apply
 ```
 
 
-<div style="display:flex; gap:10px;"> <img src="/IAC/Terraformtask/terraform-docker-nginx/Taskimg/1.png" width="400">  </div>
+<div style="display:flex; gap:10px;"> <img src="/IAC/Terraformtask/task1-workspaces-nginx/Taskimg/1.png" width="400">  </div>
 
 
 ---
@@ -239,7 +239,7 @@ Open in browser:
   ```
 
 
-<div style="display:flex; gap:10px;"> <img src="/IAC/Terraformtask/terraform-docker-nginx/Taskimg/3.png" width="400">  </div>
+<div style="display:flex; gap:10px;"> <img src="/IAC/Terraformtask/task1-workspaces-nginx/Taskimg/3.png" width="400">  </div>
 
 
 * **Prod environment**
