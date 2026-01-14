@@ -249,7 +249,7 @@ Open in browser:
   ```
 
 
-<div style="display:flex; gap:10px;"> <img src="/IAC/Terraformtask/terraform-docker-nginx/Taskimg/2.png" width="400">  </div>
+<div style="display:flex; gap:10px;"> <img src="/IAC/Terraformtask/task1-workspaces-nginx/Taskimg/2.png" width="400">  </div>
 
 
 Each workspace:
