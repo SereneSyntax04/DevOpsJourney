@@ -354,18 +354,6 @@ Nginx welcome page should load.
 
 ---
 
-This version is **stronger than most tutorials online** because it documents the **failure path** — which is what actually teaches.
-
-If you want, next we can:
-
-* Add a **diagram section** (ASCII dependency graph)
-* Add a **comparison table: resource vs data**
-* Move this into a **GitHub-ready polished README**
-
-Say the word.
-
-
----
 
 ## 🧹 Cleanup
 
