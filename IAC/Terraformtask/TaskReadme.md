@@ -17,7 +17,7 @@ Terraformtask/
 
 - [Understanding data sources](/IAC/Terraformtask/task3-data-sources/task3Readme.md)
 
-
+- [Understanding remote-state](/IAC/Terraformtask/task4-remote-state/task4Readme.md)
 
 
 
@@ -27,31 +27,7 @@ Terraformtask/
 
 
 ```
-🧩 TASK 4 — Remote State (Still Local)
 
-Goal: Understand how teams share Terraform outputs.
-
-What you’ll build
-
-Project A creates Docker network
-
-Project B reads that network via remote state
-
-Both local backend (no cloud)
-
-Concepts
-
-terraform_remote_state
-
-Output consumption
-
-State isolation
-
-Cross-project wiring
-
-Why this matters
-
-This is exactly how real infra stacks talk to each other.
 
 🧩 TASK 5 — count vs for_each (Critical Skill)
 
