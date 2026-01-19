@@ -398,7 +398,6 @@ If you don’t understand this now, AWS Terraform will feel confusing later.
 
 This task fixes that permanently.
 
-```
 
 
 
