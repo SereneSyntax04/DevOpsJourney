@@ -1,0 +1,20 @@
+---
+# This is a comment
+name: Shrushti Shrivastav
+courses: 
+  - Devops foundation
+  - Kubernetes foundation
+  - CI/CD foundation
+job:
+  company: Scitara
+  year: 1
+  title: 
+    - Devops intern (esg)
+    - cloud intern (esg)
+
+
+---
+# three dash represent starting of document, one yml file can have multiple documents
+file: yaml file
+purpose: example
+use: Kubernetes understanding

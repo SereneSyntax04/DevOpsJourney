@@ -29,7 +29,17 @@ My DevOps learning journey with structured notes and practical insights, startin
 
 - [Detailed terraform theory](/IAC/DetailedTheoryTerraform.md)
 
-- [Terraform Task](/IAC/Terraformtask/TaskReadme.md)
+- [Hands-on Terraform Task](/IAC/Terraformtask/TaskReadme.md)
+
+---
+<br>
+
+# Kubernetes
+
+- [Understanding Kubernetes](/k8s/k8s.md)
+
+- [Hands-on for k8s application deployment](/k8s/k8sappDeploy.md)
+
 
 ---
 <br>
@@ -39,6 +49,8 @@ My DevOps learning journey with structured notes and practical insights, startin
 - [Understanding CI CD](/cicd/cicd_Theory.md)
 
 - [Jenkins](/cicd/jenkins/jenkins.md)
+
+- [Hands-on for Jenkins](/cicd/jenkins/jenkinsTask.md)
 
 - [Bitbucket notes](/cicd/bitbucket.md)
 
@@ -53,4 +65,4 @@ My DevOps learning journey with structured notes and practical insights, startin
 
 - [Observability theory](/observability/observability.md)
 
-- [Grafana Task](/observability/DockerGrafanaTask/GrafanaTaskReadme.md)
+- [Hands-on Grafana Task](/observability/DockerGrafanaTask/GrafanaTaskReadme.md)
