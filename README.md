@@ -40,7 +40,7 @@ My DevOps learning journey with structured notes and practical insights, startin
 
 - [Hands-on for k8s application deployment](/k8s/k8sappDeploy.md)
 
-
+- [Kubernetes Task](/k8s/k8sTask/taskReadme.md)
 ---
 <br>
 
