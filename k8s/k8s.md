@@ -264,7 +264,7 @@ If this fails, start **Docker Desktop**.
 
 Create a local Kubernetes cluster:
 
-```bash
+```cmd
 minikube start
 ```
 
@@ -272,6 +272,13 @@ This may take a few minutes.
 Success message = cluster is ready.
 
 <div style="display:flex; gap:10px; align:center"> <img src="/k8s/img/kube2.png" width="400"> </div>
+
+
+```cmd
+minikube delete
+```
+
+**REMEMBER TO DESTROY MINIKUBE IF NOT IN USE**
 
 ---
 
