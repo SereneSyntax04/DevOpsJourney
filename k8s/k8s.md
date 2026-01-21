@@ -256,7 +256,7 @@ docker
 
 If this fails, start **Docker Desktop**.
 
-<div style="display:flex; gap:10px; align:center"> <img src="/k8s/img/kube1.png" width="400"> </div>
+<div style="display:flex; gap:10px;"> <img src="/k8s/img/kube1.png" width="400"> </div>
 
 ---
 
@@ -271,7 +271,7 @@ minikube start
 This may take a few minutes.
 Success message = cluster is ready.
 
-<div style="display:flex; gap:10px; align:center"> <img src="/k8s/img/kube2.png" width="400"> </div>
+<div style="display:flex; gap:10px;"> <img src="/k8s/img/kube2.png" width="400"> </div>
 
 
 ```cmd
@@ -307,7 +307,7 @@ Shows:
 
 Error: *connection refused* → cluster not running.
 
-<div style="display:flex; gap:10px; align:center"> <img src="/k8s/img/kube3.png" width="400"> </div>
+<div style="display:flex; gap:10px;"> <img src="/k8s/img/kube3.png" width="400"> </div>
 
 ---
 
@@ -323,7 +323,7 @@ You should see:
 * Role: control-plane
 * Kubernetes version
 
-<div style="display:flex; gap:10px; align:center"> <img src="/k8s/img/kube4.png" width="400"> </div>
+<div style="display:flex; gap:10px;"> <img src="/k8s/img/kube4.png" width="400"> </div>
 
 ---
 
@@ -340,7 +340,7 @@ Default namespaces:
 * kube-public
 * kube-node-lease
 
-<div style="display:flex; gap:10px; align:center"> <img src="/k8s/img/kube5.png" width="400"> </div>
+<div style="display:flex; gap:10px;"> <img src="/k8s/img/kube5.png" width="400"> </div>
 
 ---
 
@@ -355,7 +355,7 @@ Shows:
 * System pods
 * Core Kubernetes components
 
-<div style="display:flex; gap:10px; align:center"> <img src="/k8s/img/kube6.png" width="500"> </div>
+<div style="display:flex; gap:10px;"> <img src="/k8s/img/kube6.png" width="500"> </div>
 
 ---
 
@@ -367,7 +367,7 @@ kubectl get services -A
 
 Services act as **internal load balancers** for pods.
 
-<div style="display:flex; gap:10px; align:center"> <img src="/k8s/img/kube7.png" width="500"> </div>
+<div style="display:flex; gap:10px;"> <img src="/k8s/img/kube7.png" width="500"> </div>
 
 ---
 
