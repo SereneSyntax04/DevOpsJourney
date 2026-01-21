@@ -1,5 +1,6 @@
 
-# Case Study: Choosing the Right Observability Tool Based on Organizational Needs
+<h1 align='center'> Case Study: Choosing the Right Observability Tool Based on Organizational Needs </h1>
+
 
 ## Overview
 

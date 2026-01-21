@@ -14,18 +14,20 @@ My DevOps learning journey with structured notes and practical insights, startin
 
 # Foundations of Devops:
 
-- [Basic Devops theory](./linkedin_foundation/devops_foundation.md)
+- [Basic Devops theory](/linkedin_foundation/devops_foundation.md)
 
-- [GIT basic theory and command](./linkedin_foundation/devops_foundation_Git.md)
+- [GIT basic theory and command](/linkedin_foundation/devops_foundation_Git.md)
 
-- [understanding Infra as Code](./linkedin_foundation/devops_foundation_IAC.md)
+- [understanding Infra as Code](/linkedin_foundation/devops_foundation_IAC.md)
 
 ---
 <br>
 
 # IAC 
 
-- [understanding Infra as Code](./linkedin_foundation/devops_foundation_IAC.md)
+- [Understanding Infra as Code](/linkedin_foundation/devops_foundation_IAC.md)
+
+- [Terraform Core Concepts](/IAC/terraformTerms.md)
 
 - [Detailed terraform theory](/IAC/DetailedTheoryTerraform.md)
 
@@ -47,6 +49,8 @@ My DevOps learning journey with structured notes and practical insights, startin
 - [Hands-on for k8s Application Deployment](/k8s/k8sappDeploy.md)
 
 - [Kubernetes Task](/k8s/k8sTask/taskReadme.md)
+
+- [Deep dive in k8s](/k8s/k8sHandsOn/guide.md)
 
 
 ---
@@ -74,3 +78,16 @@ My DevOps learning journey with structured notes and practical insights, startin
 - [Observability theory](/observability/observability.md)
 
 - [Hands-on Grafana Task](/observability/DockerGrafanaTask/GrafanaTaskReadme.md)
+
+
+---
+<br>
+
+
+# CaseStudy
+
+- [Choosing the Right Observability Tool Based on Organizational Needs](/casestudy/observability.md)
+
+- [21 CFR Part 11](/casestudy/21cfrpart11.md)
+
+- [21 CFR Part 11 + SSO](/casestudy/cfrSSO.md)

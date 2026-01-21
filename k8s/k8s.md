@@ -275,6 +275,7 @@ Success message = cluster is ready.
 
 
 ```cmd
+minikube stop
 minikube delete
 ```
 
