@@ -38,9 +38,17 @@ My DevOps learning journey with structured notes and practical insights, startin
 
 - [Understanding Kubernetes](/k8s/k8s.md)
 
-- [Hands-on for k8s application deployment](/k8s/k8sappDeploy.md)
+- [K8s Architecture](/k8s/architecture.md)
+
+- [Managing Pods, Stateful Workloads, and Kubernetes Security](/k8s/Managing.md)
+
+- [How Kubernetes Control Plane and Nodes Work Together](/k8s/nodesWork.md)
+
+- [Hands-on for k8s Application Deployment](/k8s/k8sappDeploy.md)
 
 - [Kubernetes Task](/k8s/k8sTask/taskReadme.md)
+
+
 ---
 <br>
 
