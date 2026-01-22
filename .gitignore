@@ -40,6 +40,6 @@ override.tf.json
 .terraformrc
 terraform.rc
 
-
-# contains grafana Base64 Basic Authentication and API Key
+# Environment variables / secrets
+.env
 *.env
