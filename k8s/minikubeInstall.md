@@ -268,17 +268,29 @@ Create a local Kubernetes cluster:
 minikube start
 ```
 
-This may take a few minutes.
-Success message = cluster is ready.
+What happens:
+
+* A VM is created
+* Kubernetes control plane starts
+* Networking + container runtime are configured
 
 <div style="display:flex; gap:10px;"> <img src="/k8s/img/kube2.png" width="400"> </div>
-
 
 ```cmd
 minikube stop
 minikube delete
 ```
 
+Why stop it?
+
+* Saves CPU, RAM, and battery
+* Cluster state is preserved
+
+Restart anytime:
+
+```powershell
+minikube start
+```
 **REMEMBER TO DESTROY MINIKUBE IF NOT IN USE**
 
 ---
