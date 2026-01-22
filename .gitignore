@@ -42,4 +42,4 @@ terraform.rc
 
 
 # contains grafana Base64 Basic Authentication and API Key
-.env
+*.env
