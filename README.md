@@ -38,7 +38,7 @@ My DevOps learning journey with structured notes and practical insights, startin
 
 # Kubernetes
 
-- [Understanding Kubernetes](/k8s/k8s.md)
+- [Understanding Kubernetes](/k8s/minikubeInstall.md)
 
 - [K8s Architecture](/k8s/architecture.md)
 
