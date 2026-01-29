@@ -50,7 +50,6 @@ My DevOps learning journey with structured notes and practical insights, startin
 
 - [Kubernetes Task](/k8s/k8sTask/taskReadme.md)
 
-- [Deep dive in k8s](/k8s/k8sHandsOn/guide.md)
 
 
 ---
