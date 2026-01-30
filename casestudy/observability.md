@@ -1,10 +1,13 @@
 
-<h1 align='center'> Case Study: Choosing the Right Observability Tool Based on Organizational Needs </h1>
+<h1 align='center'>  📊 Case Study: Choosing the Right Observability Tool Based on Organizational Needs </h1>
 
+---
 
 ## Overview
 
-During my work with observability tools, I explored multiple solutions available in the market to understand how organizations choose an observability stack. The key takeaway is simple: **there is no single “best” observability tool**. The right choice depends heavily on an organization’s priorities—primarily **cost, reliability, scale, and depth of monitoring**.
+During my work with observability tools, I explored multiple solutions available in the market to understand how organizations choose an observability stack. 
+
+The key takeaway is simple: **there is no single “best” observability tool**. The right choice depends heavily on an organization’s priorities—primarily **cost, reliability, scale, and depth of monitoring**.
 
 This case study documents:
 - Market analysis of observability tools  
@@ -18,11 +21,16 @@ This case study documents:
 
 Observability tools today generally focus on three core signals:
 
-- **Logs**
-- **Metrics**
-- **Traces**
 
-Some platforms provide a full-stack observability experience, while others focus on specific signals. Based on my research and hands-on exposure, organizations usually fall into two major categories.
+| Signal Type | Purpose | Example Tools |
+|------------|---------|---------------|
+| 📜 Logs | Event & error capture | Loki, ELK, SigNoz |
+| 📈 Metrics | System performance measurement | Prometheus, Datadog, HyperDX |
+| 🔍 Traces | Distributed tracing & request tracking | Tempo, Jaeger, OpenTelemetry |
+
+Some platforms provide a full-stack observability experience, while others focus on specific signals. 
+
+Based on my research and hands-on exposure, organizations usually fall into two major categories.
 
 ---
 
@@ -30,30 +38,12 @@ Some platforms provide a full-stack observability experience, while others focus
 
 Many organizations prioritize **minimizing operational cost**, especially startups or teams with limited budgets.
 
-### Characteristics
-- Prefer **open-source** or **self-hosted** tools
-- Accept higher operational responsibility
-- Focus on essential observability outcomes:
-  - Logs
-  - Metrics
-  - Traces
-  - Dashboards
-  - Alerts
-
-### Common Choices
-- SigNoz
-- Grafana stack (Prometheus, Loki, Tempo)
-- HyperDX
-- Uptrace (partial observability)
-- DIY ClickHouse-based stacks 
-
-### Why They Choose OSS
-- No vendor lock-in  
-- Lower licensing cost  
-- Flexibility to customize  
-- Strong OpenTelemetry support  
-
-The trade-off is clear: **you save money but invest more time and effort in setup, scaling, and maintenance**.
+| **Aspect**              | **Details**                                                                                                                                                                                                         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Characteristics**     | • Prefer **open-source** or **self-hosted** tools<br>• Accept higher operational responsibility<br>• Focus on essential observability outcomes:<br> – Logs<br> – Metrics<br> – Traces<br> – Dashboards<br> – Alerts |
+| **Common Choices**      | • SigNoz<br>• Grafana stack (Prometheus, Loki, Tempo)<br>• HyperDX<br>• Uptrace (partial observability)<br>• DIY ClickHouse-based stacks                                                                            |
+| **Why They Choose OSS** | • No vendor lock-in<br>• Lower licensing cost<br>• Flexibility to customize<br>• Strong OpenTelemetry support                                                                                                       |
+| **Trade-off**           | **You save money but invest more time and effort in setup, scaling, and maintenance**                                                                                                                               |
 
 ---
 
@@ -61,30 +51,21 @@ The trade-off is clear: **you save money but invest more time and effort in setu
 
 Some organizations care more about **deep visibility, reliability, and managed operations**, with cost as a secondary concern.
 
-### Characteristics
-- Prefer **managed SaaS platforms**
-- Need high data accuracy and advanced analytics
-- Expect enterprise-grade support and integrations
-
-### Common Choices
-- Datadog
-- Dynatrace
-- Splunk
-- Honeycomb 
-
-### Why They Pay More
-- Faster onboarding  
-- Minimal operational overhead  
-- Advanced dashboards and anomaly detection  
-- Strong SLAs and support  
-
-The downside is obvious: **these tools are expensive and pricing scales quickly with data volume**.
+| **Aspect**            | **Details**                                                                                                                                   |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Characteristics**   | • Prefer **managed SaaS platforms**<br>• Need high data accuracy and advanced analytics<br>• Expect enterprise-grade support and integrations |
+| **Common Choices**    | • Datadog<br>• Dynatrace<br>• Splunk<br>• Honeycomb                                                                                           |
+| **Why They Pay More** | • Faster onboarding<br>• Minimal operational overhead<br>• Advanced dashboards and anomaly detection<br>• Strong SLAs and support             |
+| **Downside**          | **These tools are expensive and pricing scales quickly with data volume**                                                                     |
 
 ---
+<br>
 
-# Hands-on Experience: Grafana
+#  🖥 Hands-on Experience: Grafana
 
-I worked hands-on with **Grafana Cloud** as the observability backend while building a fully containerized **Node.js application instrumented with OpenTelemetry**. Grafana was used not just for dashboards, but as a complete **trace and metrics exploration platform**.
+I worked hands-on with **Grafana Cloud** as the observability backend while building a fully containerized **Node.js application instrumented with OpenTelemetry**. 
+
+Grafana was used not just for dashboards, but as a complete **trace and metrics exploration platform**.
 
 ### What I Actually Worked On
 - Integrated a Node.js + Express application with **Grafana Cloud using OTLP HTTP exporters**
