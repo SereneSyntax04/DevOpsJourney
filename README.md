@@ -33,6 +33,8 @@ My DevOps learning journey with structured notes and practical insights, startin
 
 - [Hands-on Terraform Task](/IAC/Terraformtask/TaskReadme.md)
 
+- [Local Terraform Task](/IAC/localPractise/LocalSetupSteps.md)
+
 ---
 <br>
 
