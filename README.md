@@ -86,6 +86,7 @@ Real-world decision-making and regulatory awareness.
 - 📄 [Choosing the Right Observability Tool](/casestudy/observability.md)
 - 🏛️ [21 CFR Part 11](/casestudy/21cfrpart11.md)
 - 🔐 [21 CFR Part 11 with SSO](/casestudy/cfrSSO.md)
+- ☸️ [EKS Kubernetes 1.35 Upgrade — Breaking Changes & Validation Guide](/casestudy/eksV1_35.md)
 
 ---
 
