@@ -1,4 +1,5 @@
 <h1 align="center">EKS V 1.35</h1>
+Prepared by: Shrushti Shrivastav| Devops intern at Scitara| February 2026
 
 ## Kubernetes 1.35 Upgrade for EKS — Features, Breaking Changes, and Validation Checklist
 Kubernetes releases introduce new capabilities, stronger security defaults, and improved resource management — but they also introduce behavioral changes that can silently break existing workloads if clusters are not prepared correctly.
