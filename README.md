@@ -49,10 +49,9 @@ Designing reproducible, auditable, and scalable infrastructure.
 From architecture to application deployment and workloads.
 
 📁 `k8s/`
-- 📘 [Kubernetes Basics & Setup](/k8s/minikubeInstall.md)
 - 🏛️ [Kubernetes Architecture](/k8s/architecture.md)
+- 📘 [Experiment k8s with minikube](/k8s/minikubeInstall.md)
 - 🔐 [Pods, Stateful Workloads & Security](/k8s/Managing.md)
-- ⚙️ [Control Plane & Node Interaction](/k8s/nodesWork.md)
 - 🚀 [Application Deployment Hands-on](/k8s/k8sappDeploy.md)
 - 🧪 [Kubernetes Task](/k8s/k8sTask/taskReadme.md)
 

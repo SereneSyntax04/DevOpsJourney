@@ -128,7 +128,7 @@ Tip: Always use **spaces**, not tabs
 
 
 
-
+> this file uses **.yml files** which are stored in [yamlfiles folder](/k8s/yamlfiles/)
 
 
 # Creating Kubernetes Namespaces
