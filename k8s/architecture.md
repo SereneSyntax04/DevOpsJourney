@@ -215,11 +215,16 @@ Each worker node contains:
 
 Think: **office building where employees work**
 
----
 
-## Pod (Smallest Deployable Unit)
+## Virtual Network 
+
+Virtual Network is the component of Kubernetes which enables the worker nodes and the master nodes to talk to each other. Virtual Network actually turns all the nodes inside of the cluster into one powerful machine that has the sum of all the resources of individual nodes.
+
+
+## 🔲 Pod (Smallest Deployable Unit)
 
 A **Pod** is the smallest unit you deploy in Kubernetes.
+One very important feature of Pod is that it is ephemeral. This means that if a Pod fails, then Kubernetes can automatically create its new replica.
 
 It contains:
 
@@ -238,8 +243,12 @@ Think: **Pod = one employee desk with tools**
 
 ## 📦 Deployment (Pod Manager)
 
-A **Deployment** manages Pods for your application.
+A **Deployment** manages Pods for your application.<br>
+Deployment are the Kubernetes component that manages the replication and lifecycle of the Pods in the Kubernetes Cluster.
 
+In our current example, what happens if our application Pod dies, crashes or I have to restart the Pod because I built a new container image? What happens is that we will have a downtime where the users will not be able to reach our application. This is a terrible thing if it happens in production.
+
+Deployment is another abstraction on top of Pods which makes it more convenient to interact with the Pods, replicate them and do some other configuration.
 You declare:
 
 ```
@@ -271,9 +280,26 @@ Usually you don’t create ReplicaSets directly — Deployment creates them.
 Think: **Attendance checker**
 
 
+
+##  IP addresses
+
+In Kubernetes, inside the virtual network, each Pod gets its own IP address (note that Pod gets the IP address not the container) and each Pod can communicate with each other using that IP address.
+
+* Pods communicate with each other using these **internal cluster IPs**.
+* These IPs are **not public** — only valid inside the cluster network.
+* Pods are **ephemeral** — if a Pod crashes or is recreated, it gets a **new IP address**.
+* Because Pod IPs change, directly using Pod IPs is unreliable.
+* To solve this, Kubernetes uses a **Service**, which provides a **stable IP/DNS name** that points to Pods.
+
+<div style="display:flex; justify-content:center; gap:10px;">
+  <img src="/k8s/img/ip.webp" width="500">
+</div>
+
+
 ## 🔗 Service (Stable Network Identity)
 
-Pods are temporary — their IPs change.
+Service is basically a static IP address or permanent IP address that can be attached to the Pod. 
+That means that "my app" will have its own Service and database Pod will have its own Service.
 
 A **Service** gives:
 
@@ -285,10 +311,36 @@ So other apps can reliably connect.
 
 Think: **company phone number that never changes**
 
+<div style="display:flex; justify-content:center; gap:10px;">
+  <img src="/k8s/img/services.webp" width="500">
+</div>
+
+Now we want our application to be accessible through a browser and for this we would have to create an **external service.**
+- Exposes your app to the outside world (browser/users).
+- Used for frontend or public APIs.
+- Example: http://my-app-service-ip:port
+
+But we would not want our database to be open to the public requests (because of security reasons). So for that we would create an **internal service**
+- Only accessible inside the cluster.
+- Used for databases or backend services.
+- More secure — not publicly exposed.
+- Example: http://db-service-ip:port
+
+**Raw service IP + port is not user-friendly for production.**
+
+usually you will want your URL to look more efficient, some-what like-- <br>
+https://my-app.com/ <br>
+And for that we use **Ingress.**
+
 
 ## 🚪 Ingress (External Entry Gate)
 
-**Ingress** manages external access to services.
+**Ingress** manages external access to services. simply- <br>
+The role of Ingress is that instead of Service, the request goes first to Ingress and it does the forwarding then to the Service.
+
+<div style="display:flex; justify-content:center; gap:10px;">
+  <img src="/k8s/img/ingress.webp" width="500">
+</div>
 
 It:
 
@@ -308,42 +360,62 @@ Think: **company reception desk**
 
 ## ⚙️ ConfigMap (Non-Secret Settings)
 
-A **ConfigMap** stores configuration data separately from app code.
-
-Examples:
-
-* feature flags
-* environment configs
-* URLs
-* ports
+A **ConfigMap** stores configuration data separately from app code. Simply- <br>
+Config Map is the external configuration to your application. Config Map usually contains configuration data like URLs of database or URLs of some other services that we are using.
 
 Benefits:
 
 * change config without rebuilding image
 * environment-specific settings
 
-Think: **settings file outside the app**
+<br>
 
-⚠️ Not for passwords.
+* Pods talk to other components (like DB) using a **Service endpoint**.
 
+* If the DB service name/URL changes and it’s hardcoded in the app:
+
+  * You must rebuild image
+  * Push new version
+  * Redeploy Pods ❌ (too much work)
+
+* **ConfigMap solves this problem**
+
+  * Stores **non-sensitive configuration data** (URLs, service names, ports, flags).
+  * Config is kept **outside the container image**.
+  * Pod reads config from ConfigMap (env vars or mounted files).
+
+* If config changes:
+
+  * Update ConfigMap ✅
+  * No need to rebuild the image.
+
+<div style="display:flex; justify-content:center; gap:10px;">
+  <img src="/k8s/img/configMap.webp" width="500">
+</div>
 
 ## 🔐 Secret (Sensitive Data Store)
 
-A **Secret** stores sensitive information:
+Secret is just like config map but the difference is that it's used to store secret data credentials and it stores this data not a plain text format but in base64 encoded format.
 
-* passwords
-* API keys
-* tokens
-* certificates
+* Keeps sensitive config **separate from container image**.
 
-More secure than ConfigMap.
+* Pods can access Secrets:
 
-Think: **locked vault**
+  * As **environment variables**
+  * As **mounted files (volumes)**
+
+* If credentials change:
+
+  * Update Secret ✅
+  * No need to rebuild image.
 
 
 ## 💾 Persistent Volume (PV) — Durable Storage
 
-Pods are temporary — storage inside them is lost on restart.
+Pods are temporary — storage inside them is lost on restart. <br>
+A Volume in Kubernetes is a data storing feature with the help of which we can store data that is persistent and can be accessed by containers in a Kubernetes pod.
+
+We would want your database data or log data to be persisted in the long-term and that is why we have the Kubernetes component called Volumes.
 
 **Persistent Volume (PV)** provides:
 
@@ -351,7 +423,7 @@ Pods are temporary — storage inside them is lost on restart.
 * survives Pod deletion
 * reusable across Pods
 
-Think: **external hard drive**
+That storage could be either on a local machine (meaning on the same server node where the Pod is running) or it could be on a remote storage (meaning outside of the Kubernetes cluster). Now when the database Pod or the Container gets restarted, all the data will be there persisted.
 
 
 ## 🤖 Kubelet (Node Agent)
