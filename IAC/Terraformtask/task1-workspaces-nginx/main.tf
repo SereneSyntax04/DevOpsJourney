@@ -1,3 +1,5 @@
+# there are two blocks, one for what providers are required and another for each provider specific config. 
+# Whenever you add a provider it is important to run "terraform init"  which will download plugins associated with the provider.
 terraform {
   required_providers {
     docker = {

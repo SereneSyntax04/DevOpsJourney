@@ -100,6 +100,24 @@ Terraform reads this file to know **what to create**.
 
 ## Fundamental terms and explanations.
 
+### Infrastructure as Code - Tools Overview
+There are a lot of tools that allow you to deploy infrastructure as code:
+- Terraform
+- CloudFormation
+- Heat
+- Ansible
+- SaltStack
+- Chef, Puppet, Others
+
+Not all of these tools are targeted for the same purpose. It is important to understand the difference between Configuration Management and Infrastructure Orchestration:<br>
+- Ansible, Chef and Puppet are **configuration management tools** which means they are primarily designed to install and manage software on existing servers
+- Terraform and CloudFormation are **infrastructure orchestration tools** which are designed to provision servers and infrastructure themselves.
+
+You can use infrastructure orchestration tools and configuration management tools in tandem. For example you could use Terraform to create a new EC2 instance on AWS, Terraform can then call Ansible to install and configure software and applications on the EC2 instance.
+
+---
+
+
 **Provider:** A provider is a **plugin** for Terraform that defines and manages resources for a specific cloud or infrastructure platform. 
 Examples of providers include AWS, Azure, Google Cloud, and many others. You configure providers in your Terraform code to interact with the desired infrastructure platform.
 
@@ -123,6 +141,20 @@ Examples of providers include AWS, Azure, Google Cloud, and many others. You con
 
 **Remote Backend:** A remote backend is a **storage location for your Terraform state files that is not stored locally**. Popular choices for remote backends include Amazon S3, Azure Blob Storage, or HashiCorp Terraform Cloud. Remote backends enhance collaboration and provide better security and reliability for your state files.
 
+**terraform destroy** - allows us to destroy all resources created within the folder.
+
+But what if I don't want to destroy all resources? terraform destroy will just destroy all the resources.
+Let's say I had two resources : EC2 Instance and github repo, now I only want to destroy the EC2 Instance.
+In this case we can make use of a **"target flag"** to direct Terraform on what resources to destroy:
+```
+terraform destroy -target resource_type.local_resource_name
+```
+
+- It is important to note that while we have destroyed this resource we have not removed the code to create the aws_instance from our first_ec2.tf  config file. 
+- Due to this if we now ran terraform plan again, then Terraform will plan to create the aws_instance we just destroyed. 
+- If you don't want this to be the case then you can remove the code creating the aws_instance from the config file entirely or you could just comment it out. 
+
+
 These are some of the essential terms you'll encounter when working with Terraform. 
 
 ---
@@ -135,571 +167,316 @@ These are some of the essential terms you'll encounter when working with Terrafo
 
 # Providers
 
-A **provider** is a plugin that lets Terraform talk to an API  
-(AWS, Azure, GCP, Kubernetes, etc.).
+* A **provider** is a **plugin** that lets Terraform talk to a specific platform API (AWS, Azure, GCP, Kubernetes, etc.).
+* You must choose a provider based on the infrastructure you want to create.
+* Terraform cannot create resources without a provider.
 
-Terraform does **nothing** without a provider.
 
-### Example: AWS Provider
-```hcl
-provider "aws" {
-  region = "us-east-1"
-}
+## Initialization Rule
 
-resource "aws_instance" "example" {
-  ami           = "ami-0123456789abcdef0"
-  instance_type = "t2.micro"
-}
+* Whenever you **add or change a provider**, run:
+
+```bash
+terraform init
 ```
 
-### Common Providers
+* This downloads the required **provider plugins**.
+* Terraform detects the provider from your code and installs it automatically.
 
-* aws – Amazon Web Services
-* azurerm – Microsoft Azure
-* google – Google Cloud
-* kubernetes – Kubernetes clusters
-* openstack – OpenStack
-* vsphere – VMware
 
----
+## Provider Types
 
-## Ways to Configure Providers
+* **HashiCorp maintained** → aws, azurerm, google, kubernetes, etc.
+* **Community / non-HashiCorp maintained** → third-party providers.
 
-### 1. Root Module (Most Common)
 
-Provider defined once and used everywhere.
+## Best Practice Provider Syntax (Terraform v0.13+)
 
-```hcl
-provider "aws" {
-  region = "us-east-1"
-}
-```
+Use two blocks:
 
-### 2. Child Module
-
-Used when passing provider config to modules.
-
-```hcl
-module "vpc" {
-  source = "./vpc"
-  providers = {
-    aws = aws.us-west-2
-  }
-}
-```
-
-### 3. required_providers Block (Version Control)
-
-Ensures correct provider version.
+### 1️⃣ Required Providers (source + version)
 
 ```hcl
 terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 3.79"
+      version = "3.33.0"
     }
   }
 }
 ```
 
----
-
-## Multiple Providers (Multi-Cloud)
-
-Terraform can manage **AWS + Azure** together.
+### 2️⃣ Provider Configuration
 
 ```hcl
 provider "aws" {
   region = "us-east-1"
 }
-
-provider "azurerm" {
-  features {}
-}
 ```
 
-```hcl
-resource "aws_instance" "aws_vm" {
-  ami           = "ami-xxx"
-  instance_type = "t2.micro"
-}
+* Ensures correct provider source and version.
+* Recommended for all providers.
+* Ready-made blocks are available on the **Terraform Registry**.
 
-resource "azurerm_virtual_machine" "azure_vm" {
-  name = "example-vm"
-}
-```
+[example of Provider Syntax](/IAC/Terraformtask/task1-workspaces-nginx/main.tf)
 
----
 
-## Multiple Regions (Provider Alias)
-
-```hcl
-provider "aws" {
-  alias  = "use1"
-  region = "us-east-1"
-}
-
-provider "aws" {
-  alias  = "usw2"
-  region = "us-west-2"
-}
-
-resource "aws_instance" "east" {
-  provider      = aws.use1
-  ami           = "ami-xxx"
-  instance_type = "t2.micro"
-}
-
-resource "aws_instance" "west" {
-  provider      = aws.usw2
-  ami           = "ami-xxx"
-  instance_type = "t2.micro"
-}
-```
-
----
 ---
 <br>
 
 
+# Resources
 
+* A **resource** represents a specific infrastructure service created by a provider.
+* Format:
 
-
-
-# Variables
-
-### Input Variables
-
-Used to **parameterize** Terraform code.
-
-```hcl
-variable "instance_type" {
-  description = "EC2 instance type"
-  type        = string
-  default     = "t2.micro"
-}
-```
-
-Usage:
+  ```
+  resource "<provider>_<service>" "<name>"
+  ```
+* Example: AWS EC2 resource → `aws_instance`
 
 ```hcl
-instance_type = var.instance_type
-```
-
-### Output Variables
-
-Used to **expose values**.
-
-```hcl
-output "public_ip" {
-  value = aws_instance.example.public_ip
-}
-```
-
-Access from module:
-
-```hcl
-module.ec2.public_ip
-```
-
----
-
-## Variables Implementation Example
-
-```hcl
-variable "ami_id" {
-  type = string
-}
-
-provider "aws" {
-  region = "us-east-1"
-}
-
-resource "aws_instance" "example" {
-  ami           = var.ami_id
+resource "aws_instance" "web" {
+  ami           = "ami-xxx"
   instance_type = "t2.micro"
 }
+```
 
-output "public_ip" {
-  value = aws_instance.example.public_ip
+* Providers offer **many resource types** (check Terraform Registry for full list).
+* Resources can be very detailed with many configuration options.
+
+<div style="display:flex; gap:10px;"> <img src="/IAC/img/1.png" width="500">  </div>
+
+* Resource Type - An unchangeable resource type used by Terraform that refers to a specific resource type for a provider
+* Local Resource Name - The name you give to the resource you create, it is a custom value and can be anything you want. Do note this name only applies locally with
+
+
+##  Using a Non-AWS Provider — Example (GitHub)
+
+* Terraform supports non-cloud providers like **GitHub**.
+* Each provider has its own resource types and authentication method.
+
+### Best Practice Provider Setup
+
+```hcl
+terraform {
+  required_providers {
+    github = {
+      source = "integrations/github"
+    }
+  }
+}
+
+provider "github" {
+  token = var.github_token
 }
 ```
 
----
----
-<br>
+* Provider block syntax is available via **Terraform Registry → “Use Provider”** button.
+* Authentication differs by provider:
 
+  * AWS → access keys / roles
+  * GitHub → personal access token
 
-
-
-
-
-# Terraform `.tfvars`
-
-Used to **store variable values separately**.
-
-### Example: `dev.tfvars`
-
-```hcl
-ami_id = "ami-0abcdef12345"
-```
-
-Apply:
+## ▶️ Run Terraform
 
 ```bash
-terraform apply -var-file=dev.tfvars
+terraform init   # download provider plugins
+terraform plan   # preview changes
+terraform apply  # create resources
 ```
 
-### Why tfvars?
+* Same workflow for all providers.
+* Only resource types and auth method change.
 
-* Cleaner code
-* Environment-specific configs
-* Keeps secrets out of code
-* Better team collaboration
 
----
 ---
 <br>
 
 
+# Terraform State File
+
+## What is Terraform State?
+
+* Terraform stores details of created infrastructure in a **state file** (`terraform.tfstate`).
+* This state file allows Terraform to map real world resources to your configuration files.
+* Automatically created after `terraform init` and updated after `terraform apply`.
+
+> Terraform uses state to know what already exists.
+
+
+## Why State File is Important
+
+State helps Terraform decide:
+What to create, update, delete and ignore
+
+Example:
+
+* EC2 already in state → not recreated
+* GitHub repo not in state → will be created
+
+
+## State Updates
+
+* `terraform apply` → adds resources to state
+* `terraform destroy` → removes resources from state
+* Resource removed from state but still in code → Terraform plans to recreate it
+
+
+## Desired vs Current State
+
+**Desired State** = What is defined in `.tf` files
+**Current State** = What actually exists in the cloud
+
+Terraform always tries to make:
+
+> Current State = Desired State
+
+
+## ⚠️ Important Rules
+
+* State file is **managed by Terraform**
+* ❌ The state file is maintained by Terraform itself, is not something you should ever really be directly editing. 
+* Contains sensitive data → store securely (remote backend in real projects)
+* An important thing to note is that if something is not specified in the .tf config file then it is not part of the desired state. (manual additon of certain resources.)
 
 
 
-
-# Conditional Expressions
-
-### Syntax
-
-```hcl
-condition ? true_value : false_value
-```
-
-### Conditional Resource Creation
-
-```hcl
-resource "aws_instance" "example" {
-  count = var.create_instance ? 1 : 0
-}
-```
-
-### Conditional Configuration
-
-```hcl
-cidr_blocks = var.enable_ssh ? ["0.0.0.0/0"] : []
-```
----
----
-<br>
-
-# Built-in Functions (Common Ones)
-
-### concat()
-
-```hcl
-concat(["a", "b"], ["c"])
-```
-
-### element()
-
-```hcl
-element(["x", "y", "z"], 1)  # y
-```
-
-### length()
-
-```hcl
-length(["a", "b", "c"])  # 3
-```
-
-### lookup()
-
-```hcl
-lookup({name="Alice"}, "name")
-```
-
-### join()
-
-```hcl
-join("-", ["dev", "app", "01"])
-```
-
----
 ---
 <br>
 
 
+# Terraform Attributes & Output Values 
 
+## Attributes
 
-# Terraform Modules, State & Locking 
+* **Attributes** are properties of a created resource.
+* Example attributes:
 
-## Terraform Modules
+  * EC2 → `public_ip`, `id`, `arn`
+  * S3 → `bucket_domain_name`
+  * EIP → `public_ip`
+* Available attributes are listed in the **Terraform Registry** for each resource.
 
-A **module** is a reusable block of Terraform code.
-Think of it like a **function** in programming.
+Reference format:
 
-### Why use Modules?
-
-* **Modularity** – Break big infrastructure into small pieces (VPC, EC2, RDS).
-* **Reusability** – Write once, use everywhere.
-* **Clean Code** – Less duplication, easier to read.
-* **Team Friendly** – Multiple people can work on different modules.
-* **Versioning** – Update a module without breaking existing infra.
-* **Security** – Enforce best practices inside modules.
-
-### Example: Using a Module
-
-1. **Root module** = caller (main program)
 ```hcl
-module "ec2" {
-  source        = "./modules/ec2"
-  instance_type = "t2.micro"
-  ami_id        = "ami-0abcd1234"
+resource_type.resource_name.attribute
+```
+
+Example:
+
+```hcl
+aws_eip.lb.public_ip
+```
+
+
+## Output Values
+
+* `output` blocks display selected resource attributes after `terraform apply`.
+* Outputs can also be **used as inputs for other resources/modules**.
+
+
+## 🧱 Example
+
+```hcl
+resource "aws_eip" "lb" {
+  domain = "vpc"
+}
+
+resource "aws_s3_bucket" "mys3" {
+  bucket = "unique-bucket-name-123"
 }
 ```
 
-Here the root module:
-- Calls the module
-- Passes values (instance_type, ami_id)
-- Does not automatically receive anything back
+### Outputs
 
-Inside `modules/ec2/main.tf`:
-
-
-2. **Child module** = function definition
 ```hcl
-variable "instance_type" {}
-variable "ami_id" {}
-``` 
-```hcl
-resource "aws_instance" "this" {
-  ami           = var.ami_id
-  instance_type = var.instance_type
+output "eip_ip" {
+  value = aws_eip.lb.public_ip
+}
+
+output "s3_domain" {
+  value = aws_s3_bucket.mys3.bucket_domain_name
 }
 ```
-The child module:
-- Accepts inputs via variable
-- Creates resources
-- Knows nothing about the root unless told
 
-**Root get values from child ONLY via output**
-```
-Terraform root modules pass input variables to child modules, and child modules return values back to the root module using output variables.
-```
+Result after apply → Terraform prints these values.
+
+<div style="display:flex; gap:10px;"> <img src="/IAC/img/2.png" width="500">  </div>
+
 
 ---
-
-## Terraform State File (`terraform.tfstate`)
-
-### What is State?
-
-The **state file is the heart of Terraform**.
-It stores **what Terraform has already created**.
-
-### What does it contain?
-
-* Resource IDs (EC2 ID, S3 ARN, etc.)
-* Current configuration
-* Metadata & dependencies
-* Sometimes **sensitive data**
-
-### Why is State Important?
-
-Without state:
-
-* Terraform **cannot update**
-* Terraform **will recreate resources**
-* Terraform **cannot destroy correctly**
-
-### Example Scenario : Without State File ❌
-
-1. You create an EC2 instance using Terraform
-2. Terraform saves details in `terraform.tfstate`
-3. After 5 days, you add a tag in Terraform code
-4. You run terraform apply
-5. Terraform:
-
-   * ❌ Terraform doesn’t know:
-   * That the EC2 already exists
-   * That **Only the tag was added**
-
-Without state → **new EC2 would be created** ❌
+<br>
 
 
-### Example Scenario : With State File ✅
+# Terraform Variables 
 
-1. Terraform reads terraform.tfstate
+##  Why Use Variables?
 
-2. It knows:
+* Avoid repeating static values (IP, region, instance size, etc.)
+* Makes code easier to update and reuse
+* Change value once → updates everywhere
+* Reduces human error
 
-    * EC2 already exists
-    * Only tag changed
-    * Terraform updates only the tag
 
-👉 Result: Correct behavior
+##  Define a Variable (variables.tf)
 
----
-
-## Problems with Local State File
-
-* ❌ Sensitive data stored in plain text
-* ❌ Unsafe to push to GitHub
-* ❌ Team conflicts (everyone has their own state)
-* ❌ High risk of corruption
-
----
-
-## Terraform Remote Backend
-
-To fix state problems, Terraform uses **remote backends**.
-
-### What is a Remote Backend?
-
-State file is stored **outside your local machine**, e.g.:
-
-* AWS S3
-* Terraform Cloud
-* Azure Storage
-* GCS
-
-### Benefits
-
-* ✅ Secure
-* ✅ Shared across team
-* ✅ Auto-updated
-* ✅ No manual state handling
-
-### Example: S3 Backend
+Create a central variable file:
 
 ```hcl
-terraform {
-  backend "s3" {
-    bucket = "my-terraform-state-bucket"
-    key    = "prod/terraform.tfstate"
-    region = "us-east-1"
+variable "vpn_ip" {
+  type    = string
+  default = "116.30.45.50/32"
+}
+```
+
+
+##  Use Variable in Resources
+
+Reference variables with:
+
+```
+var.variable_name
+```
+
+Example — Security Group:
+
+```hcl
+resource "aws_security_group" "sg" {
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = [var.vpn_ip]
   }
 }
 ```
 
----
-
-## Terraform Lock File (`.terraform.lock.hcl`)
-
-### What is `.terraform.lock.hcl`?
-
-* Locks **provider versions**
-* Ensures everyone uses the **same provider**
-* Prevents unexpected breaking changes
-
-### Why it matters?
-
-* Same behavior on all machines
-* Stable builds
-* Safe upgrades
-
-### Should you commit it?
-
-✅ **YES – Always commit `.terraform.lock.hcl`**
-
----
-
-## State Locking (Why Locking is Needed)
-
-### The Problem
-
-If **two people run `terraform apply` at the same time**:
-
-* State can get corrupted
-* Infrastructure becomes inconsistent
-
-### Solution: State Locking
-
-Terraform **locks the state** so:
-
-* Only **one apply at a time**
-* Others must wait
-
----
-
-## DynamoDB for State Locking (AWS)
-
-When using S3 backend, **DynamoDB** is used for locking.
-
-### DynamoDB Table Example
-
-```hcl
-resource "aws_dynamodb_table" "terraform_lock" {
-  name         = "terraform-lock"
-  billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "LockID"
-
-  attribute {
-    name = "LockID"
-    type = "S"
-  }
-}
-```
-
-### Backend with Locking
-
-```hcl
-terraform {
-  backend "s3" {
-    bucket         = "my-terraform-state-bucket"
-    key            = "prod/terraform.tfstate"
-    region         = "us-east-1"
-    dynamodb_table = "terraform-lock"
-  }
-}
-```
+Terraform replaces `var.vpn_ip` with the actual value during plan/apply.
 
 
 ---
 ---
-<br>
+<br><br>
 
 
+# Terraform Workspaces
+
+## What Problem They Solve
+
+Terraform Workspaces let you reuse the same Terraform code for multiple environments by keeping a separate state file per workspace.
+
+* By default → **1 Terraform project = 1 state file**
+* Risk: dev/stage/prod can overwrite each other
+
+> Workspaces give **separate state files** for each environment.
 
 
+## State Separation
 
-
-
-
-
-
-# Terraform Workspaces 
-
-## What problem do Terraform Workspaces solve?
-
-Terraform has **ONE BIG LIMITATION** by default:
-
-👉 **One Terraform project = One state file**
-
-Now imagine this real situation:
-
-* Same infrastructure
-* Different environments: **dev, stage, prod**
-* Different configs (instance sizes, limits, etc.)
-
-If you only use:
-
-* `dev.tfvars`
-* `stage.tfvars`
-* `prod.tfvars`
-
-❌ Terraform will **MODIFY the same resources**, not create new ones
-❌ State file gets confused
-❌ Dev infra gets changed when you apply stage
-
-That’s **dangerous**.
-
----
-
-## Core Idea of Terraform Workspaces
-
-👉 **Terraform Workspaces create separate state files inside the same project**
-
-So instead of:
+Instead of one state file:
 
 ```
 terraform.tfstate
@@ -708,160 +485,35 @@ terraform.tfstate
 You get:
 
 ```
-terraform.tfstate.d/
- ├── dev/terraform.tfstate
- ├── stage/terraform.tfstate
- └── prod/terraform.tfstate
+terraform.tfstate.d/dev
+terraform.tfstate.d/stage
+terraform.tfstate.d/prod
 ```
 
-Each workspace:
 
-* Has its **own state**
-* Manages **its own infrastructure**
-* Does NOT interfere with others
-
----
-
-## One-Line Definition 
-> Terraform workspaces allow you to use the same Terraform code for multiple environments by maintaining a separate state file for each workspace.
-
----
-
-## Why NOT just tfvars?
-
-Because:
-
-* `.tfvars` only change **values**
-* **State file remains the same**
-* Terraform thinks you’re modifying existing infra
-
-Workspaces solve the **state file conflict**, not just variables.
-
----
-
-## Basic Workspace Commands (Very Important)
+##  Basic Commands 
 
 ```bash
-terraform workspace list        # show all workspaces
-terraform workspace show        # current workspace
-terraform workspace new dev     # create new workspace
-terraform workspace select dev  # switch workspace
-terraform workspace delete dev  # delete workspace
+terraform workspace list
+terraform workspace show
+terraform workspace new dev
+terraform workspace select dev
+terraform workspace delete dev
 ```
 
-⚠️ **Workspace ≠ Folder**
-It’s logical separation via state, not code duplication.
 
----
-
-## Practical Flow (Real Life)
-
-### Step 1: Same Terraform code
-
-```hcl
-resource "aws_instance" "example" {
-  ami           = var.ami
-  instance_type = var.instance_type
-}
-```
-
-### Step 2: Create workspaces
+## Basic Usage Flow
 
 ```bash
 terraform workspace new dev
-terraform workspace new stage
-terraform workspace new prod
-```
-
-### Step 3: Switch workspace before apply
-
-```bash
 terraform workspace select dev
 terraform apply
 ```
 
-Each apply:
 
-* Creates **new infra**
-* Updates **workspace-specific state file**
+## ⚠️ Warning
 
----
-
-## Best Practice #1: Workspaces + tfvars
-
-```bash
-terraform workspace select dev
-terraform apply -var-file=dev.tfvars
-
-terraform workspace select stage
-terraform apply -var-file=stage.tfvars
-```
-
-✅ Clean
-✅ Safe
-✅ Industry-used
-
----
-
-## Best Practice #2 (Advanced & Powerful)
-
-### Use `terraform.workspace` inside code
-
-```hcl
-variable "instance_type" {
-  type = map(string)
-  default = {
-    dev   = "t2.micro"
-    stage = "t2.medium"
-    prod  = "t2.xlarge"
-  }
-}
-
-resource "aws_instance" "example" {
-  ami           = var.ami
-  instance_type = lookup(
-    var.instance_type,
-    terraform.workspace,
-    "t2.micro"
-  )
-}
-```
-
-### What happens here?
-
-* `terraform.workspace` auto-detects:
-
-  * dev
-  * stage
-  * prod
-* `lookup()` picks correct instance size
-* NO manual tfvars switching
-
-🔥 Very interview-friendly approach
-
----
-
-## Why DevOps Engineers Love Workspaces
-
-✔ Same codebase
-✔ No duplication
-✔ Clean CI/CD pipelines
-✔ Easy environment isolation
-✔ Faster infra provisioning
-
----
-
-## BIG WARNING (Production Killer ⚠️)
-
-> **Terraform destroy runs on CURRENT workspace**
-
-If you are in `prod` and run:
-
-```bash
-terraform destroy
-```
-
-💀 Production is gone.
+`terraform destroy` affects the **current workspace only**
 
 Always check:
 
@@ -869,27 +521,6 @@ Always check:
 terraform workspace show
 ```
 
----
-
-## When NOT to use Workspaces
-
-Avoid when:
-
-* Environments need **different backend configs**
-* Teams need **strong isolation**
-* Large orgs (use separate state backends)
-
-👉 In such cases:
-
-* Separate folders
-* Separate backends
-* Terraform Cloud / S3 + DynamoDB
 
 ---
-
-
-
-
-
-
-
+<br>
