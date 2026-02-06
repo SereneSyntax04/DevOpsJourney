@@ -33,26 +33,6 @@ That’s real-world infra.
 * Uses that network to attach a container
 * Never recreates the network
 
-No AWS. No S3. Just **local backend**.
-
----
-
-## 📁 Folder Structure (non-negotiable)
-
-```
-terraform-remote-state/
-├── project-a-network/
-│   ├── main.tf
-│   ├── outputs.tf
-│   └── terraform.tfstate
-│
-└── project-b-app/
-    ├── main.tf
-    └── terraform.tfstate
-```
-
-Two projects. Two state files. **Zero overlap**.
-
 ---
 
 ## 🅰️ Project A — Network Creator

@@ -30,15 +30,6 @@ If Resource A **references** Resource B, Terraform guarantees:
 
 ---
 
-## 📁 Project Layout
-
-```
-terraform-multi-container/
-└── README.md   ← (this file contains everything)
-```
-
----
-
 ## 🧱 Terraform Code 
 
 - [main.tf](/IAC/Terraformtask/task2-multi-container/main.tf)

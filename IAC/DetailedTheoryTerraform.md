@@ -3,20 +3,12 @@
 ## Introduction to Terraform & IaC
 Terraform is an Infrastructure as Code (IaC) tool that lets you define and manage infrastructure using code. Instead of manual setup, infrastructure is versioned, repeatable, and automated.
 
-## Installing Terraform (MacOS, Linux, Windows)
-Download Terraform from the official site and add it to your system PATH.
-Verify installation:
-```bash
-terraform -v
-```
-
-
 ---
 <br>
 
 
 
-## What is Infrastructure as Code (IaC)
+# What is Infrastructure as Code (IaC)
 IaC means creating infrastructure using code instead of manual clicks.
 Infrastructure can be written using scripts or templates (YAML/JSON).
 
@@ -58,18 +50,8 @@ Verify:
 terraform -version
 ```
 
-## Alternative: GitHub Codespaces
+- Alternative: GitHub Codespaces
 
-Useful if:
-
-* Laptop restrictions
-* Low system resources
-
-Features:
-
-* Free 60 hours/month
-* Terraform + AWS CLI
-* Works like a cloud VM
 
 ## AWS Setup
 
@@ -85,7 +67,13 @@ Verify:
 aws s3 ls
 ```
 
-## First Terraform File
+---
+<br>
+
+
+
+
+# First Terraform File
 
 Create `main.tf`
 
@@ -112,7 +100,8 @@ Terraform reads this file to know **what to create**.
 
 ## Fundamental terms and explanations.
 
-**Provider:** A provider is a plugin for Terraform that defines and manages resources for a specific cloud or infrastructure platform. Examples of providers include AWS, Azure, Google Cloud, and many others. You configure providers in your Terraform code to interact with the desired infrastructure platform.
+**Provider:** A provider is a **plugin** for Terraform that defines and manages resources for a specific cloud or infrastructure platform. 
+Examples of providers include AWS, Azure, Google Cloud, and many others. You configure providers in your Terraform code to interact with the desired infrastructure platform.
 
 **Resource:** A resource is a specific infrastructure component that you want to create and manage using Terraform. Resources can include virtual machines, databases, storage buckets, network components, and more. Each resource has a type and configuration parameters that you define in your Terraform code.
 

@@ -26,7 +26,7 @@ By building:
 
 ---
 
-### 🧠 Core Idea (Read This Carefully)
+### 🧠 Core Idea 
 
 Terraform has TWO ways to reference things:
 
@@ -34,13 +34,6 @@ Terraform has TWO ways to reference things:
 - `data` → Terraform **reads but does NOT own**
 
 Terraform does **NOT** manage what it does not create.
-
----
-
-## 📁 Project Layout
-
-terraform-data-source/
-└── README.md   ← (this file contains everything)
 
 ---
 
@@ -86,7 +79,7 @@ data "docker_image" "nginx" {
 }
 ```
 
-🔥 This is the MOST IMPORTANT PART of this task
+🔥 This is the **MOST IMPORTANT PART** of this task
 
 What this does:
 
@@ -181,14 +174,6 @@ Important distinction:
 
 * Data sources do NOT appear in state like resources
 * Terraform does not track lifecycle for data
-
----
-
-# Got it. This is a **good refinement** — you’re turning Task 3 from a happy-path demo into a **truthful learning exercise**. That’s how seniors write docs.
-
-Below is your **updated Execution Steps section**, rewritten cleanly, same tone, but now **explicitly showing the failure → fix → success flow**.
-
-You can **replace only this section** in your README.
 
 ---
 

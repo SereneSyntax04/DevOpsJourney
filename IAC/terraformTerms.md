@@ -214,15 +214,3 @@ module "nginx" {
 📌 Understanding **resource + data + state** does
 
 ---
-
-## 9. One-Line Summary (Remember This)
-
-```
-Provider → talks to platform
-Data     → reads existing stuff
-Resource → creates stuff
-State    → remembers everything
-Module   → organizes code
-```
-
----

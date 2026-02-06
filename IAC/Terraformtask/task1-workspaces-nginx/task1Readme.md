@@ -12,22 +12,6 @@ Each workspace runs:
 
 ---
 
-## 📁 Project Structure
-
-```
-terraform-docker-nginx/
-├── main.tf
-├── modules/
-│   └── nginx/
-│       ├── main.tf
-|       |── outputs.tf
-│       └── variables.tf
-
-```
-
----
-
-
 
 ## 1️⃣ `main.tf` (Root Module)
 

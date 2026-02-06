@@ -1,10 +1,8 @@
-# 🧩 TASK 7 — Module Composition (Advanced but Gold)
+# 🧩 TASK 5 — Module Composition 
 
 **Theme:** *Small, reusable modules + dumb root module.*
 
-If you remember **one rule** from this task, remember this:
-
-> **Modules create things. Root wires them. Root stays boring.**
+> **Modules create things. Root wires them.**
 
 ---
 
@@ -13,15 +11,18 @@ If you remember **one rule** from this task, remember this:
 * **Network module**
 
   * Creates a bridge network
+
+
 * **App module**
 
   * Runs Nginx container
+
+
 * **Root module**
 
   * Connects both
   * Passes outputs → inputs
 
-No hardcoding. Everything flows.
 
 ---
 
@@ -49,9 +50,7 @@ terraform-module-composition/
 
 ## Execution Steps (Start → Working Nginx)
 
-### ✅ Prerequisites (don’t skip this)
-
-Be honest with yourself before typing commands:
+### ✅ Prerequisites
 
 * Docker **must be running**
 
@@ -109,7 +108,7 @@ If this fails → provider / syntax issue.
 
 ---
 
-## 3️⃣ Validate configuration (cheap safety check)
+## 3️⃣ Validate configuration (safety check)
 
 ```bash
 terraform validate
@@ -166,7 +165,7 @@ Terraform will:
 
 ---
 
-## 6️⃣ Verify (don’t trust blindly)
+## 6️⃣ Verify 
 
 ### Check Docker
 
@@ -218,7 +217,7 @@ This confirms module output wiring works.
 
 ---
 
-## 8️⃣ Destroy (engineers clean up)
+## 8️⃣ Destroy 
 
 Always clean infra you created.
 
@@ -238,7 +237,7 @@ yes
 
 ---
 
-## ⚠️ Common Execution Failures (read this)
+## ⚠️ Common Execution Failures 
 
 ### ❌ “provider docker not found”
 
