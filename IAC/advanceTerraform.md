@@ -543,6 +543,52 @@ terraform plan -replace=aws_instance.my_ec2
 ```
 Then apply if correct.
 
+
+---
+<br>
+
+
+# Terraform Splat Expressions (*)
+
+A **splat expression (`*`)** lets you get the **same attribute from many resources at once**.
+
+Think of it like:
+
+> “Give me this field from ALL items in the list.”
+
+It avoids writing repeated lines of code.
+
+## Example:
+Create Multiple Resources
+```bash
+resource "aws_iam_user" "lb" {
+  count = 3
+  name  = "user-${count.index}"
+}
+```
+
+Terraform creates: aws_iam_user.lb[0], aws_iam_user.lb[1], aws_iam_user.lb[2]
+
+So internally it’s like a list of 3 users.
+
+**Now, You Want Their ARNs:**
+
+- Without splat, you must ask one by one:
+```
+aws_iam_user.lb[0].arn
+aws_iam_user.lb[1].arn
+aws_iam_user.lb[2].arn
+```
+
+- Terraform gives a shortcut: **splat expression (`*`)**
+```
+aws_iam_user.lb[*].arn
+```
+aws_iam_user.lb   → all users created by this block <br>
+[*]               → every index <br>
+.arn              → get arn field
+
+
 ---
 ---
 <br><br>
