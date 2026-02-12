@@ -251,3 +251,9 @@ Implementing OOMKilled detection was not just creating an alert —
 it required understanding how Kubernetes interacts with Linux memory management and how to convert system signals into actionable monitoring.
 
 ---
+
+## References
+
+- [Signoz Guide](https://signoz.io/guides/what-is-oom/)
+- [Exit Code 137](https://spacelift.io/blog/oomkilled-exit-code-137)
+- [Hidden Memory Leak](https://unixarena.com/2025/04/oomkilled-in-kubernetes-the-hidden-memory-leaks-youre-missing.html/)
