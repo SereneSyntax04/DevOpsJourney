@@ -1,5 +1,7 @@
 <h1 align='center'> 21 CFR Part 11 </h1>
 
+Prepared by: Shrushti Shrivastav| Devops intern at Scitara| January 2026
+
 This is a regulatory term, mostly relevant if you’re working with **pharmaceuticals, biotech, or any FDA-regulated environment**.
 
 ---

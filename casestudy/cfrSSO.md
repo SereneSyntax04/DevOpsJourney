@@ -1,5 +1,8 @@
-
 <h1 align='center'> Case Study: 21 CFR Part 11 + SSO </h1>
+
+Prepared by: Shrushti Shrivastav| Devops intern at Scitara| January 2026
+
+---
 
 ## Company Background (Typical Scenario)
 

@@ -1,6 +1,8 @@
 
 <h1 align='center'>  📊 Case Study: Choosing the Right Observability Tool Based on Organizational Needs </h1>
 
+Prepared by: Shrushti Shrivastav| Devops intern at Scitara| January 2026
+
 ---
 
 ## Overview
