@@ -264,3 +264,4 @@ Hence, beta alerting was necessary to build a precise
 - [Signoz Guide](https://signoz.io/guides/what-is-oom/)
 - [Exit Code 137](https://spacelift.io/blog/oomkilled-exit-code-137)
 - [Hidden Memory Leak](https://unixarena.com/2025/04/oomkilled-in-kubernetes-the-hidden-memory-leaks-youre-missing.html/)
+- [understanding OOM kill](https://mihai-albert.com/2022/02/13/out-of-memory-oom-in-kubernetes-part-1-intro-and-topics-discussed/#table-of-contents)
