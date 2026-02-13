@@ -4,253 +4,260 @@ Prepared by: Shrushti Shrivastav| Devops intern at Scitara| February 2026
 
 ---
 
+## Problem Statement
+
+During Kubernetes workload monitoring, we observed intermittent pod restarts without clear application errors.  
+After investigation, the root cause was identified as **OOMKilled (Out Of Memory Kills)**.
+
+These events were not being proactively detected, which delayed debugging and increased downtime risk.
+
+Goal:  
+> Build a reliable alerting mechanism in SigNoz to detect OOMKilled events immediately.
+
+---
+
+## 📖 What is OOMKilled in Kubernetes?
+
+OOMKilled occurs when a container exceeds its memory limit and the Linux OOM (Out Of Memory) Killer forcibly terminates it.
+
 <div style="display:flex; justify-content:center; gap:10px;">
-  <img src="/casestudy/img/oom.webp" width="600">
+  <img src="/casestudy/img/oom.webp">
 </div>
 
+Key behavior:
+- Container memory crosses limit
+- Kernel OOM Killer terminates process
+- Pod restarts automatically
+- Exit Code: **137**
 
-## 1️⃣ Background
-
-As part of **production observability improvements**, I was tasked with implementing proactive alerting for container failures in our Kubernetes cluster.
-
-One recurring issue in Kubernetes environments is:
-
-```
-Container terminated with Reason: OOMKilled
-Exit Code: 137
-```
-
-Even if the application appears healthy overall, OOMKilled events can silently cause:
-
-* Pod restarts
-* Traffic imbalance
-* Latency spikes
-* Service instability
-
-The **goal of my task** was:
-
-> Detect OOMKilled events immediately using SigNoz and trigger alerts before repeated restarts impact system stability.
+This makes it tricky because:
+- Application logs may not show explicit errors
+- Pods appear “healthy” after restart
+- Memory leaks remain hidden
 
 ---
 
-# 2️⃣ Problem Statement
+## 🔍 Understanding Exit Code 137
 
-Before this alert existed:
+Exit Code **137 = 128 + 9 (SIGKILL)**  
+This indicates the container was killed due to memory pressure.
 
-* Pods were restarting occasionally.
-* Engineers had to manually inspect logs.
-* OOMKilled events were not immediately visible.
-* There was no automated detection mechanism.
+<div style="display:flex; justify-content:center; gap:10px;">
+  <img src="/casestudy/img/code137.webp" width="400">
+</div>
 
-This created delayed incident response.
-
-We needed a way to:
-
-✔ Automatically detect OOMKilled
-✔ Differentiate it from normal completion
-✔ Avoid false alerts
-✔ Alert only when necessary
+Common causes:
+- Memory leaks in application
+- Improper resource limits
+- Sudden traffic spikes
+- Large batch jobs consuming memory
 
 ---
 
-# 3️⃣ Understanding the Metric
+## 🧪 Real Scenario 
 
-While exploring Kubernetes metrics in SigNoz, I identified:
+Imagine a backend service running smoothly in a Kubernetes cluster.  
+Traffic increases gradually, but memory usage keeps growing due to a hidden leak.
 
-```
-k8s.container.status.last_terminated_reason
-```
+What happens next?
+1. Memory limit is reached  
+2. Kubernetes triggers OOM Killer  
+3. Pod gets terminated (OOMKilled)  
+4. Pod restarts automatically  
+5. Issue goes unnoticed without proper alerting  
 
-This metric provides the reason for the last container termination.
-
-Common values observed:
-
-| Value       | Meaning                         |
-| ----------- | ------------------------------- |
-| `OOMKilled` | Container exceeded memory limit |
-| `Error`     | Application-level crash         |
-| `Completed` | Container exited successfully   |
-
-This metric became the foundation of the alert.
-
-## About `k8s.container.status.last_terminated_reason`
-
-This Kubernetes metric indicates the reason why a container last terminated. It is crucial for distinguishing between expected exits and failure scenarios.
-
-Observed categories:
-
-* `OOMKilled` → Container exceeded memory limit and was killed by the kernel
-* `Error` → Application-level failure or crash
-* `Completed` → Normal termination (common in batch jobs)
-
-This metric enables targeted alerting and reduces false positives in monitoring systems.
+**This creates a silent failure loop.**
 
 ---
 
-# 4️⃣ Alert Design Strategy
+## 🛠️ Why SigNoz for OOMKilled Detection?
 
-Instead of alerting on every restart, I designed a more meaningful condition.
+SigNoz provides:
+- Metrics + Logs correlation
+- Kubernetes observability
+- Custom PromQL-based alerts
+- Real-time monitoring dashboards
+
+Instead of manually checking pod status, automated alerting ensures faster detection.
+
+---
+<br>
+
+# ⚙️ Alert Logic in SigNoz v0.105.1 (Beta)
+
+We are using **SigNoz v0.105.1 (Beta)** for this alert implementation.
+
+### 📈 Metrics Used
+
+Primary Kubernetes metric:
+- `kube_pod_container_status_last_terminated_reason`
+- Filter: `reason="OOMKilled"`
+
+This metric helps track the last termination reason of containers. which makes alert specific for 'oomkilled'
+
+### The newer (beta) version introduces enhanced capabilities such as:
+- Formula-based alert evaluation
+- Functions (like Time Shift)
+- Flexible query comparison
+- Better control over noise reduction
+
+Unlike the classic alerting system, the beta alert engine allows us to use **Query Builder + Functions + Formula**, which makes it possible to detect only *new OOMKilled events* instead of historical ones.
+
+---
+
+## 🔎 Query Options Available in SigNoz
+
+SigNoz provides two ways to create alert queries:
+
+1. **Query Builder (UI-based)** – Recommended for structured metric logic  
+2. **PromQL (Advanced)** – Direct metric query writing  
+
+For this case study, we used:
+> ✅ Query Builder (with Formula & Time Shift)
+
+Reason:
+- Easier comparison between current vs past values  
+- Cleaner logic for delta-based alerting  
+- Native support in v0.105.1 beta  
+
+---
+
+## 🧮 Detection Strategy (Only New OOMKills)
+
+The main goal was:
+> Detect only *new OOMKilled events* and ignore past/stale data.
+
+Instead of triggering alerts on total restart count, we compare:
+- Current value (A)
+- Past value using Time Shift (B)
+
+This prevents repeated alerts for the same historical OOMKills.
+
+---
+
+## ⏱️ Time Shift Logic
+
+We applied the **Time Shift function** on Query B to fetch past metric values from a previous time bucket.
+
+Concept:
+- Query A → Current restart/OOMKilled value
+- Query B → Same metric, but shifted to past time
+
+This creates a real-time comparison model:
+
+```
+Current vs Previous Bucket
+```
+
+### Why Time Shift is Important ?
+
+**Without** Time Shift:
+- Alert keeps firing on old OOMKills
+- High alert noise
+- No distinction between old and new incidents
+
+**With** Time Shift:
+- Only fresh increases are detected
+- Historical data is ignored
+- More accurate incident alerting
+
+---
+
+## 📐 Formula Used to Get the Result
+
+We used the formula:
+```
+A - B
+```
+
+Where:
+- **A = Current value**
+- **B = Past value (Time Shift applied)**
+
+### How It Works ??
+
+If restart count increases inside that 1-minute window:
+
+Minute 1:
+- A = 14  
+- B = 13  
+- A - B = 1 → 🚨 Alert Triggered (New OOMKill)
+
+Next Minute:
+- A = 14  
+- B = 14  
+- A - B = 0 → ✅ No Alert (No new kill)
+
+This ensures:
+- Alerts only on *new* OOMKilled events  
+- No repeated alerts for the same crash  
+- Noise-free monitoring  
+
+---
+
+## 🪣 (IMPORTANT) Critical Configuration: TimeShift Must Equal Bucket Size 
+
+This is the most crucial part of the setup.
+
+In SigNoz Query Builder:
+
+If:
+
+```
+Aggregate within = Latest every 300s
+```
+
+Then each data point represents a **5-minute bucket**.
+
+So if the requirement is:
+> “Compare current bucket with previous bucket”
+
+Then:
+```
+TimeShift = 300 seconds
+```
 
 ### Why?
+Because:
+- A = Current 5-minute bucket value
+- B = Previous 5-minute bucket value (shifted by 300s)
 
-* Some restarts are expected.
-* Jobs complete normally.
-* Deployments may temporarily restart pods.
-
-So the alert needed to specifically target:
-
-```
-last_terminated_reason = OOMKilled
-```
+If TimeShift ≠ Bucket Size:
+- Query returns No Data
+- Incorrect comparisons
+- Alert misfires or fails
 
 ---
 
-# 5️⃣ Implementation in SigNoz
+## 🧠 Final Alert Evaluation Logic
 
-### Step 1: Metric Selection
+1. Collect latest metric value (A)
+2. Fetch past metric using Time Shift (B)
+3. Apply formula: `A - B`
+4. Trigger alert only when result > 0
 
-Selected:
-
-```
-k8s.container.status.last_terminated_reason
-```
-
-### Step 2: Filter Condition
-
-Set condition:
-
-```
-= "OOMKilled"
-```
-
-### Step 3: Aggregation Strategy
-
-Instead of alerting per single pod instantly, we:
-
-* Aggregated by namespace or deployment
-* Used time window (e.g., 5 minutes)
-* Triggered alert only if condition sustained
-
-This reduced alert noise.
+This guarantees:
+- Detection of only fresh OOMKilled events  
+- No false alerts from historical crashes  
+- Stable and production-friendly alerting  
 
 ---
 
-# 6️⃣ Why This Alert Is Important
+## 🧪 Why Beta Alert Engine (v0.105.1)?
 
-OOMKilled is different from other failures.
+This setup is implemented on:
+> **SigNoz v0.105.1 Beta**
 
-### Difference Between Termination Types
+Because:
+- Beta supports **Formula + Functions (Time Shift)**
+- Classic alerts do NOT support advanced delta comparison
+- Required for bucket-to-bucket evaluation logic
 
-| Termination Type | Meaning             | Severity |
-| ---------------- | ------------------- | -------- |
-| Completed        | Normal exit         | Low      |
-| Error            | App crash           | Medium   |
-| OOMKilled        | Resource exhaustion | High     |
-
-OOMKilled indicates:
-
-* Memory limit misconfiguration
-* Traffic spike
-* Memory leak
-* Incorrect resource sizing
-
-It is a **resource management issue**, not just an application bug.
+Hence, beta alerting was necessary to build a precise  
+“New OOMKill Detection” system instead of a generic restart alert.
 
 ---
-
-# 7️⃣ Technical Insight Gained
-
-While implementing the alert, I deepened understanding of:
-
-### 🔹 Exit Code 137
-
-137 = 128 + 9 (SIGKILL)
-
-Meaning:
-Container was forcefully killed by Linux kernel.
-
-### 🔹 Cgroups and Memory Limits
-
-Kubernetes enforces container memory limits using Linux Cgroups.
-
-Even if node has free memory:
-If container crosses its defined limit → it gets killed.
-
-### 🔹 Working Set vs Total Memory
-
-Learned that:
-
-* Kubernetes eviction decisions rely on working set memory.
-* Monitoring total memory alone is insufficient.
-
----
-
-# 8️⃣ Improvements Added
-
-To make the alert more effective, we:
-
-### ✅ Added Context Labels
-
-Included:
-
-* Namespace
-* Pod name
-* Container name
-
-This made debugging faster.
-
-### ✅ Avoided Alert Fatigue
-
-Configured alert to trigger only if:
-
-* OOMKilled detected
-* Within defined time window
-
----
-
-# 9️⃣ Business Impact
-
-After implementing OOMKilled alert:
-
-* Faster detection of memory issues
-* Reduced manual log inspection
-* Improved incident response time
-* Better visibility into resource misconfiguration
-* Improved reliability of Kubernetes workloads
-
-It shifted monitoring from:
-
-Reactive → Proactive
-
----
-
-# 🔟 Lessons Learned
-
-1. Not All Restarts Are Equal
-
-2. Resource Limits Matter
-
-3. Observability Is Layered
-
-4. Alerts Should Be Meaningful
-
----
-
-# 1️⃣1️⃣ Final Conclusion
-
-This task enhanced my understanding of:
-
-* Kubernetes resource management
-* Linux memory behavior
-* Container lifecycle
-* Exit codes
-* Observability best practices
-* Designing low-noise, high-signal alerts
-
-Implementing OOMKilled detection was not just creating an alert —
-it required understanding how Kubernetes interacts with Linux memory management and how to convert system signals into actionable monitoring.
-
----
+<br>
 
 ## References
 
