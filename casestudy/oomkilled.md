@@ -11,8 +11,8 @@ After investigation, the root cause was identified as **OOMKilled (Out Of Memory
 
 These events were not being proactively detected, which delayed debugging and increased downtime risk.
 
-Goal:  
-> Build a reliable alerting mechanism in SigNoz to detect OOMKilled events immediately.
+Goal:  <br>
+**Build a reliable alerting mechanism in SigNoz to detect OOMKilled events immediately.**
 
 ---
 
@@ -40,11 +40,14 @@ This makes it tricky because:
 ## 🔍 Understanding Exit Code 137
 
 Exit Code **137 = 128 + 9 (SIGKILL)**  
-This indicates the container was killed due to memory pressure.
+This means the container was forcefully terminated by the system, usually due to high memory usage (OOM - Out Of Memory).
 
 <div style="display:flex; justify-content:center; gap:10px;">
   <img src="/casestudy/img/code137.webp" width="400">
 </div>
+
+### What this indicates?
+When a container exceeds its memory limit, the OS/Kubernetes sends a `SIGKILL (9)` signal and stops the process immediately, resulting in exit code 137.
 
 Common causes:
 - Memory leaks in application
@@ -85,7 +88,8 @@ Instead of manually checking pod status, automated alerting ensures faster detec
 
 # ⚙️ Alert Logic in SigNoz v0.105.1 (Beta)
 
-We are using **SigNoz v0.105.1 (Beta)** for this alert implementation.
+We are using **SigNoz v0.105.1 (Beta)** for this alert implementation. <br>
+**(You can try a similar setup with Classic alerts as well.)**
 
 ### 📈 Metrics Used
 
@@ -112,8 +116,8 @@ SigNoz provides two ways to create alert queries:
 1. **Query Builder (UI-based)** – Recommended for structured metric logic  
 2. **PromQL (Advanced)** – Direct metric query writing  
 
-For this case study, we used:
-> ✅ Query Builder (with Formula & Time Shift)
+For this case study, we used: <br>
+**✅ Query Builder (with Formula & Time Shift)**
 
 Reason:
 - Easier comparison between current vs past values  
@@ -124,8 +128,8 @@ Reason:
 
 ## 🧮 Detection Strategy (Only New OOMKills)
 
-The main goal was:
-> Detect only *new OOMKilled events* and ignore past/stale data.
+The main goal was: <br>
+**Detect only *new OOMKilled events* and ignore past/stale data.**
 
 Instead of triggering alerts on total restart count, we compare:
 - Current value (A)
@@ -192,6 +196,13 @@ This ensures:
 - Alerts only on *new* OOMKilled events  
 - No repeated alerts for the same crash  
 - Noise-free monitoring  
+
+
+<div style="display:flex; justify-content:center; gap:10px;">
+  <img src="/casestudy/img/A.png"> <img src="/casestudy/img/B_F1.png"> <br> <img src="/casestudy/img/alert_condition.png"> <img src="/casestudy/img/notification.png">
+</div>
+
+
 
 ---
 
