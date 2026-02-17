@@ -134,11 +134,11 @@ This effectively creates a ~5 minute evaluation window.
 ```
 | Minute | F1   |
 | ------ | ---- |
-| 1      | 0.12 |
-| 2      | 0.11 |
-| 3      | 0.13 |
-| 4      | 0.14 |
-| 5      | 0.12 |
+| 1      | 0.07 |
+| 2      | 0.12 |
+| 3      | 0.09 |
+| 4      | 0.08 |
+| 5      | 0.06 |
 
 (ensure it's 'all the time' cause this ensures, F1 must stay above threshold for the ENTIRE 5-minute window to trigger alert.)
 
