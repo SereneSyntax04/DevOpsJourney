@@ -182,14 +182,6 @@ Always keep baseline (B) unfiltered for accurate trend comparison.
 
 ---
 
-## 📉 Noise Reduction Techniques Used
-- Excluded system namespaces (`ABC`, `XYZ`)
-- HAVING filter to ignore low memory pods (<50%)
-- Trend-based detection instead of static thresholds
-- Per-pod grouping for precise alerting
-
----
-
 ## 🧪 What This Alert Will Detect
 ✔ Pods with sustained memory growth  
 ✔ Potential memory leaks  
@@ -202,12 +194,7 @@ Always keep baseline (B) unfiltered for accurate trend comparison.
 
 ---
 
-## Real-World Impact
-This predictive alert:
-- Reduces OOMKilled incidents
-- Enables proactive scaling or debugging
-- Minimizes alert fatigue compared to static memory alerts
-- Aligns with production-grade SRE monitoring practices
+### 🔎 Summary of Current Alert Setup (Pre-OOM Detection)
 
----
-
+* Created a predictive alert using `k8s.container.memory_limit_utilization` where Query A filters pods with memory usage > 50% (A > 0.50) and Query B uses a 5-minute timeshift baseline (300s), with formula F1 = A - B to detect growth.
+* Alert triggers when F1 > 0.05 (5% memory increase) **on average over the last 5 minutes**, helping identify pods under sustained and increasing memory pressure before a potential OOMKilled event while excluding system namespaces to reduce noise.
