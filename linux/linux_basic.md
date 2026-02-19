@@ -76,7 +76,7 @@ Most cloud and DevOps jobs **expect Linux knowledge** — period.
 
 👉 GNU tools + Linux kernel = **Linux OS**
 
-(Technically called **GNU/Linux**, but everyone says *Linux*.)
+(Technically called **GNU/Linux**, but everyone says **Linux**.)
 
 ---
 
@@ -174,7 +174,7 @@ Best for:
 
 ---
 
-## Open Source Explained (Important for Exams)
+## Open Source Explained 
 
 ### Free ≠ Free Cost
 
@@ -208,7 +208,7 @@ GPL rules:
 
 ---
 
-## Enterprise Linux Ecosystem (Reality Check)
+## Enterprise Linux Ecosystem 
 
 ### Fedora → CentOS Stream → RHEL
 
@@ -415,4 +415,3 @@ Run with:
 bash script.sh
 ```
 📌 Shell scripts save time and prevent human errors.
-
