@@ -41,23 +41,13 @@ Linux dominates because it is:
 - Modular
 - Highly customizable
 
-### Real-world usage
-- **Android** → Linux-based  
-- **Chrome OS** → Linux  
-- **Amazon AWS, Google Cloud, Azure** → Linux servers  
-- **Top 10 websites** → Linux-powered  
-- **Dev tools** → Python, PHP, Ruby ship with Linux  
-
-Most cloud and DevOps jobs **expect Linux knowledge** — period.
-
 ---
 
 ## A Quick History of Linux
 
 ### Unix (1960s)
 - Created by AT&T
-- Powerful, modular, stable
-- But **commercial and restricted**
+- Powerful, modular, stable But **commercial and restricted**
 
 ### GNU Project (1980s)
 - Started by **Richard Stallman**
@@ -75,8 +65,6 @@ Most cloud and DevOps jobs **expect Linux knowledge** — period.
 - Community contributions exploded
 
 👉 GNU tools + Linux kernel = **Linux OS**
-
-(Technically called **GNU/Linux**, but everyone says **Linux**.)
 
 ---
 
@@ -361,10 +349,13 @@ Owner | Group | Others
 
 Used to install, update, and remove software.
 
+if using ubuntu: **apt** is the package manager
+
 ### Debian-based (Ubuntu)
-- `apt install package`
+- `apt update` **first command to use**
+- `apt install (package)` eg: apt install python
 - `apt remove package`
-- `apt update`
+
 
 ### Red Hat–based (RHEL, Fedora)
 - `dnf install package`
@@ -414,4 +405,5 @@ Run with:
 ```bash
 bash script.sh
 ```
+
 📌 Shell scripts save time and prevent human errors.
