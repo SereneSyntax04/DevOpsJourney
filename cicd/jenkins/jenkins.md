@@ -1,4 +1,4 @@
-# Jenkins — Beginner Friendly Introduction 🚀
+# Jenkins 🚀
 
 <p align="center">
   <img src="/cicd/assets/images/jenkins.png" width="450" />
@@ -13,9 +13,7 @@ Jenkins is an **open-source automation server** used to **build, test, and deplo
 
 <br>
 
-## Key Jenkins Terms (Must-Know)
-
-These words will come up **again and again**.
+### Key Jenkins Terms 
 
 | Term              | Simple Meaning                                                |
 | ----------------- | ------------------------------------------------------------- |
@@ -25,24 +23,17 @@ These words will come up **again and again**.
 | **Trigger**       | Event that starts a build (manual, schedule, webhook).        |
 | **Plugin**        | Adds extra features to Jenkins (most power comes from these). |
 
-📌 Reality check: Jenkins without plugins is basic. **Plugins are the real power.**
+📌 Jenkins without plugins is basic. **Plugins are the real power.**
 
 ---
----
-<br><br>
 
-## System Requirements
+### System Requirements
 Jenkins runs on Windows, macOS, and Linux with 256 MB RAM, 1 GB storage, and Java 21. <br>
 📌 If using **Docker**, just install **Docker Desktop** (Java is already included).
 
-
 ---
----
-<br><br>
 
-
-
-<h1 align='center'> Install Jenkins Using Docker 🐳</h1>
+# Install Jenkins Using Docker 🐳
 
 ```
 You need admin access, 4 GB+ RAM, 10 GB disk, and basic Docker awareness (optional but helpful).
@@ -55,7 +46,8 @@ Docker Desktop provides the runtime + CLI needed to run Jenkins containers.
 
 After installation, **start Docker Desktop** and wait until it shows:
 
-> 🟢 Docker Desktop is running
+🟢 Docker Desktop is running
+
 <p align="center"> 
   <img src="/cicd/assets/jenkinsImg/st1.png" alt="desktop running" width="400"/> 
 </p>
@@ -71,7 +63,8 @@ docker --version
 docker run hello-world
 ```
 
-✅ If you see *"Hello from Docker"*, Docker is working correctly.
+✅ If you see **"Hello from Docker"**, Docker is working correctly.
+
 <p align="center"> 
   <img src="/cicd/assets/jenkinsImg/st2.png" alt="check docker" width="400"/>  <br>
   <img src="/cicd/assets/jenkinsImg/st3.png" alt="check container" width = "400"/>
@@ -223,7 +216,7 @@ These plugins cover most common Jenkins use cases.
 
 <br>
 
-## Jenkins User Interface (What Matters)
+## Jenkins User Interface 
 
 | Menu                      | Purpose                 |
 | ------------------------- | ----------------------- |
@@ -289,9 +282,7 @@ Used to configure tools Jenkins jobs depend on.
 <br><br>
 
 
-<h1 align='center'>Chapter 2: Jenkins Job</h1>
-
-# Your First Jenkins Job (Hello Jenkins)
+# Jenkins Job
 
 Just like *Hello World* in programming, this job confirms Jenkins is working correctly.
 
@@ -353,7 +344,7 @@ Click the build number or check mark to view **Console Output**.
 
 ---
 
-## Jenkins Job Types (Overview)
+## Jenkins Job Types 
 
 | Job Type                 | Purpose                          |
 | ------------------------ | -------------------------------- |
@@ -368,7 +359,7 @@ Click the build number or check mark to view **Console Output**.
 
 ---
 
-## Job Configuration Sections (What Matters)
+## Job Configuration Sections 
 
 ### General
 
@@ -485,11 +476,9 @@ Useful for identifying slow or unstable jobs.
 [Task 1: Automate System Monitoring with Jenkins](jenkinsTask.md)
 
 ---
----
 <br><br>
 
-
-<h1 align='center'>Chapter 3: Job Workspaces,Artifacts and Parameters.</h1>
+# Job Workspaces,Artifacts and Parameters.
 
 ## Using a Global Build Tool in Jenkins
 
@@ -511,8 +500,6 @@ Jenkins allows you to configure tools **once** and reuse them across multiple jo
 1️⃣ Configure Git and Maven in Manage Jenkins → Tools
 <div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st25.png" width="400"> <img src="/cicd/assets/jenkinsImg/st26.png" width="400"> </div>
 <br>
-
-
 
 2️⃣ Create a Jenkins Job and Connect GitHub Repository
 <div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st27.png" width="300"> <img src="/cicd/assets/jenkinsImg/st28.png" width="300"> <img src="/cicd/assets/jenkinsImg/st29.png" width="300"> </div>
@@ -739,9 +726,9 @@ TZ=Europe/London
 
 
 
-<h1 align='center'>Chapter 4: Organize Jobs with Views and Folders.</h1>
+# Organize Jobs with Views and Folders.
 
-# Why Views and Folders Matter
+## Why Views and Folders Matter
 
 As Jenkins grows, job sprawl becomes real. In large teams (for example, multiple apps per team), you can easily end up with **hundreds of jobs**. Views and folders exist to keep Jenkins **usable, searchable, and sane**.
 
@@ -918,21 +905,12 @@ Safe operation ✔
   * Views
   * Subfolders
 
-🚨 **Permanent and destructive**
-
-> Always double-check before deleting folders.
-
-
 
 ## jenkins Task
 [Task 3: Create Folders and Views](jenkinsTask.md)
 
 ---
----
 <br>
-
-
-
 
 
 # Jenkins Pipeline as Code – Understanding & Error Resolution
@@ -1105,20 +1083,7 @@ By defining pipelines in code and storing them in Git, Jenkins pipelines become 
 <div style="display:flex; gap:10px;"> <img src="/cicd/assets/jenkinsImg/st100.png" width="500"> </div>
 
 ---
-
-✅ **Skills Demonstrated**
-
-* Jenkins Pipeline (Declarative)
-* Maven build automation
-* Git-based CI/CD
-* Error analysis and resolution
-
-
----
 <br>
-
-
-
 
 
 ## Build Agents and Cloud Runners
@@ -1158,7 +1123,6 @@ Using plugins:
 <br><br>
 
 
-
 # Jenkins Deletion (Docker-Based Setup)
 
 ## Jenkins Running Inside Docker
@@ -1179,7 +1143,7 @@ Before deletion, verify what exists:
 ```bash
 docker ps -a
 docker volume ls
-````
+```
 
 ---
 
@@ -1241,19 +1205,3 @@ docker rm -f jenkins
 docker volume rm jenkins_volume
 docker rmi jenkins/jenkins:lts-jdk21
 ```
-
----
-
-## Best Practice
-
-* Always use **named volumes** for Jenkins data
-* Never delete volumes unless a clean reset is required
-* Backup volumes before permanent deletion
-
-
-
----
----
-<br><br>
-
-[Click here to redirect to INDEX](/README.md) 
