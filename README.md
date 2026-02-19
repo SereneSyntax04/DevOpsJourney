@@ -20,50 +20,30 @@ Every section contains **structured notes + hands-on tasks** that reflect how to
 Foundational Linux concepts required for cloud, containers, and automation.
 
 📁 `linux/`
-- [Linux Overview & Basics](/linkedin_linux/linux_basic.md)
+- [INDEX For Linux](/linux/readme.md)
 
 ---
 
 ## 🧱 Foundations of DevOps
-Understanding *why* DevOps works before touching tools.
 
-📁 `linkedin_foundation/`
-- [DevOps Fundamentals](/linkedin_foundation/devops_foundation.md)
-- [Git Concepts & Commands](/linkedin_foundation/devops_foundation_Git.md)
-- [Infrastructure as Code — Concepts](/linkedin_foundation/devops_foundation_IAC.md)
+[INDEX For linkedinFoundation learning](/linkedin_foundation/readme.md)
 
 ---
 
 ## 🛠️ Infrastructure as Code (Terraform)
-Designing reproducible, auditable, and scalable infrastructure.
 
-📁 `IAC/`
-- [Terraform Core Concepts](/IAC/terraformTerms.md)
-- [Detailed Terraform Theory](/IAC/DetailedTheoryTerraform.md)
-- [Hands-on Terraform Tasks](/IAC/Terraformtask/TaskReadme.md)
-- [Local Terraform Practice](/IAC/localPractise/LocalSetupSteps.md)
-
+[INDEX For IAC](/IAC/readme.md)
 ---
 
 ## ☸️ Kubernetes
-From architecture to application deployment and workloads.
 
-📁 `k8s/`
-- [Kubernetes Architecture](/k8s/architecture.md)
-- [Experiment k8s with minikube](/k8s/minikubeInstall.md)
-- [Application Deployment Hands-on](/k8s/k8sappDeploy.md)
-- [Pods, Stateful Workloads & Security](/k8s/Managing.md)
-- [Kubernetes Task](/k8s/k8sTask/taskReadme.md)
+[INDEX For k8s](/k8s/readme.md)
 
 ---
 
 ## 🔁 CI/CD & Automation
-Building reliable pipelines and automation workflows.
 
-📁 `cicd/`
-- [CI/CD Concepts](/cicd/cicd_Theory.md)
-- [Jenkins Notes](/cicd/jenkins/jenkins.md)
-- [Jenkins Hands-on Task](/cicd/jenkins/jenkinsTask.md)
+[INDEX For cicd](/cicd/readme.md)
 
 ---
 
