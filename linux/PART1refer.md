@@ -108,10 +108,18 @@ remember, **useradd** won't create home directory for the user.
 - `cat /etc/group` this will show list of groups present
 
 8. `usermod <options> <username>` → modifies an existing user (e.g., add to group, change shell) 
+- with **root-user** privilage: `chmod u=rwx file.txt` (**u** = user (owner of the file), **g** = group (users in the file’s group), **o** = others (all other users)) 
+- **NUMBERING:** 
+Permissions are represented as:
+```
+Read (r or 4) – View file contents.
+Write (w or 2) – Modify file contents.
+Execute (x or 1) – Run scripts or programs.
+```
 
-9.
+[File Permissions Management](https://github.com/iam-veeramalla/ultimate-linux-guide/tree/main/06-file-permissions)
 
-10. Enforcing Password Policie
+9. Enforcing Password Policie
 - Lock a user account : `passwd -l username` 
 - Unlock a user account: `passwd -u username`
 - Password expiration: Set password expiry days `chage -M 90 username`
