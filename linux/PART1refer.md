@@ -76,6 +76,8 @@ Format explanation:
 
 ## User Management  (Important for accountability and keeping linux environment secure.)
 
+`sudo <command>` → run a command with superuser (root) privileges  
+
 1. `useradd <username>` → creates a new user account 
 - adduser or useradd both commands can be used to create an user.
 remember, **useradd** won't create home directory for the user.  
@@ -94,17 +96,20 @@ remember, **useradd** won't create home directory for the user.
 4. `su - <username>` → switch to another user
 - `su - shrushti` 
 - This will switch **root@ubuntu-dev:/#** to **shrushti@ubuntu-dev:~$**
+- To switch back from normal user to root user: `sudo su -` this command is used.
 
 5. `whoami` → shows the currently logged-in user 
 - used to cross check which account is logged-in
 
 6. `id <username>` → displays user ID (UID), group ID (GID), and groups   
 
-7. `groups <username>` → shows groups the user belongs to  
-  
-8. `sudo <command>` → run a command with superuser (root) privileges
+7. `groups <username>` → shows groups the user belongs to  (one user can belong to multiple groups.)
+- `groupadd <groupNmae>` to create on group where users can be added eg: devops.
+- `cat /etc/group` this will show list of groups present
 
-9. `usermod <options> <username>` → modifies an existing user (e.g., add to group, change shell)  
+8. `usermod <options> <username>` → modifies an existing user (e.g., add to group, change shell) 
+
+9.
 
 10. Enforcing Password Policie
 - Lock a user account : `passwd -l username` 
@@ -124,7 +129,7 @@ remember, **useradd** won't create home directory for the user.
 **output:**
 <div style="display:flex; justify-content:center; gap:10px;">
   <img src="/linux/assets/images/usermanag.png">
-</div>'
+</div>
 
 This happened cause the user didn't have permission compared to root user. 
 
@@ -137,3 +142,9 @@ This happened cause the user didn't have permission compared to root user.
 - also you can change password for that user using `passwd <username>`
 
 ---
+<br>
+
+## SSH client
+- An SSH client is a software tool that allows you to securely connect to a remote computer or server over a network using the Secure Shell (SSH) protocol. 
+- It encrypts all communication between your local machine and the remote system, making it safe to execute commands, transfer files, and manage servers remotely. 
+- Common SSH clients like **PuTTY, OpenSSH, and MobaXterm** are widely used by system administrators and DevOps engineers to access cloud servers, configure services, and perform remote troubleshooting in a secure way.
