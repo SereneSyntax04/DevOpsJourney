@@ -2,7 +2,7 @@
 
 ---
 
-## Basic linux command
+## Basic linux command (folder structure)
 
 1. apt update <br>
 `apt update` refreshes the package index so the system knows about the latest available software versions from repositories. 
@@ -17,8 +17,8 @@
 - `/` → current working directory (pwd), here it means the root directory  
 - `#` → indicates the shell is running as the root user (has full administrative privileges)
 
-Example: ubuntu@ubuntu-dev:~$  
-- `ubuntu` → the current logged-in user (non-root user)  
+Example: shrushti@ubuntu-dev:~$  
+- `shrushti` → the current logged-in user (non-root user)  
 - `ubuntu-dev` → the hostname of the system  
 - `:` → separator between hostname and directory  
 - `~` → the user’s home directory (e.g., /home/ubuntu)  
@@ -71,28 +71,69 @@ Format explanation:
 
 - `ls /etc` → lists system-wide configuration files and directories used to control system and application settings (similar to windows: `c:/`) , 
 
+---
 <br>
 
-## User Management 
+## User Management  (Important for accountability and keeping linux environment secure.)
 
-1. `useradd <username>` → creates a new user account  
+1. `useradd <username>` → creates a new user account 
 - adduser or useradd both commands can be used to create an user.
-remember, useradd won't create home directory for the user.
-- example: `adduser shrushti`, to check: vim /etc/passwd , if there is entry of user in this file means user is created.
+remember, **useradd** won't create home directory for the user.  
+- with command **ls /home** you wont find this new user created using **useradd <username>** , instead use **adduser**
+- example: `adduser shrushti`, to check: **vim /etc/passwd OR cat /etc/passwd** , if there is entry of user in this file means user is created.
 
 <br>
 
 2. `passwd <username>` → sets or changes the user password  
--  To check password : cat /etc/shadow (shows encrypted password)
+- `passwd shrushti` → new password (password wont be visible) → retype the password (confirmation)
+-  To check password : **cat /etc/shadow** (shows encrypted password)
 
- `usermod <options> <username>` → modifies an existing user (e.g., add to group, change shell)  
+3. `userdel <username>` → deletes a user account 
+- `userdel shrushti` and everything related to this account will be deleted.
 
- `userdel <username>` → deletes a user account  
+4. `su - <username>` → switch to another user
+- `su - shrushti` 
+- This will switch **root@ubuntu-dev:/#** to **shrushti@ubuntu-dev:~$**
 
- `id <username>` → displays user ID (UID), group ID (GID), and groups 
+5. `whoami` → shows the currently logged-in user 
+- used to cross check which account is logged-in
 
- `whoami` → shows the currently logged-in user  
+6. `id <username>` → displays user ID (UID), group ID (GID), and groups   
 
- `groups <username>` → shows groups the user belongs to  
- `su <username>` → switch to another user  
- `sudo <command>` → run a command with superuser (root) privileges
+7. `groups <username>` → shows groups the user belongs to  
+  
+8. `sudo <command>` → run a command with superuser (root) privileges
+
+9. `usermod <options> <username>` → modifies an existing user (e.g., add to group, change shell)  
+
+10. Enforcing Password Policie
+- Lock a user account : `passwd -l username` 
+- Unlock a user account: `passwd -u username`
+- Password expiration: Set password expiry days `chage -M 90 username`
+
+---
+
+### PRACTICAL: Switch to NON-ROOT user account and try to delete /sbin (this is one of the System Directories if gone your linux environment is currupt)
+
+- step1: adduser shrushti
+- step2: cat /etc/passwd
+- step3: passwd shrushti
+- step4: cat /etc/shadow
+- **step5:** su - shrushti
+- **step6:** rm -rf /sbin <br>
+**output:**
+<div style="display:flex; justify-content:center; gap:10px;">
+  <img src="/linux/assets/images/usermanag.png">
+</div>'
+
+This happened cause the user didn't have permission compared to root user. 
+
+### Question: what is the difference between uaseradd and adduser?
+- `useradd <username>` command is used to instantly add user account. Mostly used for scripting purpose (automation using certain users etc.), also won't create /home directory for this user.
+- `adduser` on the other hand, creates /home directory for this user account also ask for many question regarding user (fullname, room number, work phone, home phone, other)
+
+### Question: Can you restore the old password or can you decrypt the password? 
+- NO, you can't restore or decrypt the password but you can get encrypted password using `cat /etc/shadow`
+- also you can change password for that user using `passwd <username>`
+
+---
