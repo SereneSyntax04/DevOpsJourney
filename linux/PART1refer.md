@@ -107,19 +107,45 @@ remember, **useradd** won't create home directory for the user.
 - `groupadd <groupNmae>` to create on group where users can be added eg: devops.
 - `cat /etc/group` this will show list of groups present
 
-8. `usermod <options> <username>` → modifies an existing user (e.g., add to group, change shell) 
+### Changing Permissions with chmod
+
+1. `usermod <options> <username>` → modifies an existing user (e.g., add to group, change shell) 
 - with **root-user** privilage: `chmod u=rwx file.txt` (**u** = user (owner of the file), **g** = group (users in the file’s group), **o** = others (all other users)) 
 - **NUMBERING:** 
-Permissions are represented as:
+
+**Permissions are represented as:**
 ```
 Read (r or 4) – View file contents.
 Write (w or 2) – Modify file contents.
 Execute (x or 1) – Run scripts or programs.
 ```
 
+2. Using Symbolic Mode
+Modify permissions using symbols:<br>
+**Add (+), remove (-), or set (=) permissions.**
+```
+chmod u+x filename  # Add execute for user
+chmod g-w filename  # Remove write for group
+chmod o=r filename  # Set read-only for others
+chmod u=rwx,g=rx,o= filename  # Set full access for user, read/execute for group, and no access for others
+```
+
+3. Using Numeric (Octal) Mode
+Each permission has a value:
+**Read (4), Write (2), Execute (1).**
+```
+chmod 755 filename  # User (rwx), Group (r-x), Others (r-x)
+chmod 644 filename  # User (rw-), Group (r--), Others (r--)
+chmod 700 filename  # User (rwx), No access for others
+```
+
+4. Changing Ownership with **chown**
+
+5. Changing Group Ownership with **chgrp**
+
 [File Permissions Management](https://github.com/iam-veeramalla/ultimate-linux-guide/tree/main/06-file-permissions)
 
-9. Enforcing Password Policie
+6. Enforcing Password Policie
 - Lock a user account : `passwd -l username` 
 - Unlock a user account: `passwd -u username`
 - Password expiration: Set password expiry days `chage -M 90 username`
