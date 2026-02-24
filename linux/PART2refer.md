@@ -1,4 +1,4 @@
-# PART1: A reference file for important and frequently used commands.
+# PART2: A reference file for important and frequently used commands.
 
 ---
 
