@@ -16,10 +16,10 @@ Every section contains **structured notes + hands-on tasks** that reflect how to
 
 ---
 
-## 🐧 Linux for DevOps
+## 🐧 Linux and Networking concept for DevOps
 Foundational Linux concepts required for cloud, containers, and automation.
 
-📁 `linux/`
+📁 `linux and Networking/`
 - [INDEX For Linux](/linux/readme.md)
 
 ---
