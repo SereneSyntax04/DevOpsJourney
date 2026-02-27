@@ -9,6 +9,10 @@ Common DDL commands:
 * DROP
 * TRUNCATE
 
+<div style="display:flex; justify-content:center; gap:10px;">
+  <img src="/linux/assets/images/ddl.png">
+</div>
+
 ---
 
 ## 1. CREATE
@@ -128,6 +132,10 @@ Common DML Commands:
 * INSERT
 * UPDATE
 * DELETE
+
+<div style="display:flex; justify-content:center; gap:10px;">
+  <img src="/linux/assets/images/dml.png">
+</div>
 
 ---
 
